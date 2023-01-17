@@ -1,0 +1,2628 @@
+openapi: 3.0.1
+info:
+  title: Utility-API.v1
+  version: '1.0'
+  description: APIs for Uitility microservice
+  contact:
+    name: Affinity
+    url: 'https://affinityafrica.com'
+    email: admin@affinityafrica.com
+servers:
+  - url: 'https://api.affinitylabstest.com/{basePath}'
+    variables:
+      basePath:
+        default: utility
+paths:
+  '/backoffice/documents/{documentId}':
+    delete:
+      operationId: deleteDocumentById
+      parameters:
+        - name: documentId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 200 response
+          content: {}
+      x-amazon-apigateway-integration:
+        type: http_proxy
+        httpMethod: DELETE
+        uri: 'https://${stageVariables.albUrl}/utility/backoffice/documents/{documentId}'
+        responses:
+          default:
+            statusCode: '200'
+        requestParameters:
+          integration.request.path.documentId: method.request.path.documentId
+        passthroughBehavior: when_no_match
+      tags:
+        - backoffice
+      description: ''
+  /backoffice/list-id-documents:
+    get:
+      operationId: backofficeListIdDocuments
+      responses:
+        '200':
+          description: 200 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArrayOfMODEL51b938'
+        '500':
+          description: 500 response
+          content: {}
+      x-amazon-apigateway-integration:
+        type: http_proxy
+        httpMethod: GET
+        uri: 'https://${stageVariables.albUrl}/utility/backoffice/list-id-documents'
+        responses:
+          default:
+            statusCode: '200'
+        passthroughBehavior: when_no_match
+      tags:
+        - backoffice
+  /client/transaction-categories:
+    get:
+      operationId: getTransactionCategories
+      responses:
+        '200':
+          description: 200 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArrayOfMODEL999adb'
+      x-amazon-apigateway-integration:
+        type: http_proxy
+        httpMethod: GET
+        uri: 'https://${stageVariables.albUrl}/utility/client/transaction-categories'
+        responses:
+          default:
+            statusCode: '200'
+        passthroughBehavior: when_no_match
+  /client/payment-methods:
+    get:
+      operationId: getPaymentMethods
+      responses:
+        '200':
+          description: 200 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArrayOfMODEL0e7755'
+      x-amazon-apigateway-integration:
+        type: http_proxy
+        httpMethod: GET
+        uri: 'https://${stageVariables.albUrl}/utility/client/payment-methods'
+        responses:
+          default:
+            statusCode: '200'
+        passthroughBehavior: when_no_match
+  '/client/hubs/{hubId}':
+    get:
+      operationId: getHub
+      parameters:
+        - name: hubId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 200 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Hub'
+      x-amazon-apigateway-integration:
+        type: http_proxy
+        httpMethod: GET
+        uri: 'https://${stageVariables.albUrl}/utility/client/hubs/{hubId}'
+        responses:
+          default:
+            statusCode: '200'
+        requestParameters:
+          integration.request.path.hubId: method.request.path.hubId
+        passthroughBehavior: when_no_match
+  /backoffice/payment-methods:
+    get:
+      operationId: backofficeGetPaymentMethods
+      responses:
+        '200':
+          description: 200 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArrayOfMODEL282582'
+      x-amazon-apigateway-integration:
+        type: http_proxy
+        httpMethod: GET
+        uri: 'https://${stageVariables.albUrl}/utility/backoffice/payment-methods'
+        responses:
+          default:
+            statusCode: '200'
+        passthroughBehavior: when_no_match
+      tags:
+        - backoffice
+    post:
+      operationId: backofficeAddPaymentMethod
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MODEL281259'
+        required: true
+      responses:
+        '200':
+          description: 200 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MODEL92dea1'
+        '400':
+          description: 400 response
+          content: {}
+        '500':
+          description: 500 response
+          content: {}
+      x-amazon-apigateway-integration:
+        type: http_proxy
+        httpMethod: POST
+        uri: 'https://${stageVariables.albUrl}/utility/backoffice/payment-methods'
+        responses:
+          default:
+            statusCode: '200'
+        passthroughBehavior: when_no_match
+      tags:
+        - backoffice
+  /backoffice/reasons:
+    get:
+      operationId: backofficeGetAllReasons
+      parameters:
+        - name: category
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 200 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArrayOfReason'
+      x-amazon-apigateway-integration:
+        type: http_proxy
+        httpMethod: GET
+        uri: 'https://${stageVariables.albUrl}/utility/backoffice/reasons'
+        responses:
+          default:
+            statusCode: '200'
+        requestParameters:
+          integration.request.querystring.category: method.request.querystring.category
+        passthroughBehavior: when_no_match
+      tags:
+        - backoffice
+    post:
+      operationId: backofficePostReason
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MODEL845414'
+        required: true
+      responses:
+        '200':
+          description: 200 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Reason'
+      x-amazon-apigateway-integration:
+        type: http_proxy
+        httpMethod: POST
+        uri: 'https://${stageVariables.albUrl}/utility/backoffice/reasons'
+        responses:
+          default:
+            statusCode: '200'
+        passthroughBehavior: when_no_match
+      tags:
+        - backoffice
+  /client/hubs:
+    get:
+      operationId: getAllHubs
+      responses:
+        '200':
+          description: 200 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArrayOfHub'
+      x-amazon-apigateway-integration:
+        type: http_proxy
+        httpMethod: GET
+        uri: 'https://${stageVariables.albUrl}/utility/client/hubs'
+        responses:
+          default:
+            statusCode: '200'
+        passthroughBehavior: when_no_match
+  /backoffice/faqs:
+    get:
+      operationId: backofficeGetFaqs
+      parameters:
+        - name: search
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 200 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArrayOfFaq'
+      x-amazon-apigateway-integration:
+        type: http_proxy
+        httpMethod: GET
+        uri: 'https://${stageVariables.albUrl}/utility/backoffice/faqs'
+        responses:
+          default:
+            statusCode: '200'
+        requestParameters:
+          integration.request.querystring.search: method.request.querystring.search
+        passthroughBehavior: when_no_match
+    post:
+      operationId: backofficePostFaq
+      parameters:
+        - name: Access-Control-Allow-Origin
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Faq'
+        required: true
+      responses:
+        '200':
+          description: 200 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Faq'
+      x-amazon-apigateway-integration:
+        type: http_proxy
+        httpMethod: POST
+        uri: 'https://${stageVariables.albUrl}/utility/backoffice/faqs'
+        responses:
+          default:
+            statusCode: '200'
+        passthroughBehavior: when_no_match
+    options:
+      operationId: faqsCorsOption
+      responses:
+        '200':
+          description: 200 response
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+            Access-Control-Allow-Methods:
+              schema:
+                type: string
+            Access-Control-Allow-Headers:
+              schema:
+                type: string
+          content: {}
+      x-amazon-apigateway-integration:
+        type: mock
+        responses:
+          default:
+            statusCode: '200'
+            responseParameters:
+              method.response.header.Access-Control-Allow-Methods: '''OPTIONS,POST'''
+              method.response.header.Access-Control-Allow-Headers: '''Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'''
+              method.response.header.Access-Control-Allow-Origin: '''*'''
+        requestTemplates:
+          application/json: '{"statusCode": 200}'
+        passthroughBehavior: when_no_match
+  /client/faqs:
+    get:
+      operationId: getFaqs
+      parameters:
+        - name: search
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 200 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArrayOfFaq'
+      x-amazon-apigateway-integration:
+        type: http_proxy
+        httpMethod: GET
+        uri: 'https://${stageVariables.albUrl}/utility/client/faqs'
+        responses:
+          default:
+            statusCode: '200'
+        requestParameters:
+          integration.request.querystring.search: method.request.querystring.search
+        passthroughBehavior: when_no_match
+    options:
+      responses:
+        '200':
+          description: 200 response
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+            Access-Control-Allow-Methods:
+              schema:
+                type: string
+            Access-Control-Allow-Headers:
+              schema:
+                type: string
+          content: {}
+      x-amazon-apigateway-integration:
+        type: mock
+        responses:
+          default:
+            statusCode: '200'
+            responseParameters:
+              method.response.header.Access-Control-Allow-Methods: '''GET,OPTIONS'''
+              method.response.header.Access-Control-Allow-Headers: '''Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'''
+              method.response.header.Access-Control-Allow-Origin: '''*'''
+        requestTemplates:
+          application/json: '{"statusCode": 200}'
+        passthroughBehavior: when_no_match
+  /backoffice/hubs:
+    get:
+      operationId: backOfficeGetAllHubs
+      responses:
+        '200':
+          description: 200 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArrayOfHub'
+      x-amazon-apigateway-integration:
+        type: http_proxy
+        httpMethod: GET
+        uri: 'https://${stageVariables.albUrl}/utility/backoffice/hubs'
+        responses:
+          default:
+            statusCode: '200'
+        passthroughBehavior: when_no_match
+    post:
+      operationId: backofficeAddHub
+      parameters:
+        - name: Access-Control-Allow-Origin
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Hub'
+        required: true
+      responses:
+        '200':
+          description: 200 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Hub'
+      x-amazon-apigateway-integration:
+        type: http_proxy
+        httpMethod: POST
+        uri: 'https://${stageVariables.albUrl}/utility/backoffice/hubs'
+        responses:
+          default:
+            statusCode: '200'
+        passthroughBehavior: when_no_match
+    options:
+      operationId: hubCorsOption
+      responses:
+        '200':
+          description: 200 response
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+            Access-Control-Allow-Methods:
+              schema:
+                type: string
+            Access-Control-Allow-Headers:
+              schema:
+                type: string
+          content: {}
+      x-amazon-apigateway-integration:
+        type: mock
+        responses:
+          default:
+            statusCode: '200'
+            responseParameters:
+              method.response.header.Access-Control-Allow-Methods: '''OPTIONS,POST'''
+              method.response.header.Access-Control-Allow-Headers: '''Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'''
+              method.response.header.Access-Control-Allow-Origin: '''*'''
+        requestTemplates:
+          application/json: '{"statusCode": 200}'
+        passthroughBehavior: when_no_match
+  /client/list-id-documents:
+    get:
+      operationId: listIdDocuments
+      responses:
+        '200':
+          description: 200 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArrayOfMODEL576c0e'
+        '500':
+          description: 500 response
+          content: {}
+      x-amazon-apigateway-integration:
+        type: http_proxy
+        httpMethod: GET
+        uri: 'https://${stageVariables.albUrl}/utility/client/list-id-documents'
+        responses:
+          default:
+            statusCode: '200'
+        passthroughBehavior: when_no_match
+  /client/list-occupations:
+    get:
+      operationId: listOccupation
+      responses:
+        '200':
+          description: 200 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArrayOfMODEL0353d2'
+        '500':
+          description: 500 response
+          content: {}
+      x-amazon-apigateway-integration:
+        type: http_proxy
+        httpMethod: GET
+        uri: 'https://${stageVariables.albUrl}/utility/client/list-occupations'
+        responses:
+          default:
+            statusCode: '200'
+        passthroughBehavior: when_no_match
+  '/client/faqs/{faqId}':
+    get:
+      operationId: GetFaqbyId
+      parameters:
+        - name: faqId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 200 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Faq'
+      x-amazon-apigateway-integration:
+        type: http_proxy
+        httpMethod: GET
+        uri: 'https://${stageVariables.albUrl}/utility/client/faqs/{faqId}'
+        responses:
+          default:
+            statusCode: '200'
+        requestParameters:
+          integration.request.path.faqId: method.request.path.faqId
+        passthroughBehavior: when_no_match
+    options:
+      parameters:
+        - name: faqId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 200 response
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+            Access-Control-Allow-Methods:
+              schema:
+                type: string
+            Access-Control-Allow-Headers:
+              schema:
+                type: string
+          content: {}
+      x-amazon-apigateway-integration:
+        type: mock
+        responses:
+          default:
+            statusCode: '200'
+            responseParameters:
+              method.response.header.Access-Control-Allow-Methods: '''GET,OPTIONS'''
+              method.response.header.Access-Control-Allow-Headers: '''Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'''
+              method.response.header.Access-Control-Allow-Origin: '''*'''
+        requestTemplates:
+          application/json: '{"statusCode": 200}'
+        passthroughBehavior: when_no_match
+  '/client/transaction-categories/{categoryId}':
+    get:
+      operationId: getTransactionCategory
+      parameters:
+        - name: categoryId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 200 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransactionCategory'
+        '404':
+          description: 404 response
+          content: {}
+      x-amazon-apigateway-integration:
+        type: http_proxy
+        httpMethod: GET
+        uri: 'https://${stageVariables.albUrl}/utility/client/transaction-categories/{categoryId}'
+        responses:
+          default:
+            statusCode: '200'
+        requestParameters:
+          integration.request.path.categoryId: method.request.path.categoryId
+        passthroughBehavior: when_no_match
+  /backoffice/faq-categories:
+    get:
+      operationId: backofficeGetFaqCategories
+      responses:
+        '200':
+          description: 200 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArrayOfFaqCategory'
+      x-amazon-apigateway-integration:
+        type: http_proxy
+        httpMethod: GET
+        uri: 'https://${stageVariables.albUrl}/utility/backoffice/faq-categories'
+        responses:
+          default:
+            statusCode: '200'
+        passthroughBehavior: when_no_match
+    post:
+      operationId: backofficefaqcategories
+      parameters:
+        - name: Access-Control-Allow-Origin
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FaqCategory'
+        required: true
+      responses:
+        '200':
+          description: 200 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FaqCategory'
+      x-amazon-apigateway-integration:
+        type: http_proxy
+        httpMethod: POST
+        uri: 'https://${stageVariables.albUrl}/utility/backoffice/faq-categories/'
+        responses:
+          default:
+            statusCode: '200'
+        passthroughBehavior: when_no_match
+    options:
+      operationId: faqCorsOption
+      responses:
+        '200':
+          description: 200 response
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+            Access-Control-Allow-Methods:
+              schema:
+                type: string
+            Access-Control-Allow-Headers:
+              schema:
+                type: string
+          content: {}
+      x-amazon-apigateway-integration:
+        type: mock
+        responses:
+          default:
+            statusCode: '200'
+            responseParameters:
+              method.response.header.Access-Control-Allow-Methods: '''OPTIONS,POST'''
+              method.response.header.Access-Control-Allow-Headers: '''Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'''
+              method.response.header.Access-Control-Allow-Origin: '''*'''
+        requestTemplates:
+          application/json: '{"statusCode": 200}'
+        passthroughBehavior: when_no_match
+  /client/banks:
+    get:
+      operationId: listBanks
+      responses:
+        '200':
+          description: 200 response
+          content:
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Bank'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArrayOfBank'
+      x-amazon-apigateway-integration:
+        type: http_proxy
+        httpMethod: GET
+        uri: 'https://${stageVariables.albUrl}/utility/client/banks'
+        responses:
+          default:
+            statusCode: '200'
+        passthroughBehavior: when_no_match
+    options:
+      responses:
+        '200':
+          description: 200 response
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+            Access-Control-Allow-Methods:
+              schema:
+                type: string
+            Access-Control-Allow-Headers:
+              schema:
+                type: string
+          content: {}
+      x-amazon-apigateway-integration:
+        type: mock
+        responses:
+          default:
+            statusCode: '200'
+            responseParameters:
+              method.response.header.Access-Control-Allow-Methods: '''GET,OPTIONS'''
+              method.response.header.Access-Control-Allow-Headers: '''Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'''
+              method.response.header.Access-Control-Allow-Origin: '''*'''
+        requestTemplates:
+          application/json: '{"statusCode": 200}'
+        passthroughBehavior: when_no_match
+  '/backoffice/app-configs/{configId}':
+    get:
+      operationId: backofficeGetAppConfigConfigId
+      parameters:
+        - name: configId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 200 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AppConfig'
+      x-amazon-apigateway-integration:
+        type: http_proxy
+        httpMethod: GET
+        uri: 'https://${stageVariables.albUrl}/utility/backoffice/app-configs/{configId}'
+        responses:
+          default:
+            statusCode: '200'
+        requestParameters:
+          integration.request.path.configId: method.request.path.configId
+        passthroughBehavior: when_no_match
+    put:
+      operationId: backofficeUpdateAppConfig
+      parameters:
+        - name: Access-Control-Allow-Origin
+          in: header
+          schema:
+            type: string
+        - name: configId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AppConfig'
+        required: true
+      responses:
+        '200':
+          description: 200 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AppConfig'
+      x-amazon-apigateway-integration:
+        type: http_proxy
+        httpMethod: PUT
+        uri: 'https://${stageVariables.albUrl}/utility/backoffice/app-configs/{configId}'
+        responses:
+          default:
+            statusCode: '200'
+        requestParameters:
+          integration.request.path.configId: method.request.path.configId
+        passthroughBehavior: when_no_match
+    delete:
+      operationId: backofficeDeleteAppConfig
+      parameters:
+        - name: configId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 200 response
+          content: {}
+      x-amazon-apigateway-integration:
+        type: http_proxy
+        httpMethod: DELETE
+        uri: 'https://${stageVariables.albUrl}/utility/backoffice/app-configs/{configId}'
+        responses:
+          default:
+            statusCode: '200'
+        requestParameters:
+          integration.request.path.configId: method.request.path.configId
+        passthroughBehavior: when_no_match
+    options:
+      operationId: appConfigUpdateCorsOption
+      parameters:
+        - name: configId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 200 response
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+            Access-Control-Allow-Methods:
+              schema:
+                type: string
+            Access-Control-Allow-Headers:
+              schema:
+                type: string
+          content: {}
+      x-amazon-apigateway-integration:
+        type: mock
+        responses:
+          default:
+            statusCode: '200'
+            responseParameters:
+              method.response.header.Access-Control-Allow-Methods: '''OPTIONS,POST,PUT,DELETE'''
+              method.response.header.Access-Control-Allow-Headers: '''Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'''
+              method.response.header.Access-Control-Allow-Origin: '''*'''
+        requestTemplates:
+          application/json: '{"statusCode": 200}'
+        passthroughBehavior: when_no_match
+  '/backoffice/reasons/{reasonId}':
+    get:
+      operationId: backofficeGetReason
+      parameters:
+        - name: reasonId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 200 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Reason'
+      x-amazon-apigateway-integration:
+        type: http_proxy
+        httpMethod: GET
+        uri: 'https://${stageVariables.albUrl}/utility/backoffice/reasons/{reasonId}'
+        responses:
+          default:
+            statusCode: '200'
+        requestParameters:
+          integration.request.path.reasonId: method.request.path.reasonId
+        passthroughBehavior: when_no_match
+    delete:
+      operationId: backofficeDeleteReason
+      parameters:
+        - name: reasonId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 200 response
+          content: {}
+        '500':
+          description: 500 response
+          content: {}
+      x-amazon-apigateway-integration:
+        type: http_proxy
+        httpMethod: DELETE
+        uri: 'https://${stageVariables.albUrl}/utility/backoffice/reasons/{reasonId}'
+        responses:
+          default:
+            statusCode: '200'
+        requestParameters:
+          integration.request.path.reasonId: method.request.path.reasonId
+        passthroughBehavior: when_no_match
+  /backoffice/config-file:
+    get:
+      operationId: backofficeGetConfigFile
+      responses:
+        '200':
+          description: 200 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MODEL338513'
+      x-amazon-apigateway-integration:
+        type: http_proxy
+        httpMethod: GET
+        uri: 'https://${stageVariables.albUrl}/utility/backoffice/config-file'
+        responses:
+          default:
+            statusCode: '200'
+        passthroughBehavior: when_no_match
+    post:
+      operationId: backofficeUpdateConfigFile
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/MODELfc2de7'
+        required: true
+      responses:
+        '200':
+          description: 200 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MODEL5edba0'
+      x-amazon-apigateway-integration:
+        type: http_proxy
+        httpMethod: POST
+        uri: 'https://${stageVariables.albUrl}/utility/backoffice/config-file'
+        responses:
+          default:
+            statusCode: '200'
+        passthroughBehavior: when_no_match
+  /client/faq-categories:
+    get:
+      operationId: getFaqCategories
+      responses:
+        '200':
+          description: 200 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArrayOfFaqCategory'
+      x-amazon-apigateway-integration:
+        type: http_proxy
+        httpMethod: POST
+        uri: 'https://${stageVariables.albUrl}/utility/client/faq-categories'
+        responses:
+          default:
+            statusCode: '200'
+        passthroughBehavior: when_no_match
+    options:
+      responses:
+        '200':
+          description: 200 response
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+            Access-Control-Allow-Methods:
+              schema:
+                type: string
+            Access-Control-Allow-Headers:
+              schema:
+                type: string
+          content: {}
+      x-amazon-apigateway-integration:
+        type: mock
+        responses:
+          default:
+            statusCode: '200'
+            responseParameters:
+              method.response.header.Access-Control-Allow-Methods: '''GET,OPTIONS'''
+              method.response.header.Access-Control-Allow-Headers: '''Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'''
+              method.response.header.Access-Control-Allow-Origin: '''*'''
+        requestTemplates:
+          application/json: '{"statusCode": 200}'
+        passthroughBehavior: when_no_match
+  '/backoffice/transaction-categories/{categoryId}':
+    get:
+      operationId: backofficegetTransactionCategory
+      parameters:
+        - name: categoryId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 200 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransactionCategory'
+        '404':
+          description: 404 response
+          content: {}
+      x-amazon-apigateway-integration:
+        type: http_proxy
+        httpMethod: GET
+        uri: 'https://${stageVariables.albUrl}/utility/backoffice/transaction-categories/{categoryId}'
+        responses:
+          default:
+            statusCode: '200'
+        requestParameters:
+          integration.request.path.categoryId: method.request.path.categoryId
+        passthroughBehavior: when_no_match
+    delete:
+      operationId: deleteTransactionCategory
+      parameters:
+        - name: categoryId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 200 response
+          content: {}
+        '400':
+          description: 400 response
+          content: {}
+        '500':
+          description: 500 response
+          content: {}
+      x-amazon-apigateway-integration:
+        type: http_proxy
+        httpMethod: DELETE
+        uri: 'https://${stageVariables.albUrl}/utility/backoffice/transaction-categories/{categoryId}'
+        responses:
+          default:
+            statusCode: '200'
+        requestParameters:
+          integration.request.path.categoryId: method.request.path.categoryId
+        passthroughBehavior: when_no_match
+  /backoffice/uploads:
+    post:
+      operationId: backofficeUploadDocuments
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/MODELa88301'
+        required: true
+      responses:
+        '200':
+          description: 200 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UploadResponse'
+      x-amazon-apigateway-integration:
+        type: http_proxy
+        httpMethod: POST
+        uri: 'https://${stageVariables.albUrl}/utility/backoffice/uploads'
+        responses:
+          default:
+            statusCode: '200'
+        passthroughBehavior: when_no_match
+  '/backoffice/faq-categories/{faqCategoryId}':
+    get:
+      operationId: backofficeFaqCategory
+      parameters:
+        - name: faqCategoryId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 200 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FaqCategory'
+      x-amazon-apigateway-integration:
+        type: http_proxy
+        httpMethod: GET
+        uri: 'https://${stageVariables.albUrl}/utility/backoffice/faq-categories/{faqCategoryId}'
+        responses:
+          default:
+            statusCode: '200'
+        requestParameters:
+          integration.request.path.faqCategoryId: method.request.path.faqCategoryId
+        passthroughBehavior: when_no_match
+    put:
+      operationId: backOfficePutFAQ
+      parameters:
+        - name: faqCategoryId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FaqCategory'
+        required: true
+      responses:
+        '200':
+          description: 200 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FaqCategory'
+      x-amazon-apigateway-integration:
+        type: http_proxy
+        httpMethod: PUT
+        uri: 'https://${stageVariables.albUrl}/utility/backoffice/faq-categories/{faqCategoryId}'
+        responses:
+          default:
+            statusCode: '200'
+        requestParameters:
+          integration.request.path.faqCategoryId: method.request.path.faqCategoryId
+        passthroughBehavior: when_no_match
+    delete:
+      operationId: backofficeDeleteFAQCategory
+      parameters:
+        - name: faqCategoryId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 200 response
+          content: {}
+      x-amazon-apigateway-integration:
+        type: http_proxy
+        httpMethod: DELETE
+        uri: 'https://${stageVariables.albUrl}/utility/backoffice/faq-categories/{faqCategoryId}'
+        responses:
+          default:
+            statusCode: '200'
+        requestParameters:
+          integration.request.path.faqCategoryId: method.request.path.faqCategoryId
+        passthroughBehavior: when_no_match
+    options:
+      operationId: faqCategoryUpdateCorsOption
+      parameters:
+        - name: faqCategoryId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 200 response
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+            Access-Control-Allow-Methods:
+              schema:
+                type: string
+            Access-Control-Allow-Headers:
+              schema:
+                type: string
+          content: {}
+      x-amazon-apigateway-integration:
+        type: mock
+        responses:
+          default:
+            statusCode: '200'
+            responseParameters:
+              method.response.header.Access-Control-Allow-Methods: '''OPTIONS,PUT'''
+              method.response.header.Access-Control-Allow-Headers: '''Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'''
+              method.response.header.Access-Control-Allow-Origin: '''*'''
+        requestTemplates:
+          application/json: '{"statusCode": 200}'
+        passthroughBehavior: when_no_match
+  '/client/uploads/{documentId}':
+    get:
+      operationId: get-uploads-documentId
+      parameters:
+        - name: documentId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 200 response
+          content: {}
+      x-amazon-apigateway-integration:
+        type: http_proxy
+        httpMethod: GET
+        uri: 'https://${stageVariables.albUrl}/utility/client/uploads/{documentId}'
+        responses:
+          default:
+            statusCode: '200'
+        requestParameters:
+          integration.request.path.documentId: method.request.path.documentId
+        passthroughBehavior: when_no_match
+    delete:
+      operationId: deleteClientDocumentById
+      parameters:
+        - name: documentId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 200 response
+          content: {}
+      x-amazon-apigateway-integration:
+        type: http_proxy
+        httpMethod: DELETE
+        uri: 'https://${stageVariables.albUrl}/utility/client/uploads/{documentId}'
+        responses:
+          default:
+            statusCode: '200'
+        requestParameters:
+          integration.request.path.documentId: method.request.path.documentId
+        passthroughBehavior: when_no_match
+  '/backoffice/faqs/{faqId}':
+    get:
+      operationId: BackofficeGetFaqbyId
+      parameters:
+        - name: faqId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 200 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Faq'
+      x-amazon-apigateway-integration:
+        type: http_proxy
+        httpMethod: GET
+        uri: 'https://${stageVariables.albUrl}/utility/backoffice/faqs/{faqId}'
+        responses:
+          default:
+            statusCode: '200'
+        requestParameters:
+          integration.request.path.faqId: method.request.path.faqId
+        passthroughBehavior: when_no_match
+    put:
+      operationId: BackofficeUpdateFAQ
+      parameters:
+        - name: Access-Control-Allow-Origin
+          in: header
+          schema:
+            type: string
+        - name: faqId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Faq'
+        required: true
+      responses:
+        '200':
+          description: 200 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Faq'
+      x-amazon-apigateway-integration:
+        type: http_proxy
+        httpMethod: PUT
+        uri: 'https://${stageVariables.albUrl}/utility/backoffice/faqs/{faqId}'
+        responses:
+          default:
+            statusCode: '200'
+        requestParameters:
+          integration.request.path.faqId: method.request.path.faqId
+        passthroughBehavior: when_no_match
+    delete:
+      operationId: backofficeDeleteFAQ
+      parameters:
+        - name: faqId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 200 response
+          content: {}
+      x-amazon-apigateway-integration:
+        type: http_proxy
+        httpMethod: DELETE
+        uri: 'https://${stageVariables.albUrl}/utility/backoffice/faqs/{faqId}'
+        responses:
+          default:
+            statusCode: '200'
+        requestParameters:
+          integration.request.path.faqId: method.request.path.faqId
+        passthroughBehavior: when_no_match
+    options:
+      operationId: faqsUpdateCorsOption
+      parameters:
+        - name: faqId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 200 response
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+            Access-Control-Allow-Methods:
+              schema:
+                type: string
+            Access-Control-Allow-Headers:
+              schema:
+                type: string
+          content: {}
+      x-amazon-apigateway-integration:
+        type: mock
+        responses:
+          default:
+            statusCode: '200'
+            responseParameters:
+              method.response.header.Access-Control-Allow-Methods: '''OPTIONS,PUT'''
+              method.response.header.Access-Control-Allow-Headers: '''Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'''
+              method.response.header.Access-Control-Allow-Origin: '''*'''
+        requestTemplates:
+          application/json: '{"statusCode": 200}'
+        passthroughBehavior: when_no_match
+  /backoffice/app-configs:
+    get:
+      operationId: backofficegetAppConfigs
+      responses:
+        '200':
+          description: 200 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AppConfig'
+      x-amazon-apigateway-integration:
+        type: http_proxy
+        httpMethod: GET
+        uri: 'https://${stageVariables.albUrl}/utility/backoffice/app-configs'
+        responses:
+          default:
+            statusCode: '200'
+        passthroughBehavior: when_no_match
+    post:
+      operationId: backofficeAddAppConfigs
+      parameters:
+        - name: Access-Control-Allow-Origin
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AppConfig'
+        required: true
+      responses:
+        '200':
+          description: 200 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AppConfig'
+      x-amazon-apigateway-integration:
+        type: http_proxy
+        httpMethod: POST
+        uri: 'https://${stageVariables.albUrl}/utility/backoffice/app-configs'
+        responses:
+          default:
+            statusCode: '200'
+        passthroughBehavior: when_no_match
+    options:
+      operationId: appConfigCorsOption
+      responses:
+        '200':
+          description: 200 response
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+            Access-Control-Allow-Methods:
+              schema:
+                type: string
+            Access-Control-Allow-Headers:
+              schema:
+                type: string
+          content: {}
+      x-amazon-apigateway-integration:
+        type: mock
+        responses:
+          default:
+            statusCode: '200'
+            responseParameters:
+              method.response.header.Access-Control-Allow-Methods: '''OPTIONS,POST'''
+              method.response.header.Access-Control-Allow-Headers: '''Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'''
+              method.response.header.Access-Control-Allow-Origin: '''*'''
+        requestTemplates:
+          application/json: '{"statusCode": 200}'
+        passthroughBehavior: when_no_match
+  /backoffice/banks:
+    get:
+      operationId: backofficeListBanks
+      responses:
+        '200':
+          description: 200 response
+          content:
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Bank'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArrayOfBank'
+      x-amazon-apigateway-integration:
+        type: http_proxy
+        httpMethod: GET
+        uri: 'https://${stageVariables.albUrl}/utility/backoffice/banks'
+        responses:
+          default:
+            statusCode: '200'
+        passthroughBehavior: when_no_match
+      summary: ''
+    post:
+      operationId: backofficeaddBank
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Bank'
+        required: true
+      responses:
+        '200':
+          description: 200 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Bank'
+      x-amazon-apigateway-integration:
+        type: http_proxy
+        httpMethod: POST
+        uri: 'https://${stageVariables.albUrl}/utility/backoffice/banks'
+        responses:
+          default:
+            statusCode: '200'
+        passthroughBehavior: when_no_match
+  /client/get-file-url:
+    post:
+      operationId: clientGetFIleUrl
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MODEL8418d6'
+        required: true
+      responses:
+        '200':
+          description: 200 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UploadResponse'
+      x-amazon-apigateway-integration:
+        type: http_proxy
+        httpMethod: POST
+        uri: 'https://${stageVariables.albUrl}/utility/client/get-file-url'
+        responses:
+          default:
+            statusCode: '200'
+        passthroughBehavior: when_no_match
+  '/client/payment-methods/{paymentMethodId}':
+    get:
+      operationId: gePaymentMethod
+      parameters:
+        - name: paymentMethodId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 200 response
+          content: {}
+      x-amazon-apigateway-integration:
+        type: http_proxy
+        httpMethod: GET
+        uri: 'https://${stageVariables.albUrl}/utility/client/payment-methods/{paymentMethodId}'
+        responses:
+          default:
+            statusCode: '200'
+        requestParameters:
+          integration.request.path.paymentMethodId: method.request.path.paymentMethodId
+        passthroughBehavior: when_no_match
+  /client/generate-jwt:
+    post:
+      operationId: post-generate-jwt
+      requestBody:
+        content:
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/MODELe17700'
+          application/EDIFACT:
+            schema:
+              $ref: '#/components/schemas/MODEL671409'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/MODEL8976c6'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MODEL27a48f'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/MODEL64ec29'
+          application/javascript:
+            schema:
+              $ref: '#/components/schemas/MODEL15e802'
+          application/EDI-X12:
+            schema:
+              $ref: '#/components/schemas/MODEL9c7700'
+          text/plain:
+            schema:
+              $ref: '#/components/schemas/MODELbb24cc'
+        required: true
+      responses:
+        '200':
+          description: 200 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MODEL9b1b7b'
+      x-amazon-apigateway-integration:
+        type: http_proxy
+        httpMethod: POST
+        uri: 'https://${stageVariables.albUrl}/utility/client/generate-jwt'
+        responses:
+          default:
+            statusCode: '200'
+        passthroughBehavior: when_no_match
+  /client/uploads:
+    post:
+      operationId: UploadDocuments
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/MODEL3f1994'
+        required: true
+      responses:
+        '200':
+          description: 200 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UploadResponse'
+      x-amazon-apigateway-integration:
+        type: http_proxy
+        httpMethod: POST
+        uri: 'https://${stageVariables.albUrl}/utility/client/uploads'
+        responses:
+          default:
+            statusCode: '200'
+        passthroughBehavior: when_no_match
+  /backoffice/occupations:
+    get:
+      operationId: backofficeListOccupation
+      responses:
+        '200':
+          description: 200 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArrayOfMODEL10eb96'
+        '500':
+          description: 500 response
+          content: {}
+      x-amazon-apigateway-integration:
+        type: http_proxy
+        httpMethod: GET
+        uri: 'https://${stageVariables.albUrl}/utility/backoffice/list-occupations'
+        responses:
+          default:
+            statusCode: '200'
+        passthroughBehavior: when_no_match
+    post:
+      operationId: backofficeAddOccupation
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MODEL236c34'
+        required: true
+      responses:
+        '200':
+          description: 200 response
+          content: {}
+        '400':
+          description: 400 response
+          content: {}
+        '500':
+          description: 500 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MODELdadb44'
+      x-amazon-apigateway-integration:
+        type: http_proxy
+        httpMethod: POST
+        uri: 'https://${stageVariables.albUrl}/utility/backoffice/occupations'
+        responses:
+          default:
+            statusCode: '200'
+        passthroughBehavior: when_no_match
+  /time:
+    get:
+      operationId: getUtcTime
+      responses:
+        '200':
+          description: 200 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MODELbe389e'
+      x-amazon-apigateway-integration:
+        type: http_proxy
+        httpMethod: GET
+        uri: 'https://${stageVariables.albUrl}/utility/time'
+        responses:
+          default:
+            statusCode: '200'
+        passthroughBehavior: when_no_match
+  '/client/banks/{bankId}':
+    get:
+      operationId: getBank
+      parameters:
+        - name: bankId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 200 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Bank'
+      x-amazon-apigateway-integration:
+        type: http_proxy
+        httpMethod: GET
+        uri: 'https://${stageVariables.albUrl}/utility/client/banks/{bankId}'
+        responses:
+          default:
+            statusCode: '200'
+        requestParameters:
+          integration.request.path.bankId: method.request.path.bankId
+        passthroughBehavior: when_no_match
+    options:
+      parameters:
+        - name: bankId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 200 response
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+            Access-Control-Allow-Methods:
+              schema:
+                type: string
+            Access-Control-Allow-Headers:
+              schema:
+                type: string
+          content: {}
+      x-amazon-apigateway-integration:
+        type: mock
+        responses:
+          default:
+            statusCode: '200'
+            responseParameters:
+              method.response.header.Access-Control-Allow-Methods: '''GET,OPTIONS'''
+              method.response.header.Access-Control-Allow-Headers: '''Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'''
+              method.response.header.Access-Control-Allow-Origin: '''*'''
+        requestTemplates:
+          application/json: '{"statusCode": 200}'
+        passthroughBehavior: when_no_match
+  '/backoffice/hubs/{hubId}':
+    get:
+      operationId: backofficeGetHub
+      parameters:
+        - name: hubId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 200 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Hub'
+      x-amazon-apigateway-integration:
+        type: http_proxy
+        httpMethod: GET
+        uri: 'https://${stageVariables.albUrl}/utility/backoffice/hubs/{hubId}'
+        responses:
+          default:
+            statusCode: '200'
+        requestParameters:
+          integration.request.path.hubId: method.request.path.hubId
+        passthroughBehavior: when_no_match
+    put:
+      operationId: putBackofficeHub
+      parameters:
+        - name: hubId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Hub'
+        required: true
+      responses:
+        '200':
+          description: 200 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Hub'
+      x-amazon-apigateway-integration:
+        type: http_proxy
+        httpMethod: PUT
+        uri: 'https://${stageVariables.albUrl}/utility/backoffice/hubs/{hubId}'
+        responses:
+          default:
+            statusCode: '200'
+        requestParameters:
+          integration.request.path.hubId: method.request.path.hubId
+        passthroughBehavior: when_no_match
+    delete:
+      operationId: backofficeDeleteHub
+      parameters:
+        - name: hubId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 200 response
+          content: {}
+      x-amazon-apigateway-integration:
+        type: http_proxy
+        httpMethod: DELETE
+        uri: 'https://${stageVariables.albUrl}/utility/backoffice/hubs/{hubId}'
+        responses:
+          default:
+            statusCode: '200'
+        requestParameters:
+          integration.request.path.hubId: method.request.path.hubId
+        passthroughBehavior: when_no_match
+  '/backoffice/banks/{bankId}':
+    get:
+      operationId: backofficeGetBank
+      parameters:
+        - name: bankId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 200 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Bank'
+      x-amazon-apigateway-integration:
+        type: http_proxy
+        httpMethod: GET
+        uri: 'https://${stageVariables.albUrl}/utility/backoffice/banks/{bankId}'
+        responses:
+          default:
+            statusCode: '200'
+        requestParameters:
+          integration.request.path.bankId: method.request.path.bankId
+        passthroughBehavior: when_no_match
+    put:
+      operationId: backofficeUpdateBank
+      parameters:
+        - name: bankId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Bank'
+        required: true
+      responses:
+        '200':
+          description: 200 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Bank'
+      x-amazon-apigateway-integration:
+        type: http_proxy
+        httpMethod: PUT
+        uri: 'https://${stageVariables.albUrl}/utility/backoffice/banks/{bankId}'
+        responses:
+          default:
+            statusCode: '200'
+        requestParameters:
+          integration.request.path.bankId: method.request.path.bankId
+        passthroughBehavior: when_no_match
+    delete:
+      operationId: backofficeDeleteBank
+      parameters:
+        - name: bankId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 200 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MODEL6babbf'
+      x-amazon-apigateway-integration:
+        type: http_proxy
+        httpMethod: DELETE
+        uri: 'https://${stageVariables.albUrl}/utility/backoffice/banks/{bankId}'
+        responses:
+          default:
+            statusCode: '200'
+        requestParameters:
+          integration.request.path.bankId: method.request.path.bankId
+        passthroughBehavior: when_no_match
+  /client/occupations:
+    post:
+      operationId: addOccupation
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MODEL4ec01c'
+        required: true
+      responses:
+        '200':
+          description: 200 response
+          content: {}
+        '400':
+          description: 400 response
+          content: {}
+        '500':
+          description: 500 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MODEL9622c9'
+      x-amazon-apigateway-integration:
+        type: http_proxy
+        httpMethod: POST
+        uri: 'https://${stageVariables.albUrl}/utility/client/occupations'
+        responses:
+          default:
+            statusCode: '200'
+        passthroughBehavior: when_no_match
+  '/backoffice/uploads/{fileKey}':
+    delete:
+      operationId: deleteUploadedFile
+      parameters:
+        - name: fileKey
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 200 response
+          content: {}
+      x-amazon-apigateway-integration:
+        type: http_proxy
+        httpMethod: DELETE
+        uri: 'https://${stageVariables.albUrl}/utility/backoffice/uploads/{fileKey}'
+        responses:
+          default:
+            statusCode: '200'
+        requestParameters:
+          integration.request.path.fileKey: method.request.path.fileKey
+        passthroughBehavior: when_no_match
+  /backoffice/transaction-categories:
+    get:
+      operationId: BackofficeGetTransactionCategories
+      responses:
+        '200':
+          description: 200 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArrayOfMODEL4e65bc'
+      x-amazon-apigateway-integration:
+        type: http_proxy
+        httpMethod: GET
+        uri: 'https://${stageVariables.albUrl}/utility/backoffice/transaction-categories'
+        responses:
+          default:
+            statusCode: '200'
+        passthroughBehavior: when_no_match
+    post:
+      operationId: BackofficeAddTransactionCategory
+      requestBody:
+        content:
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/MODEL458ef2'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MODEL4d5e61'
+        required: true
+      responses:
+        '200':
+          description: 200 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransactionCategory'
+      x-amazon-apigateway-integration:
+        type: http_proxy
+        httpMethod: POST
+        uri: 'https://${stageVariables.albUrl}/utility/backoffice/transaction-categories'
+        responses:
+          default:
+            statusCode: '200'
+        passthroughBehavior: when_no_match
+  /backoffice/identity/verification:
+    post:
+      summary: ''
+      operationId: backofficeVerifyIdenity
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VerifyIdentityResponse'
+      description: Verify identity via Ghana Card
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/VerifyIdentityRequest'
+      x-amazon-apigateway-integration:
+        type: http_proxy
+        httpMethod: POST
+        uri: 'https://${stageVariables.albUrl}/utility/backoffice/identity/verification'
+        responses:
+          default:
+            statusCode: '200'
+        passthroughBehavior: when_no_match
+  /client/identity/verification:
+    post:
+      summary: ''
+      operationId: clientVerifyIdenity
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VerifyIdentityResponse'
+      description: Verify identity via Ghana Card
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/VerifyIdentityRequest'
+      x-amazon-apigateway-integration:
+        type: http_proxy
+        httpMethod: POST
+        uri: 'https://${stageVariables.albUrl}/utility/client/identity/verification'
+        responses:
+          default:
+            statusCode: '200'
+        passthroughBehavior: when_no_match
+    parameters: []
+components:
+  schemas:
+    ArrayOfUserBlockingReason:
+      type: array
+      items:
+        $ref: '#/components/schemas/UserBlockingReason'
+    ArrayOfMODEL0353d2:
+      type: array
+      items:
+        type: object
+        properties:
+          id:
+            type: number
+          occupation:
+            type: string
+    MODEL4d5e61:
+      required:
+        - category
+      type: object
+      properties:
+        category:
+          type: string
+        image:
+          type: string
+          format: binary
+    MODEL9c7700:
+      type: object
+      properties: {}
+    MODELdadb44:
+      type: object
+      properties:
+        id:
+          type: string
+        occupation:
+          type: string
+    ArrayOfReason:
+      type: array
+      items:
+        $ref: '#/components/schemas/Reason'
+    MODEL338513:
+      type: object
+      properties:
+        url:
+          type: string
+    MODEL671409:
+      type: object
+      properties: {}
+    UserBlockingReason:
+      title: UserBlockingReason
+      type: object
+      properties:
+        id:
+          type: string
+        reason:
+          type: string
+        createdAt:
+          type: string
+        createdBy:
+          type: string
+    ArrayOfMODEL10eb96:
+      type: array
+      items:
+        type: object
+        properties:
+          id:
+            type: number
+          occupation:
+            type: string
+    MODEL4ec01c:
+      required:
+        - occupation
+      type: object
+      properties:
+        occupation:
+          type: string
+    MODELa88301:
+      required:
+        - documentType
+        - file
+      type: object
+      properties:
+        documentType:
+          type: string
+          enum:
+            - SELFIE
+            - PROFILE_PICTURE
+            - DOCUMENT
+            - ICON
+            - ID
+        file:
+          type: string
+          format: binary
+    ArrayOfMODEL0e7755:
+      type: array
+      items:
+        type: object
+        properties:
+          id:
+            type: string
+          payment_method:
+            type: string
+    ArrayOfBank:
+      type: array
+      items:
+        $ref: '#/components/schemas/Bank'
+    ArrayOfFaq:
+      type: array
+      items:
+        $ref: '#/components/schemas/Faq'
+    ArrayOfMODEL4e65bc:
+      type: array
+      items:
+        type: object
+        properties:
+          id:
+            type: string
+          category:
+            type: string
+    MODEL458ef2:
+      type: object
+      properties:
+        category:
+          type: string
+    MODELfc2de7:
+      required:
+        - file
+      type: object
+      properties:
+        file:
+          type: string
+    UploadResponse:
+      title: UploadResponse
+      type: object
+      properties:
+        id:
+          type: string
+        url:
+          type: string
+        key:
+          type: string
+        preMigrationUrl:
+          type: string
+    MODEL64ec29:
+      type: object
+      properties: {}
+    Ban:
+      type: object
+      properties: {}
+      title: ''
+    ArrayOfMODEL999adb:
+      type: array
+      items:
+        type: object
+        properties:
+          id:
+            type: string
+          category:
+            type: string
+    MODEL281259:
+      required:
+        - paymentMethod
+      type: object
+      properties:
+        paymentMethod:
+          type: string
+    MODEL6babbf:
+      type: object
+      properties:
+        status:
+          type: string
+        message:
+          type: string
+    MODEL15e802:
+      type: object
+      properties: {}
+    ArrayOfHub:
+      type: array
+      items:
+        $ref: '#/components/schemas/Hub'
+    MODEL9b1b7b:
+      type: object
+      properties:
+        jwt:
+          type: string
+    Bank:
+      title: Bank
+      required:
+        - name
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        imageId:
+          type: string
+        address:
+          type: string
+        email:
+          type: string
+        website:
+          type: string
+        phoneNumber:
+          type: string
+        serviceCode:
+          type: string
+        active:
+          type: boolean
+        sortCode:
+          type: string
+        image:
+          type: object
+          properties:
+            id:
+              type: string
+            url:
+              type: string
+            key:
+              type: string
+    MODELe17700:
+      type: object
+      properties: {}
+    MODELbb24cc:
+      type: object
+      properties: {}
+    TransactionCategory:
+      title: TransactionCategory
+      type: object
+      properties:
+        id:
+          type: string
+        category:
+          type: string
+        image:
+          type: string
+    MODEL92dea1:
+      type: object
+      properties:
+        id:
+          type: string
+        paymentMethod:
+          type: string
+    ArrayOfMODEL576c0e:
+      type: array
+      items:
+        type: object
+        properties:
+          id:
+            type: string
+          type:
+            type: string
+    Reason:
+      title: Reason
+      type: object
+      properties:
+        id:
+          type: string
+        reason:
+          type: string
+        createdAt:
+          type: string
+        createdBy:
+          type: string
+        category:
+          type: string
+          enum:
+            - USER_BLOCKING
+            - ACCOUNT_APPROVAL
+    MODEL8418d6:
+      type: object
+      properties:
+        fileKey:
+          type: string
+    Hub:
+      title: Hub
+      required:
+        - ghPostGps
+        - latitude
+        - longitude
+        - name
+        - phoneNumber
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        phoneNumber:
+          type: string
+        longitude:
+          type: string
+        latitude:
+          type: string
+        location:
+          type: string
+        code:
+          type: string
+        ghPostGps:
+          type: string
+    MODEL5edba0:
+      type: object
+      properties:
+        url:
+          type: string
+    MODEL9622c9:
+      type: object
+      properties:
+        id:
+          type: string
+        occupation:
+          type: string
+    MODEL27a48f:
+      type: object
+      properties:
+        user_token:
+          type: string
+    AppConfig:
+      required:
+        - key
+        - value
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        key:
+          minLength: 1
+          type: string
+        value:
+          minLength: 1
+          type: string
+        description:
+          minLength: 1
+          type: string
+    ArrayOfMODEL282582:
+      type: array
+      items:
+        type: object
+        properties:
+          id:
+            type: string
+          payment_method:
+            type: string
+    MODEL8976c6:
+      type: object
+      properties: {}
+    ArrayOfFaqCategory:
+      type: array
+      items:
+        $ref: '#/components/schemas/FaqCategory'
+    MODEL95f26f:
+      type: object
+      properties:
+        reason:
+          type: string
+    MODELbe389e:
+      type: object
+      properties:
+        time:
+          type: string
+    MODELeb58c1:
+      type: object
+      properties: {}
+    Faq:
+      required:
+        - answer
+        - categoryId
+        - question
+      type: object
+      properties:
+        id:
+          type: number
+        question:
+          minLength: 1
+          type: string
+        answer:
+          minLength: 1
+          type: string
+        categoryId:
+          type: number
+        dateCreated:
+          type: string
+        lastUpdated:
+          type: string
+    MODEL845414:
+      type: object
+      properties:
+        reason:
+          type: string
+    MODEL3f1994:
+      required:
+        - documentType
+        - file
+      type: object
+      properties:
+        documentType:
+          type: string
+          enum:
+            - SELFIE
+            - PROFILE_PICTURE
+            - DOCUMENT
+            - ICON
+        file:
+          type: string
+          format: binary
+    FaqCategory:
+      required:
+        - name
+      type: object
+      properties:
+        id:
+          type: number
+        name:
+          minLength: 1
+          type: string
+        description:
+          minLength: 1
+          type: string
+    ArrayOfMODEL51b938:
+      type: array
+      items:
+        type: object
+        properties:
+          id:
+            type: string
+          type:
+            type: string
+    MODEL236c34:
+      required:
+        - occupation
+      type: object
+      properties:
+        occupation:
+          type: string
+    VerifyIdentityRequest:
+      title: VerifyIdentityRequest
+      x-stoplight:
+        id: jdl070c9xr0se
+      type: object
+      properties:
+        pinNumber:
+          type: string
+        image:
+          type: string
+          format: binary
+      required:
+        - pinNumber
+        - image
+    VerifyIdentityResponse:
+      type: object
+      x-examples:
+        Example 1:
+          data:
+            transactionGuid: f00498c5-8089-4dc9-a8c1-2fef923e1f7b
+            shortGuid: f00498c
+            requestTimestamp: '2022-12-13T00:48:19.361Z'
+            responseTimestamp: '2022-12-13T00:48:20.227Z'
+            verified: 'TRUE'
+            center: BRANCHLESS
+            isException: false
+            person:
+              nationalId: GHA-713489292-7
+              cardId: AC4870078
+              cardValidFrom: '2019-08-21'
+              cardValidTo: '2029-07-01'
+              surname: AKLI
+              forenames: 'OWEN JUBILANT '
+              nationality: Ghana
+              birthDate: '1991-09-25'
+              gender: MALE
+              addresses:
+                - type: Residence
+                  postalCode: GT330
+                  region: ' GREATER ACCRA'
+                  addressDigital: GT-330-6324
+                  gpsAddressDetails:
+                    gpsName: GT-330-6324
+                    region: Greater Accra
+                    district: Tema West
+                    area: LASHIBI
+                    street: '[UNKNOWN] [NEAR] Otu Adzin Road'
+                    longitude: '-0.091470844409544'
+                    latitude: '5.643781004723116'
+                - type: Hometown
+                  region: ' VOLTA'
+              contact:
+                email: OWEN.AKLI@OUTLOOK.COM
+                phoneNumbers:
+                  - type: Mobile
+                    phoneNumber: '0545169030'
+                    network: MTN
+                  - type: Mobile
+                    phoneNumber: '0508199936'
+                    network: 'VODA '
+              occupations:
+                - name: IT Professional and Related Workers
+              biometricFeed:
+                face:
+                  dataType: PNG
+                  data: ''
+              binaries:
+                - type: SIGNATURE
+                  dataType: JPG
+                  data: ''
+          success: true
+          code: '00'
+          msg: null
+      properties:
+        data:
+          type: object
+          properties:
+            transactionGuid:
+              type: string
+            shortGuid:
+              type: string
+            requestTimestamp:
+              type: string
+            responseTimestamp:
+              type: string
+            verified:
+              type: string
+            center:
+              type: string
+            isException:
+              type: boolean
+            person:
+              type: object
+              properties:
+                nationalId:
+                  type: string
+                cardId:
+                  type: string
+                cardValidFrom:
+                  type: string
+                cardValidTo:
+                  type: string
+                surname:
+                  type: string
+                forenames:
+                  type: string
+                nationality:
+                  type: string
+                birthDate:
+                  type: string
+                gender:
+                  type: string
+                addresses:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      type:
+                        type: string
+                      postalCode:
+                        type: string
+                      region:
+                        type: string
+                      addressDigital:
+                        type: string
+                      gpsAddressDetails:
+                        type: object
+                        properties:
+                          gpsName:
+                            type: string
+                          region:
+                            type: string
+                          district:
+                            type: string
+                          area:
+                            type: string
+                          street:
+                            type: string
+                          longitude:
+                            type: string
+                          latitude:
+                            type: string
+                contact:
+                  type: object
+                  properties:
+                    email:
+                      type: string
+                    phoneNumbers:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          type:
+                            type: string
+                          phoneNumber:
+                            type: string
+                          network:
+                            type: string
+                occupations:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                biometricFeed:
+                  type: object
+                  properties:
+                    face:
+                      type: object
+                      properties:
+                        dataType:
+                          type: string
+                        data:
+                          type: string
+                          description: Base64 encoded image
+                binaries:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      type:
+                        type: string
+                      dataType:
+                        type: string
+                      data:
+                        type: string
+                        description: |
+                          Base64 encoded image
+        success:
+          type: boolean
+        code:
+          type: string
+        msg:
+          nullable: true
+      title: VerifyIdentityResponse
+  securitySchemes:
+    api_key:
+      name: x-api-key
+      type: apiKey
+      in: header
+x-amazon-apigateway-binary-media-types:
+  - multipart/form-data

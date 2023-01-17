@@ -1,0 +1,2995 @@
+openapi: 3.0.0
+x-stoplight:
+  id: knxjr8bo4usvk
+info:
+  title: Customer Service
+  version: "1.0"
+  description: Affinity Ghana Customer Service APIs
+  contact:
+    email: admin@affinityafrica.com
+servers:
+  - url: "https://staging-customer-service-api.affnty.co"
+paths:
+  /customers-agency:
+    get:
+      summary: ""
+      tags:
+        - Agency
+      operationId: agencyGetCustomers
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/CustomerAgency"
+            application/xml:
+              schema:
+                type: object
+                properties: {}
+      description: Get a list of drafted customers onboarded by an agent
+      parameters: []
+      security:
+        - xApiKey: []
+  /customers-agency/personal-details:
+    post:
+      summary: ""
+      tags:
+        - Agency
+      operationId: agencyStoreCustomerPersonalDetails
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SuccessMessageResponse"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+        "422":
+          description: Unprocessable Entity
+      description: Create a customer starting with its personal details
+      parameters: []
+      security:
+        - xApiKey: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AgencyStorePersonalDetailsRequest"
+        required: true
+  "/customers-agency/{id}":
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    get:
+      summary: ""
+      tags:
+        - Agency
+      operationId: agencyGetCustomer
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CustomerAgency"
+        "401":
+          description: Unauthorized
+        "404":
+          description: Not Found
+      parameters: []
+      description: Get customer resource
+      security:
+        - xApiKey: []
+  "/customers-agency/{id}/residential-address":
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    patch:
+      summary: ""
+      tags:
+        - Agency
+      operationId: agencyStoreCustomerResidentialAddress
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SuccessMessageResponse"
+        "401":
+          description: Unauthorized
+        "422":
+          description: Unprocessable Entity
+      parameters: []
+      security:
+        - xApiKey: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AgencyStoreResidentialAddressRequest"
+        required: true
+  "/customers-agency/{id}/identification-details":
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    patch:
+      summary: ""
+      tags:
+        - Agency
+      operationId: agencyStoreCustomerIdentificationDetails
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SuccessMessageResponse"
+        "401":
+          description: Unauthorized
+        "404":
+          description: Not Found
+        "422":
+          description: Unprocessable Entity
+      security:
+        - xApiKey: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AgencyStoreIdentificationDetailsRequest"
+        required: true
+  "/customers-agency/{id}/residency-permit":
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    patch:
+      summary: ""
+      tags:
+        - Agency
+      operationId: agencyStoreCustomerResidencyPermit
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SuccessMessageResponse"
+      parameters: []
+      security:
+        - xApiKey: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AgencyResidencyPermitRequest"
+  "/customers-agency/{id}/save-customer":
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    patch:
+      summary: ""
+      tags:
+        - Agency
+      operationId: agencyCustomerCompletion
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SuccessMessageResponse"
+        "401":
+          description: Unauthorized
+        "404":
+          description: Not Found
+      parameters: []
+      security:
+        - xApiKey: []
+  /branches:
+    get:
+      summary: Your GET endpoint
+      tags:
+        - Portal
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MambuBranchesResponse"
+              examples:
+                example-1:
+                  value:
+                    - key: 7834734hjhejhjkfe
+                      name: Osudoku
+      operationId: getBranches
+      security:
+        - xApiKey: []
+      description: ""
+  /files:
+    post:
+      summary: ""
+      tags:
+        - Files
+      operationId: uploadCustomerFile
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                x-examples:
+                  example-1:
+                    fileKey: PROFILE_PICTURE/477a9a75-d17c-417a-b2b9-3451774bff35.png
+                properties:
+                  fileKey:
+                    type: string
+                  fileUrl:
+                    type: string
+              examples: {}
+      security:
+        - xApiKey: []
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/UploadCustomerFileRequest"
+            examples: {}
+  /files/generate-file-url:
+    post:
+      summary: ""
+      tags:
+        - Files
+      operationId: generateFileUrl
+      security:
+        - xApiKey: []
+      description: ""
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/GenerateFileUrlRequest"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/FileUrlResponse"
+        "401":
+          description: Unauthorized
+        "404":
+          description: Not Found
+    parameters: []
+  /customers-mobile/personal-details:
+    parameters: []
+    post:
+      summary: ""
+      operationId: mobileStorePersonalDetails
+      description: Store personal details
+      security:
+        - xApiKey: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/MobileStorePersonalDetailsRequest"
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MobileOnboardingResponse"
+              examples:
+                example-1:
+                  value:
+                    id: 6322f8db962753de0dfbdfc5
+                    message: Customer personal details saved
+      tags:
+        - Mobile
+  "/customers-mobile/{id}/ekyc-personal-details":
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    patch:
+      summary: MobileStoreEkycPersonalDetails
+      operationId: mobileStoreEkycPersonalDetails
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MobileOnboardingResponse"
+              examples: {}
+      description: Store personal details for mobile EKYC upgrade
+      security:
+        - xApiKey: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/MobileStoreEkycPersonalDetailsRequest"
+      tags:
+        - Mobile
+  "/customers-mobile/{id}/ekyc-employment-details":
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    patch:
+      summary: MobileStoreEkycEmploymentDetails
+      operationId: mobileStoreEkycEmploymentDetails
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MobileOnboardingResponse"
+              examples: {}
+      description: Store employment and income details for mobile EKYC upgrade
+      security:
+        - xApiKey: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/MobileStoreEkycEmploymentDetailsRequest"
+        description: ""
+      tags:
+        - Mobile
+  "/customers-mobile/{id}/ekyc-kin-details":
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    patch:
+      summary: MobileStoreEkycKinDetails
+      operationId: mobileStoreEkycKinDetails
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MobileOnboardingResponse"
+              examples: {}
+      description: Store next of kin details for mobile EKYC upgrade
+      security:
+        - xApiKey: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/MobileStoreEkycKinDetailsRequest"
+      tags:
+        - Mobile
+  "/customers-mobile/{id}/ekyc-identity-details":
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    patch:
+      summary: MobileStoreEkycIdentityDetails
+      operationId: mobileStoreEkycIdentityDetails
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MobileOnboardingResponse"
+              examples: {}
+      description: Store proof details for mobile EKYC upgrade
+      security:
+        - xApiKey: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/MobileStoreEkycIdentityDetailsRequest"
+      tags:
+        - Mobile
+  "/customers-mobile/{id}/ekyc-signature-details":
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    patch:
+      summary: MobileStoreEkycSignatureDetails
+      operationId: mobileStoreEkycSignatureDetails
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MobileOnboardingResponse"
+              examples: {}
+      description: Store customer signature for mobile EKYC upgrade
+      security:
+        - xApiKey: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/MobileStoreEkycSignatureDetailsRequest"
+      tags:
+        - Mobile
+  "/customers-mobile/{id}/ekyc-complete":
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    post:
+      summary: MobileEkycFinish
+      operationId: finishMobileEkycUpgrade
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MobileOnboardingResponse"
+              examples: {}
+      security:
+        - xApiKey: []
+      tags:
+        - Mobile
+      description: ""
+  "/customers-mobile/{id}/identification-details":
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    patch:
+      summary: MobileStoreMkycIdentificationDetails
+      operationId: mobileStoreIdentificationDetails
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MobileOnboardingResponse"
+              examples:
+                example-1:
+                  value:
+                    id: 6322f8db962753de0dfbdfc5
+                    message: Updated customer identification details
+      security:
+        - xApiKey: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/MobileStoreIdentificationDetailsRequest"
+            examples:
+              example-1:
+                value:
+                  profilePictureFileKey: PROFILE_PICTURE/nana.jpg
+                  idFrontFileKey: IDENTIFICATION/jdjdj.jpg
+                  idBackFileKey: IDENTIFICATION/jdj.jpg
+                  idNumber: GHA-937698733-5
+                  idExpiryDate: "2024-04-20"
+                  idIssueDate: "2004-04-20"
+                  idType: GHANA_CARD
+                  idIssuingCountry: Ghana
+      tags:
+        - Mobile
+      description: Store identification details
+  "/customers-mobile/{id}/residency-details":
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    patch:
+      summary: MobileStoreMkycResidencyDetails
+      operationId: mobileStoreResidencyDetails
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MobileOnboardingResponse"
+              examples:
+                example-1:
+                  value:
+                    id: 6322f8db962753de0dfbdfc5
+                    message: Updated customer residency details
+      security:
+        - xApiKey: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/MobileStoreResidencyDetailsRequest"
+            examples:
+              example-1:
+                value:
+                  residentialAddressHouseNumber: 1234 vdf
+                  residentialAddressStreetName: Citreon street
+                  residentialAddressArea: Ashiyie
+                  ghanaPostAddress: GA-7377-9838
+                  residentialAddressCity: residentialAddressArea
+      tags:
+        - Mobile
+      description: Store residency details
+  "/customers-mobile/{id}/residency-permit-details":
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    patch:
+      summary: MobileStoreMkycResidencyPermitDetails
+      operationId: mobileStoreResidencyPermitDetails
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MobileOnboardingResponse"
+              examples:
+                example-1:
+                  value:
+                    id: 6322f8db962753de0dfbdfc5
+                    message: Updated customer residency permit details
+      security:
+        - xApiKey: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/MobileResidencyPermitRequest"
+            examples:
+              example-1:
+                value:
+                  residencyPermitNumber: string
+                  residencyPermitIssueDate: string
+                  residencyPermitExpiryDate: string
+                  residencyPermitFileKey: RESIDENCY_PERMIT/12934-df34f-45dfe-sder.jpg
+      tags:
+        - Mobile
+      description: Store residency permit details(for Non-Ghanaians only)
+  "/customers-mobile/{id}/save-customer":
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    patch:
+      summary: MobileMkycFinish
+      operationId: mobileCompleteOnboarding
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MobileOnboardingResponse"
+              examples:
+                example-1:
+                  value:
+                    message: Customer data completion saved successfully.
+      security:
+        - xApiKey: []
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples: {}
+      description: Complete onboarding process and save customer
+      tags:
+        - Mobile
+  "/customers-mobile/{id}/step":
+    get:
+      summary: MobileOnboardingStep
+      tags:
+        - Mobile
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MobileOnboardingStepResponse"
+              examples:
+                example-1:
+                  value:
+                    id: string
+                    step: PERSONAL_DETAILS
+                    mambuAccountStatus: PENDING_MKYC_CREATION
+                    approvalStatus: PENDING_MKYC_REVIEW
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+              examples:
+                example-1:
+                  value:
+                    message: Customer not found
+      operationId: mobileOnboardingStep
+      description: Get onboarding step of user
+      security:
+        - xApiKey: []
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+  "/customers-mobile/{customerId}/details":
+    get:
+      summary: Get customer details
+      tags:
+        - Mobile
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Customer"
+              examples: {}
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+              examples:
+                example-1:
+                  value:
+                    message: Customer not found
+      operationId: mobileOnboardingCustomerDetails
+      description: Get details of user
+      security:
+        - xApiKey: []
+    parameters:
+      - schema:
+          type: string
+        name: customerId
+        in: path
+        required: true
+  /customers-mobile/verify-gps:
+    get:
+      summary: Verify GPS address
+      tags:
+        - Mobile
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  CenterLatitude:
+                    type: number
+                  CenterLongitude:
+                    type: number
+                  NorthLat:
+                    type: number
+                  NorthLong:
+                    type: number
+                  SouthLat:
+                    type: number
+                  SouthLong:
+                    type: number
+                  EastLat:
+                    type: number
+                  EastLong:
+                    type: number
+                  WestLat:
+                    type: number
+                  WestLong:
+                    type: number
+                  GPSName:
+                    type: string
+                  PostCode:
+                    type: string
+                  District:
+                    type: string
+                  Region:
+                    type: string
+                  Area:
+                    type: string
+                  Street:
+                    type: string
+                x-examples:
+                  example-1:
+                    CenterLatitude: 5.718241208173382
+                    CenterLongitude: -0.204029746589532
+                    NorthLat: 5.71826370900578
+                    NorthLong: -0.204052316783175
+                    SouthLat: 5.71821875029172
+                    SouthLong: -0.204052316783175
+                    EastLat: 5.71821875029172
+                    EastLong: -0.20400740101897
+                    WestLat: 5.71826370900578
+                    WestLong: -0.20400740101897
+                    GPSName: GE0315780
+                    PostCode: GE031
+                    District: Ga East
+                    Region: Greater Accra
+                    Area: PARAKUO ESTATE
+                    Street: Abokobi Ave
+              examples:
+                example-1:
+                  value:
+                    CenterLatitude: 6.659696340329122
+                    CenterLongitude: -1.243964394974143
+                    NorthLat: 6.65971881842988
+                    NorthLong: -1.24398700542082
+                    SouthLat: 6.65967388244754
+                    SouthLong: -1.24398700542082
+                    EastLat: 6.65967388244754
+                    EastLong: -1.24394208965662
+                    WestLat: 6.65971881842988
+                    WestLong: -1.24394208965662
+                    GPSName: AC03080435
+                    PostCode: AC0308
+                    District: Asante Akim Central
+                    Region: Ashanti
+                    Area: "[UNKNOWN]"
+                    Street: "[UNKNOWN]"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+              examples: {}
+      operationId: mobileVerifyGpsAddress
+      description: Verify ghana gps address
+      security:
+        - xApiKey: []
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: gpsAddress
+          description: Digital address
+    parameters: []
+  "/customers-mobile/klippa-upload/sessionId/{sessionId}/fileKey/{fileKey}":
+    parameters:
+      - schema:
+          type: string
+        name: sessionId
+        in: path
+        required: true
+      - schema:
+          type: string
+        name: fileKey
+        in: path
+        required: true
+    get:
+      tags:
+        - Mobile
+      summary: ""
+      operationId: mobileKlippaUpload
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MobileKlippaUploadResponse"
+              examples:
+                example-1:
+                  value:
+                    fileKey: IDENTIFICATION/d1be3e59-1899-4bb3-a574-aa99bcf65d59.jpeg
+      description: Upload klippa session file using fileKey
+  /customers:
+    get:
+      summary: Your GET endpoint
+      tags:
+        - Portal
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CustomersListResponse"
+        "401":
+          description: Unauthorized
+        "404":
+          description: Not Found
+      operationId: portalGetCustomers
+      security:
+        - xApiKey: []
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: search
+          allowEmptyValue: true
+        - schema:
+            type: number
+          in: query
+          name: page
+        - schema:
+            type: number
+          in: query
+          name: limit
+        - schema:
+            type: string
+            enum:
+              - incomplete
+              - unapproved
+              - rejected
+          in: query
+          name: status
+          required: true
+  /customers/mkyc:
+    post:
+      tags:
+        - Portal
+      summary: ""
+      operationId: portalStoreMkycCustomer
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SuccessMessageResponse"
+        "401":
+          description: Unauthorized
+        "422":
+          description: Unprocessable Entity
+      security:
+        - xApiKey: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PortalStoreMkyc"
+        description: ""
+        required: true
+  /customers/ekyc:
+    post:
+      tags:
+        - Portal
+      summary: ""
+      operationId: portalStoreEkycCustomer
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SuccessMessageResponse"
+        "400":
+          description: Bad Request
+        "401":
+          description: Unauthorized
+        "422":
+          description: Unprocessable Entity
+      security:
+        - xApiKey: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PortalStoreEkyc"
+        description: ""
+    parameters: []
+  "/customers/{id}":
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    get:
+      summary: Your GET endpoint
+      tags:
+        - Portal
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Customer"
+        "401":
+          description: Unauthorized
+        "404":
+          description: Not Found
+      operationId: portalGetCustomer
+      security:
+        - xApiKey: []
+  "/customers/{id}/mkyc":
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    patch:
+      tags:
+        - Portal
+      summary: ""
+      operationId: portalUpdateMkycCustomer
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SuccessMessageResponse"
+          description: ""
+      security:
+        - xApiKey: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PortalStoreMkyc"
+  "/customers/{id}/mkyc/upgrade":
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    patch:
+      tags:
+        - Portal
+      summary: UpgradeMKYC
+      operationId: portalUpgradeMkycCustomer
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SuccessMessageResponse"
+          description: ""
+      security:
+        - xApiKey: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PortalEkycUpgrade"
+  "/customers/{id}/ekyc":
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    patch:
+      tags:
+        - Portal
+      summary: ""
+      operationId: portalUpdateEkycCustomer
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SuccessMessageResponse"
+      security:
+        - xApiKey: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PortalStoreEkyc"
+            examples: {}
+  "/customers/{id}/approve":
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    patch:
+      tags:
+        - Portal
+      summary: ""
+      operationId: portalApproveCustomerData
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SuccessMessageResponse"
+      security:
+        - xApiKey: []
+  "/customers/{id}/inquire":
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    patch:
+      tags:
+        - Portal
+      summary: ""
+      operationId: portalInquireCustomerData
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SuccessMessageResponse"
+        "401":
+          description: Unauthorized
+        "404":
+          description: Not Found
+        "422":
+          description: Unprocessable Entity
+      description: ""
+      security:
+        - xApiKey: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PortalRejectInquireRequest"
+  "/customers/{id}/reject":
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    patch:
+      tags:
+        - Portal
+      summary: ""
+      operationId: portalRejectCustomerData
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SuccessMessageResponse"
+        "401":
+          description: Unauthorized
+        "404":
+          description: Not Found
+        "422":
+          description: Unprocessable Entity
+      description: ""
+      security:
+        - xApiKey: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PortalRejectInquireRequest"
+components:
+  schemas:
+    SuccessMessageResponse:
+      type: object
+      x-examples:
+        example-1:
+          message: Customer personal details saved successfully.
+      description: ""
+      properties:
+        id:
+          type: string
+        message:
+          type: string
+    EmploymentSectorEnum:
+      type: string
+      description: Sector of employment
+      title: EmploymentSectorEnum
+      enum:
+        - AGRICULTURE_FORESTRY_AND_FISHING
+        - MINING_AND_QUARRYING
+        - MANUFACTURING
+        - CONSTRUCTION
+        - ELECTRICITY_GAS_AND_WATER
+        - COMMERCE_AND_FINANCE
+        - TRANSPORT_STORAGE_COMMUNICATION
+        - SERVICE_INDUSTRIES
+        - MISCELLANEOUS
+        - COTTAGE_INDUSTRIES
+      nullable: true
+    ProofOfResidenceTypeEnum:
+      type: string
+      description: Type of proof of residence file
+      title: ProofOfResidenceTypeEnum
+      enum:
+        - UTILITY_BILL
+        - TENANCY_AGREEMENT
+    TitleEnum:
+      type: string
+      description: Titles
+      title: TitleEnum
+      enum:
+        - Mr
+        - Mrs
+        - Miss
+        - Ms
+        - Dr
+        - Prof
+        - Other
+    DisabilityTypeEnum:
+      type: string
+      description: Disabilities
+      title: DiasabilityTypeEnum
+      enum:
+        - VISION_IMPAIRMENT
+        - DEAF_OR_HARD_OF_HEARING
+        - MENTAL_HEALTH_CONDITIONS
+        - INTELLECTUAL_DISABILITY
+        - ACQUIRED_SPECTRUM_DISORDER
+        - AUTISM_SPECTRUM_DISORDER
+        - PHYSICAL_DISABILITY
+    IdTypeEnum:
+      type: string
+      description: Type of ID
+      title: IdTypeEnum
+      enum:
+        - PASSPORT
+        - GHANA_CARD
+    UploadFileTypeEnum:
+      type: string
+      description: Type of file
+      title: UploadFileTypeEnum
+      x-examples: {}
+      enum:
+        - PROOF_OF_RESIDENCE
+        - PROFILE_PICTURE
+        - IDENTIFICATION
+        - RESIDENCY_PERMIT
+        - SIGNATURE
+    MobileOnboardingStepEnum:
+      type: string
+      description: Mobile onboarding steps
+      title: MobileOnboardingStepEnum
+      enum:
+        - PERSONAL_DETAILS
+        - RESIDENTIAL_ADDRESS
+        - IDENTIFICATION_DETAILS
+        - RESIDENCY_PERMIT_DETAILS
+        - COMPLETE
+        - EKYC_EMPLOYMENT_DETAILS
+        - EKYC_KIN_DETAILS
+        - EKYC_IDENTITY_DETAILS
+        - EKYC_SIGNATURE_DETAILS
+        - EKYC_COMPLETE
+        - MKYC_START
+      nullable: true
+    AgencyStorePersonalDetailsRequestChannelEnum:
+      description: channel of account creation
+      title: AgencyStorePersonalDetailsRequestChannelEnum
+      enum:
+        - AGENCY
+        - MOBILE_APP
+        - BRANCH
+      type: string
+    EKYCDisabilityChoiceEnum:
+      type: string
+      description: Physical challenged choice
+      title: EKYCDisabilityChoiceEnum
+      x-examples:
+        example-1: "YES"
+      enum:
+        - "YES"
+        - "NO"
+        - PREFER_NOT_TO_SAY
+    ApprovalStatusEnum:
+      type: string
+      description: Customer approval status
+      title: ApprovalStatusEnum
+      x-examples:
+        example-1: PENDING_MKYC_REVIEW
+      enum:
+        - MKYC_INCOMPLETE
+        - PENDING_MKYC_APPROVAL
+        - PENDING_MKYC_REVIEW
+        - MKYC_REJECTED
+        - MKYC_APPROVED
+        - EKYC_INCOMPLETE
+        - PENDING_EKYC_APPROVAL
+        - PENDING_EKYC_REVIEW
+        - EKYC_REJECTED
+        - EKYC_APPROVED
+        - PENDING_EKYC_UPGRADE_APPROVAL
+        - PENDING_EKYC_UPGRADE_REVIEW
+        - EKYC_UPGRADE_APPROVED
+    MambuStatusEnum:
+      type: string
+      description: Mambu account status for customer
+      title: MambuStatusEnum
+      x-examples:
+        example-1: PENDING_MKYC_CREATION
+      enum:
+        - PENDING_MKYC_CREATION
+        - PENDING_EKYC_CREATION
+        - PENDING_EKYC_UPGRADE
+        - MKYC_CREATED
+        - EKYC_CREATED
+        - EKYC_UPGRADED
+    MaritalStatusEnum:
+      type: string
+      description: Marital status of customer
+      title: MaritalStatusEnum
+      x-examples:
+        example-1: Married
+      enum:
+        - Married
+        - Single
+        - Divorced
+        - Widowed
+    EmploymentStatusEnum:
+      type: string
+      description: Employment status of customer
+      title: EmploymentStatusEnum
+      x-examples:
+        example-1: EMPLOYED
+      enum:
+        - EMPLOYED
+        - SELF_EMPLOYED
+        - UNEMPLOYED
+        - RETIRED
+        - STUDENT
+    SourceOfFundsEnum:
+      type: string
+      description: Source of funds of customer
+      title: SourceOfFundsEnum
+      x-examples: {}
+      enum:
+        - SALES_PROCEEDS
+        - REMITTANCE
+        - INHERITANCE
+        - INVESTMENTS
+        - PENSIONS
+        - OTHERS
+        - SALARY_WAGE
+      nullable: true
+    IncomeRangeEnum:
+      type: string
+      description: Income range of customer
+      title: IncomeRangeEnum
+      x-examples: {}
+      enum:
+        - LESS_THAN_1000
+        - MAX_5000
+        - MAX_10000
+        - GREATER_THAN_10000
+      nullable: true
+    NumberOfTransactionsEnum:
+      type: string
+      description: Monthly number of transactions for customer
+      title: NumberOfTransactionsEnum
+      x-examples: {}
+      enum:
+        - MAX4
+        - MAX10
+        - MAX19
+        - TWENTY_PLUS
+    KinRelationshipEnum:
+      type: string
+      description: Monthly number of transactions for customer
+      title: NumberOfTransactionsEnum
+      x-examples: {}
+      enum:
+        - SPOUSE
+        - PARENT
+        - SIBLING
+        - CLOSE_RELATION
+        - FRIEND
+        - CHILD_18_PLUS
+    MobileOnboardingResponse:
+      type: object
+      x-examples:
+        example-1:
+          message: Customer personal details saved successfully.
+          id: hjsd9ds8ds89
+      properties:
+        message:
+          type: string
+        id:
+          type: string
+    CustomerAgency:
+      type: object
+      x-examples:
+        Full Response:
+          id: 6300fba9850172cf08438137
+          title: Mr
+          otherTitle: ""
+          sex: Male
+          firstName: John
+          otherNames: ""
+          lastName: Bull
+          dateOfBirth: "2020-10-10T00:00:00.000Z"
+          placeOfBirth: "37"
+          nationality: Ghanaian
+          countryOfResidence: Ghana
+          phoneNumber: "233241726707"
+          secondaryPhone: ""
+          email: ""
+          residentialAddress:
+            houseNumber: 1234 vdf
+            streetName: Citreon street
+            area: Ashiyie
+            description: ""
+          proofOfResidence:
+            type: Utility Bill
+            fileKey: PROOF_OF_RESIDENCE/qwreeev.jpg
+          profilePictureFileKey: PROFILE_PICTURE/nana.jpg
+          identification:
+            type: PASSPORT
+            issuingCountry: Ghana
+            number: GHA-222222222
+            issueDate: "2020-10-10T00:00:00.000Z"
+            expiryDate: "2030-10-10T00:00:00.000Z"
+            fileKey: IDENTIFICATION/ghana-card-front.jpg
+            backFileKey: IDENTIFICATION/ghana-card-back.jpg
+          residencyPermit:
+            number: "1234566789"
+            issueDate: "2020-10-10T00:00:00.000Z"
+            expiryDate: "2030-10-10T00:00:00.000Z"
+            fileKey: RESIDENCY_PERMIT/permit.jpg
+          ghanaPostAddress: GA-121-1234
+          createdBy: dennis.mensah-torkornoo@affinitylabsafrica.com
+          step: RESIDENTIAL_ADDRESS
+          createdAt: "2022-08-20T15:20:07.887Z"
+        Personal Details:
+          id: 6302d92268bbc0a06e2198bd
+          title: Mrs
+          otherTitle: null
+          sex: Female
+          firstName: Georgia
+          otherNames: null
+          lastName: Arthur
+          dateOfBirth: "1978-10-10T00:00:00.000Z"
+          placeOfBirth: Kasoa
+          nationality: Ghanaian
+          countryOfResidence: Ghana
+          phoneNumber: "233504989952"
+          secondaryPhone: null
+          email: null
+          residentialAddress: null
+          proofOfResidence: null
+          profilePictureFileKey: null
+          identification: null
+          residencyPermit: null
+          ghanaPostAddress: null
+          createdBy: dennis.mensah-torkornoo@affinitylabsafrica.com
+          step: PERSONAL_DETAILS
+          createdAt: "2022-08-22T01:17:21.439Z"
+        Residency Address:
+          id: 6302d92268bbc0a06e2198bd
+          title: Mrs
+          otherTitle: null
+          sex: Female
+          firstName: Georgia
+          otherNames: null
+          lastName: Arthur
+          dateOfBirth: "1978-10-10T00:00:00.000Z"
+          placeOfBirth: Kasoa
+          nationality: Ghanaian
+          countryOfResidence: Ghana
+          phoneNumber: "233504989952"
+          secondaryPhone: null
+          email: null
+          residentialAddress:
+            houseNumber: "1234"
+            streetName: Big Apple Street
+            area: Big Apple
+            description: null
+          proofOfResidence:
+            type: UtilityBill
+            fileKey: PROOF_OF_RESIDENCE/mrs-authur.jpg
+          profilePictureFileKey: null
+          identification: null
+          residencyPermit: null
+          ghanaPostAddress: GA-121-1234
+          createdBy: dennis.mensah-torkornoo@affinitylabsafrica.com
+          step: RESIDENTIAL_ADDRESS
+          createdAt: "2022-08-22T01:17:21.439Z"
+      description: ""
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+        otherTitle:
+          type: string
+        sex:
+          type: string
+        firstName:
+          type: string
+        otherNames:
+          type: string
+        lastName:
+          type: string
+        dateOfBirth:
+          type: string
+        placeOfBirth:
+          type: string
+        nationality:
+          type: string
+        countryOfResidence:
+          type: string
+        phoneNumber:
+          type: string
+        secondaryPhone:
+          type: string
+        email:
+          type: string
+        residentialAddress:
+          type: object
+          properties:
+            houseNumber:
+              type: string
+            streetName:
+              type: string
+            area:
+              type: string
+            description:
+              type: string
+        proofOfResidence:
+          type: object
+          properties:
+            type:
+              type: string
+            fileKey:
+              type: string
+        profilePictureFileKey:
+          type: string
+        identification:
+          type: object
+          properties:
+            type:
+              type: string
+            issuingCountry:
+              type: string
+            number:
+              type: string
+            issueDate:
+              type: string
+            expiryDate:
+              type: string
+            fileKey:
+              type: string
+            backFileKey:
+              type: string
+        residencyPermit:
+          type: object
+          properties:
+            number:
+              type: string
+            issueDate:
+              type: string
+            expiryDate:
+              type: string
+            fileKey:
+              type: string
+        ghanaPostAddress:
+          type: string
+        createdBy:
+          type: string
+        step:
+          type: string
+        createdAt:
+          type: string
+        profilePictureFileUrl:
+          type: string
+        identificationFileUrl:
+          type: string
+        identificationBackFileUrl:
+          type: string
+        residencyPermitFileUrl:
+          type: string
+        proofOfResidenceFileUrl:
+          type: string
+      required:
+        - id
+        - title
+        - sex
+        - firstName
+        - lastName
+        - dateOfBirth
+        - placeOfBirth
+        - nationality
+        - countryOfResidence
+        - phoneNumber
+        - profilePictureFileUrl
+        - identificationFileUrl
+        - identificationBackFileUrl
+        - proofOfResidenceFileUrl
+    MobileStoreIdentificationDetailsRequest:
+      x-stoplight:
+        id: xbhqiojxso0zj
+      type: object
+      title: MobileStoreIdentificationDetailsRequest
+      x-examples:
+        example-1:
+          profilePictureFileKey: PROFILE_PICTURE/12934-df34f-45dfe-sder.jpg
+          idFrontFileKey: IDENTIFICATION/front.jpg
+          idBackFileKey: IDENTIFICATION/back.jpg
+          idIssueDate: "2010-10-31"
+          idExpiryDate: "2020-10-31"
+          idIssuingCountry: Ghana
+          idNumber: GHA-000000000-0
+          idType: PASSPORT
+      properties:
+        profilePictureFileKey:
+          type: string
+          example: PROFILE_PICTURE/12934-df34f-45dfe-sder.jpg
+        idFrontFileKey:
+          type: string
+          example: IDENTIFICATION/front.jpg
+        idBackFileKey:
+          type: string
+          example: IDENTIFICATION/back.jpg
+          description: File key for back of ID(required for Ghana Card)
+        idIssueDate:
+          type: string
+          example: "2010-10-31"
+        idExpiryDate:
+          type: string
+          example: "2020-10-31"
+        idIssuingCountry:
+          type: string
+          example: Ghana
+          description: Issuing country(required for Non-Ghanaian passports)
+        idNumber:
+          type: string
+          example: GHA-000000000-0
+        idType:
+          $ref: "#/components/schemas/IdTypeEnum"
+      required:
+        - profilePictureFileKey
+        - idFrontFileKey
+        - idIssueDate
+        - idExpiryDate
+        - idNumber
+        - idType
+    MobileStoreEkycPersonalDetailsRequest:
+      type: object
+      x-examples: {}
+      description: " Personal data for Mobile EKYC"
+      properties:
+        maritalStatus:
+          $ref: "#/components/schemas/MaritalStatusEnum"
+        placeOfBirth:
+          type: string
+        physicallyChallenged:
+          $ref: "#/components/schemas/EKYCDisabilityChoiceEnum"
+        disabilityType:
+          type: array
+          items:
+            $ref: "#/components/schemas/DisabilityTypeEnum"
+      required:
+        - maritalStatus
+        - placeOfBirth
+        - physicallyChallenged
+    MobileStoreEkycKinDetailsRequest:
+      type: object
+      x-examples:
+        example-1:
+          name: Yesu Mo
+          phoneNumber: "+233546579046"
+          relationship: SIBLING
+      properties:
+        name:
+          type: string
+        phoneNumber:
+          type: string
+        relationship:
+          $ref: "#/components/schemas/KinRelationshipEnum"
+    MobileStoreEkycIdentityDetailsRequest:
+      type: object
+      x-examples: {}
+      properties:
+        proofOfResidenceType:
+          $ref: "#/components/schemas/ProofOfResidenceTypeEnum"
+        proofOfResidenceFileKey:
+          type: string
+      required:
+        - proofOfResidenceType
+        - proofOfResidenceFileKey
+    MobileStoreEkycSignatureDetailsRequest:
+      type: object
+      x-examples: {}
+      properties:
+        signatureFileKey:
+          type: string
+      required:
+        - signatureFileKey
+    MobileStoreEkycEmploymentDetailsRequest:
+      type: object
+      x-examples:
+        example-1:
+          status: EMPLOYED
+          sector: AGRICULTURE_FORESTRY_AND_FISHING
+          occupation: MILITARY
+          sourceOfFunds: SALES_PROCEEDS
+          otherSourceOfFunds: string
+          institutionName: string
+          incomeRange: LESS_THAN_1000
+          employerName: string
+          employerAddressHouseNumber: string
+          employerAddressStreetName: string
+          employerAddressArea: string
+          employerAddressDescription: string
+          employerGhanaPostAddress: string
+          numberOfTransactionsPerMonth: MAX4
+      description: Employment data for EKYC upgrade
+      properties:
+        status:
+          $ref: "#/components/schemas/EmploymentStatusEnum"
+        sector:
+          $ref: "#/components/schemas/EmploymentSectorEnum"
+        occupation:
+          type: string
+        sourceOfFunds:
+          $ref: "#/components/schemas/SourceOfFundsEnum"
+        otherSourceOfFunds:
+          type: string
+        institutionName:
+          type: string
+        incomeRange:
+          $ref: "#/components/schemas/IncomeRangeEnum"
+        employerName:
+          type: string
+        employerAddressHouseNumber:
+          type: string
+        employerAddressStreetName:
+          type: string
+        employerAddressArea:
+          type: string
+        employerAddressDescription:
+          type: string
+        employerGhanaPostAddress:
+          type: string
+        numberOfTransactionsPerMonth:
+          $ref: "#/components/schemas/NumberOfTransactionsEnum"
+      required:
+        - status
+        - numberOfTransactionsPerMonth
+    AgencyStoreIdentificationDetailsRequest:
+      x-stoplight:
+        id: xbhqiojxso0zj
+      type: object
+      properties:
+        profilePictureFileKey:
+          type: string
+          example: PROFILE_PICTURE/12934-df34f-45dfe-sder.jpg
+        idFrontFileKey:
+          type: string
+          example: IDENTIFICATION/front.jpg
+        idBackFileKey:
+          type: string
+          example: IDENTIFICATION/back.jpg
+        idIssueDate:
+          type: string
+          example: "2010-10-31"
+        idExpiryDate:
+          type: string
+          example: "2020-10-31"
+        idIssuingCountry:
+          type: string
+          example: Ghana
+        idNumber:
+          type: string
+          example: GHA-000000000-0
+      required:
+        - profilePictureFileKey
+        - idFrontFileKey
+        - idIssueDate
+        - idExpiryDate
+        - idIssuingCountry
+        - idNumber
+      description: ""
+    MobileStorePersonalDetailsRequest:
+      title: MobileStorePersonalDetailsRequest
+      x-stoplight:
+        id: 1rilne5p3iak4
+      type: object
+      x-examples:
+        example-1:
+          title: Mr
+          otherTitle: ""
+          firstName: Andrew
+          otherNames: Hassan
+          sex: Male
+          lastName: Daawin
+          dateOfBirth: "2020-10-10"
+          nationality: Chinese
+          countryOfResidence: Ghana
+          phoneNumber: "2335456288992"
+          secondaryPhone: ""
+          email: ""
+          customerId: TESTGUY01
+      description: ""
+      properties:
+        title:
+          $ref: "#/components/schemas/TitleEnum"
+        otherTitle:
+          type: string
+        firstName:
+          type: string
+        sex:
+          enum:
+            - Male
+            - Female
+          type: string
+          example: Male
+        lastName:
+          type: string
+        otherNames:
+          type: string
+        dateOfBirth:
+          type: string
+        nationality:
+          type: string
+        countryOfResidence:
+          type: string
+        phoneNumber:
+          type: string
+        secondaryPhone:
+          type: string
+        email:
+          type: string
+        customerId:
+          type: string
+      required:
+        - title
+        - firstName
+        - sex
+        - lastName
+        - dateOfBirth
+        - nationality
+        - countryOfResidence
+        - phoneNumber
+        - customerId
+    AgencyStorePersonalDetailsRequest:
+      title: AgencyStorePersonalDetailsRequest
+      x-stoplight:
+        id: 1rilne5p3iak4
+      type: object
+      x-examples:
+        example-1:
+          title: string
+          otherTitle: null
+          firstName: string
+          sex: string
+          lastName: string
+          dateOfBirth: string
+          placeOfBirth: string
+          nationality: string
+          countryOfResidence: string
+          phoneNumber: string
+          secondaryPhone: string
+          email: null
+      properties:
+        id:
+          type: string
+        title:
+          enum:
+            - Mr
+            - Mrs
+            - Miss
+            - Ms
+            - Dr
+            - Prof
+            - Other
+          type: string
+        otherTitle:
+          type: string
+        firstName:
+          type: string
+        sex:
+          enum:
+            - Male
+            - Female
+          type: string
+          example: Male
+        lastName:
+          type: string
+        dateOfBirth:
+          type: string
+        placeOfBirth:
+          type: string
+        nationality:
+          type: string
+        countryOfResidence:
+          type: string
+        phoneNumber:
+          type: string
+        secondaryPhone:
+          type: string
+        email:
+          type: string
+        channel:
+          $ref: "#/components/schemas/AgencyStorePersonalDetailsRequestChannelEnum"
+        customerId:
+          type: string
+      required:
+        - title
+        - firstName
+        - sex
+        - lastName
+        - dateOfBirth
+        - placeOfBirth
+        - nationality
+        - countryOfResidence
+        - phoneNumber
+        - channel
+    AgencyResidencyPermitRequest:
+      title: AgencyResidencyPermitRequest
+      x-stoplight:
+        id: wryl9y2pc2j6t
+      type: object
+      x-examples:
+        example-1:
+          residencyPermitNumber: string
+          residencyPermitIssueDate: string
+          residencyPermitExpiryDate: string
+          residencyPermitFileKey: RESIDENCY_PERMIT/12934-df34f-45dfe-sder.jpg
+      properties:
+        residencyPermitNumber:
+          type: string
+        residencyPermitIssueDate:
+          type: string
+        residencyPermitExpiryDate:
+          type: string
+        residencyPermitFileKey:
+          type: string
+      required:
+        - residencyPermitNumber
+        - residencyPermitIssueDate
+        - residencyPermitExpiryDate
+        - residencyPermitFileKey
+    MobileResidencyPermitRequest:
+      title: AgencyResidencyPermitRequest
+      x-stoplight:
+        id: wryl9y2pc2j6t
+      type: object
+      x-examples:
+        example-1:
+          residencyPermitNumber: string
+          residencyPermitIssueDate: string
+          residencyPermitExpiryDate: string
+          residencyPermitFileKey: RESIDENCY_PERMIT/12934-df34f-45dfe-sder.jpg
+      properties:
+        residencyPermitNumber:
+          type: string
+        residencyPermitIssueDate:
+          type: string
+        residencyPermitExpiryDate:
+          type: string
+        residencyPermitFileKey:
+          type: string
+      required:
+        - residencyPermitNumber
+        - residencyPermitIssueDate
+        - residencyPermitExpiryDate
+        - residencyPermitFileKey
+    AgencyStoreResidentialAddressRequest:
+      title: AgencyStoreResidentialAddressRequest
+      x-stoplight:
+        id: uoa3gus9qapee
+      type: object
+      properties:
+        ghanaPostAddress:
+          type: string
+          example: GA-123-4567
+        residentialAddressHouseNumber:
+          type: string
+        residentialAddressStreetName:
+          type: string
+        residentialAddressArea:
+          type: string
+        residentialAddressDescription:
+          type: string
+        proofOfResidenceType:
+          type: string
+          enum:
+            - UTILITY_BILL
+            - TENANCY_AGREEMENT
+        proofOfResidenceFileKey:
+          type: string
+          example: PROOF_OF_RESIDENCE/1234df45.jpg
+      required:
+        - ghanaPostAddress
+        - residentialAddressHouseNumber
+        - residentialAddressStreetName
+        - residentialAddressArea
+        - proofOfResidenceType
+        - proofOfResidenceFileKey
+    MobileStoreResidencyDetailsRequest:
+      title: AgencyStoreResidentialAddressRequest
+      x-stoplight:
+        id: uoa3gus9qapee
+      type: object
+      x-examples:
+        example-1:
+          ghanaPostAddress: GA-123-4567
+          residentialAddressHouseNumber: string
+          residentialAddressStreetName: string
+          residentialAddressArea: string
+          residentialAddressCity: string
+          proofOfResidenceType: UTILITY_BILL
+          proofOfResidenceFileKey: PROOF_OF_RESIDENCE/1234df45.jpg
+      properties:
+        ghanaPostAddress:
+          type: string
+          example: GA-123-4567
+        residentialAddressHouseNumber:
+          type: string
+        residentialAddressStreetName:
+          type: string
+        residentialAddressArea:
+          type: string
+        residentialAddressCity:
+          type: string
+        proofOfResidenceType:
+          type: string
+          enum:
+            - UTILITY_BILL
+            - TENANCY_AGREEMENT
+        proofOfResidenceFileKey:
+          type: string
+          example: PROOF_OF_RESIDENCE/1234df45.jpg
+      required:
+        - ghanaPostAddress
+        - residentialAddressHouseNumber
+        - residentialAddressStreetName
+        - residentialAddressArea
+        - residentialAddressCity
+    UploadCustomerFileRequest:
+      title: UploadFileRequest
+      x-stoplight:
+        id: h09mrznz8bhze
+      type: object
+      x-examples: {}
+      properties:
+        file:
+          type: string
+          format: binary
+        type:
+          $ref: "#/components/schemas/UploadFileTypeEnum"
+      required:
+        - file
+        - type
+    GenerateFileUrlRequest:
+      title: GenerateFileUrlRequest
+      x-stoplight:
+        id: h09mrznz8bhze
+      type: object
+      properties:
+        fileKey:
+          type: string
+      required:
+        - fileKey
+    FileUrlResponse:
+      title: FileUrlResponse
+      x-stoplight:
+        id: k882k32p13t6l
+      type: object
+      properties:
+        url:
+          type: string
+        _type:
+          $ref: "#/components/schemas/UploadFileTypeEnum"
+      required:
+        - url
+    MobileOnboardingStepResponse:
+      title: MobileOnboardingStepResponse
+      x-stoplight:
+        id: tzt5vn4m7xv6m
+      type: object
+      description: ""
+      x-examples:
+        example-1:
+          id: string
+          step: PERSONAL_DETAILS
+          mambuAccountStatus: PENDING_MKYC_CREATION
+          approvalStatus: PENDING_MKYC_REVIEW
+      properties:
+        id:
+          type: string
+        step:
+          $ref: "#/components/schemas/MobileOnboardingStepEnum"
+        mambuAccountStatus:
+          $ref: "#/components/schemas/MambuStatusEnum"
+        approvalStatus:
+          $ref: "#/components/schemas/ApprovalStatusEnum"
+      required:
+        - id
+        - step
+        - mambuAccountStatus
+        - approvalStatus
+    MobileKlippaUploadResponse:
+      title: MobileOnboardingStepResponse
+      x-stoplight:
+        id: tzt5vn4m7xv6m
+      type: object
+      description: ""
+      properties:
+        fileKey:
+          type: string
+      required:
+        - fileKey
+      x-examples:
+        example-1:
+          fileKey: IDENTIFICATION/d1be3e59-1899-4bb3-a574-aa99bcf65d59.jpeg
+    Customer:
+      title: Customer
+      x-stoplight:
+        id: gbr5n1a9dsq3b
+      type: object
+      description: ""
+      x-examples: {}
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+        otherTitle:
+          type: string
+        sex:
+          type: string
+        firstName:
+          type: string
+        otherNames:
+          type: string
+        lastName:
+          type: string
+        dateOfBirth:
+          type: string
+        placeOfBirth:
+          type: string
+        nationality:
+          type: string
+        countryOfResidence:
+          type: string
+        phoneNumber:
+          type: string
+        secondaryPhone:
+          type: string
+        email:
+          type: string
+        residentialAddress:
+          type: object
+          required:
+            - houseNumber
+            - streetName
+            - area
+          properties:
+            houseNumber:
+              type: string
+            streetName:
+              type: string
+            area:
+              type: string
+            description:
+              type: string
+        proofOfResidence:
+          type: object
+          required:
+            - type
+            - fileKey
+          properties:
+            type:
+              type: string
+            fileKey:
+              type: string
+        profilePictureFileKey:
+          type: string
+        signatureFileKey:
+          type: string
+        identification:
+          type: object
+          required:
+            - type
+            - issuingCountry
+            - number
+            - issueDate
+            - fileKey
+          properties:
+            type:
+              type: string
+            issuingCountry:
+              type: string
+            number:
+              type: string
+            issueDate:
+              type: string
+            expiryDate:
+              type: string
+            fileKey:
+              type: string
+            backFileKey:
+              type: string
+        residencyPermit:
+          type: object
+          properties:
+            number:
+              type: string
+            issueDate:
+              type: string
+            expiryDate:
+              type: string
+            fileKey:
+              type: string
+        ghanaPostAddress:
+          type: string
+        maritalStatus:
+          type: string
+        nextOfKin:
+          type: object
+          properties:
+            name:
+              type: string
+            relationship:
+              type: string
+            phoneNumber:
+              type: string
+        employment:
+          type: object
+          properties:
+            status:
+              type: string
+            sector:
+              $ref: "#/components/schemas/EmploymentSectorEnum"
+            occupation:
+              type: string
+            sourceOfFunds:
+              $ref: "#/components/schemas/SourceOfFundsEnum"
+            otherSourceOfFunds:
+              type: string
+            institutionName:
+              type: string
+            incomeRange:
+              $ref: "#/components/schemas/IncomeRangeEnum"
+            employer:
+              type: object
+              properties:
+                name:
+                  type: string
+                ghanaPostAddress:
+                  type: string
+                businessAddress:
+                  type: object
+                  properties:
+                    houseNumber:
+                      type: string
+                    streetName:
+                      type: string
+                    area:
+                      type: string
+                    description:
+                      type: string
+        numberOfTransactionsPerMonth:
+          type: string
+        physicallyChallenged:
+          $ref: "#/components/schemas/EKYCDisabilityChoiceEnum"
+        disabilityType:
+          type: array
+          items:
+            $ref: "#/components/schemas/DisabilityTypeEnum"
+        channel:
+          $ref: "#/components/schemas/AgencyStorePersonalDetailsRequestChannelEnum"
+        recordErrors:
+          type: array
+          items:
+            type: string
+        rejectionErrors:
+          type: array
+          items:
+            type: string
+        profileCreationErrors:
+          type: array
+          items:
+            type: string
+        createdBy:
+          type: string
+        step:
+          type: string
+        createdAt:
+          type: string
+        profilePictureFileUrl:
+          type: string
+        signatureFileUrl:
+          type: string
+        identificationFileUrl:
+          type: string
+        identificationBackFileUrl:
+          type: string
+        residencyPermitFileUrl:
+          type: string
+        proofOfResidenceFileUrl:
+          type: string
+        branch:
+          type: string
+        relationshipOfficer:
+          type: string
+        relationshipOfficerEncodedKey:
+          type: string
+        approvalStatus:
+          type: string
+          enum:
+            - PENDING_MKYC_REVIEW
+            - PENDING_EKYC_REVIEW
+            - PENDING_EKYC_UPGRADE_REVIEW
+            - PENDING_MKYC_APPROVAL
+            - PENDING_EKYC_APPROVAL
+            - PENDING_EKYC_UPGRADE_APPROVAL
+            - MKYC_APPROVED
+            - EKYC_APPROVED
+            - EKYC_UPGRADE_APPROVED
+            - MKYC_REJECTED
+            - EKYC_REJECTED
+        accountType:
+          type: string
+          enum:
+            - EKYC
+            - MKYC
+        referrer:
+          type: string
+        mambuAccountStatus:
+          type: string
+      required:
+        - id
+        - title
+        - sex
+        - firstName
+        - lastName
+        - dateOfBirth
+        - placeOfBirth
+        - nationality
+        - countryOfResidence
+        - phoneNumber
+        - residentialAddress
+        - proofOfResidence
+        - profilePictureFileKey
+        - signatureFileKey
+        - identification
+        - ghanaPostAddress
+        - createdBy
+        - step
+        - createdAt
+        - profilePictureFileUrl
+        - signatureFileUrl
+        - identificationFileUrl
+        - identificationBackFileUrl
+        - residencyPermitFileUrl
+        - proofOfResidenceFileUrl
+        - branch
+        - relationshipOfficer
+        - relationshipOfficerEncodedKey
+        - approvalStatus
+        - accountType
+        - referrer
+        - mambuAccountStatus
+    CustomersListResponse:
+      type: object
+      x-examples:
+        example-1:
+          items:
+            - id: 62d7e0b6dc49850f02c79803
+              firstName: Adusei
+              lastName: Kwaku
+              phoneNumber: "233553208841"
+              accountType: MKYC
+              approvalStatus: PENDING_MKYC_APPROVAL
+              createdAt: "2022-07-20T11:02:14.701Z"
+            - id: 62d7df66dc49850f02c79802
+              firstName: Baba
+              lastName: Aiko
+              phoneNumber: "233553208841"
+              accountType: MKYC
+              approvalStatus: PENDING_MKYC_APPROVAL
+              createdAt: "2022-07-20T10:56:38.856Z"
+          meta:
+            limit: 20
+            page: 1
+            total: 2
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              firstName:
+                type: string
+              lastName:
+                type: string
+              phoneNumber:
+                type: string
+              accountType:
+                type: string
+                enum:
+                  - MKYC
+                  - EKYC
+              approvalStatus:
+                type: string
+              createdAt:
+                type: string
+            required:
+              - id
+              - firstName
+              - lastName
+              - phoneNumber
+              - accountType
+              - approvalStatus
+              - createdAt
+        meta:
+          type: object
+          required:
+            - limit
+            - page
+            - total
+          properties:
+            limit:
+              type: integer
+            page:
+              type: integer
+            total:
+              type: integer
+      required:
+        - items
+        - meta
+    PortalStoreMkyc:
+      type: object
+      x-examples:
+        example-1:
+          title: Mr
+          otherTitle: ""
+          sex: Male
+          firstName: Said
+          otherNames: ""
+          lastName: Mohammed
+          dateOfBirth: "1998-09-01"
+          placeOfBirth: Madina
+          nationality: Ghanaian
+          countryOfResidence: Ghana
+          phoneNumber: "233553208841"
+          secondaryPhone: "233553208841"
+          email: saidinusah29@gmail.com
+          ghanaPostAddress: GM-299-8929
+          residentialAddressHouseNumber: H/No 3892
+          residentialAddressStreetName: Asafoatse Ankaa
+          residentialAddressArea: Ringway Estates
+          residentialAddressDescription: Close to phoenix insurance
+          proofOfResidenceType: UTILITY_BILL
+          proofOfResidenceFileKey: PROOF_OF_RESIDENCE/ef2b7118-9664-49cb-a4d8-f266f4bfa165.pdf
+          identificationType: GHANA_CARD
+          identificationNumber: Gha-939943
+          identificationIssueDate: "2020-06-02"
+          identificationExpiryDate: "2030-06-30"
+          identificationFileKey: IDENTIFICATION/e6e99f96-d6cb-432b-b228-fcc18690f3e7.png
+          identificationIssuingCountry: Ghana
+          numberOfTransactionsPerMonth: 11-19
+          residencyPermitNumber: ""
+          residencyPermitIssueDate: ""
+          residencyPermitExpiryDate: ""
+          residencyPermitFileKey: ""
+          profilePicture: PROFILE_PICTURE/3e3be5ef-d61a-413c-8fa4-4cdfb83cc849.png
+          signature: SIGNATURE/209c8226-0d92-4bf6-a17e-d295bbb9c32a.jpeg
+          branch: 8a858fe8555f401f01556e3a4c6c2552
+          relationshipOfficer: nanaaikinson@gmail.com
+      title: ""
+      description: ""
+      properties:
+        title:
+          type: string
+        otherTitle:
+          type: string
+        sex:
+          type: string
+          enum:
+            - Male
+            - Female
+        firstName:
+          type: string
+        otherNames:
+          type: string
+        lastName:
+          type: string
+        dateOfBirth:
+          type: string
+        placeOfBirth:
+          type: string
+        nationality:
+          type: string
+        countryOfResidence:
+          type: string
+        phoneNumber:
+          type: string
+          pattern: '^(?=\d{9,}$)(233)\d+'
+        secondaryPhone:
+          type: string
+          pattern: '^(?=\d{9,}$)(233)\d+'
+        email:
+          type: string
+        ghanaPostAddress:
+          type: string
+          pattern: '^(G)(\w{1})-(\d{3})-(\d{4})$'
+        residentialAddressHouseNumber:
+          type: string
+        residentialAddressStreetName:
+          type: string
+        residentialAddressArea:
+          type: string
+        residentialAddressDescription:
+          type: string
+        proofOfResidenceType:
+          type: string
+          enum:
+            - UTILITY_BILL
+            - TENANCY_AGREEMENT
+        proofOfResidenceFileKey:
+          type: string
+          pattern: ^(PROOF_OF_RESIDENCE\/)
+        identificationType:
+          type: string
+          enum:
+            - PASSPORT
+            - GHANA_CARD
+        identificationNumber:
+          type: string
+        identificationIssueDate:
+          type: string
+          pattern: '^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$'
+        identificationExpiryDate:
+          type: string
+          pattern: '^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$'
+        identificationFileKey:
+          type: string
+          pattern: ^(IDENTIFICATION\/)
+        identificationBackFileKey:
+          type: string
+          pattern: ^(IDENTIFICATION\/)
+        identificationIssuingCountry:
+          type: string
+        residencyPermitNumber:
+          type: string
+        residencyPermitIssueDate:
+          type: string
+          pattern: '^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$'
+        residencyPermitExpiryDate:
+          type: string
+          pattern: '^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$'
+        residencyPermitFileKey:
+          type: string
+          pattern: ^(RESIDENCY_PERMIT\/)
+        profilePicture:
+          type: string
+          pattern: ^(PROFILE_PICTURE\/)
+        signature:
+          type: string
+          pattern: ^(SIGNATURE\/)
+        branch:
+          type: string
+        relationshipOfficer:
+          type: string
+        relationshipOfficerEncodedKey:
+          type: string
+        referrer:
+          type: string
+        channel:
+          $ref: "#/components/schemas/AgencyStorePersonalDetailsRequestChannelEnum"
+      required:
+        - title
+        - sex
+        - firstName
+        - lastName
+        - dateOfBirth
+        - placeOfBirth
+        - nationality
+        - countryOfResidence
+        - phoneNumber
+        - ghanaPostAddress
+        - residentialAddressHouseNumber
+        - residentialAddressStreetName
+        - residentialAddressArea
+        - proofOfResidenceType
+        - proofOfResidenceFileKey
+        - identificationType
+        - identificationNumber
+        - identificationIssueDate
+        - identificationFileKey
+        - identificationBackFileKey
+        - identificationIssuingCountry
+        - profilePicture
+        - signature
+        - branch
+        - relationshipOfficer
+        - relationshipOfficerEncodedKey
+    PortalStoreEkyc:
+      type: object
+      x-examples: {}
+      title: PortalStoreEkyc
+      description: ""
+      properties:
+        title:
+          $ref: "#/components/schemas/TitleEnum"
+        otherTitle:
+          type: string
+        sex:
+          enum:
+            - Male
+            - Female
+          type: string
+        firstName:
+          type: string
+        otherNames:
+          type: string
+        lastName:
+          type: string
+        dateOfBirth:
+          type: string
+        placeOfBirth:
+          type: string
+        nationality:
+          type: string
+        countryOfResidence:
+          type: string
+        phoneNumber:
+          type: string
+        secondaryPhone:
+          type: string
+        email:
+          type: string
+        ghanaPostAddress:
+          type: string
+        residentialAddressHouseNumber:
+          type: string
+        residentialAddressStreetName:
+          type: string
+        residentialAddressArea:
+          type: string
+        residentialAddressDescription:
+          type: string
+        proofOfResidenceType:
+          $ref: "#/components/schemas/ProofOfResidenceTypeEnum"
+        proofOfResidenceFileKey:
+          type: string
+          pattern: ^(PROOF_OF_RESIDENCE\/)
+        identificationType:
+          type: string
+          enum:
+            - PASSPORT
+            - GHANA_CARD
+        identificationNumber:
+          type: string
+        identificationIssueDate:
+          type: string
+          pattern: '^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$'
+        identificationExpiryDate:
+          type: string
+          pattern: '^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$'
+        identificationFileKey:
+          type: string
+          pattern: ^(IDENTIFICATION\/)
+        identificationBackFileKey:
+          type: string
+          pattern: ^(IDENTIFICATION\/)
+        identificationIssuingCountry:
+          type: string
+        residencyPermitNumber:
+          type: string
+        residencyPermitIssueDate:
+          type: string
+          pattern: '^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$'
+        residencyPermitExpiryDate:
+          type: string
+          pattern: '^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$'
+        residencyPermitFileKey:
+          type: string
+          pattern: ^(RESIDENCY_PERMIT\/)
+        profilePicture:
+          type: string
+          pattern: ^(PROFILE_PICTURE\/)
+        signature:
+          type: string
+          pattern: ^(SIGNATURE\/)
+        branch:
+          type: string
+        relationshipOfficer:
+          type: string
+        relationshipOfficerEncodedKey:
+          type: string
+        referrer:
+          type: string
+        maritalStatus:
+          $ref: "#/components/schemas/MaritalStatusEnum"
+        nextOfKinName:
+          type: string
+        nextOfKinPhoneNumber:
+          type: string
+          pattern: '^(?=\d{9,}$)(233)\d+'
+        nextOfKinRelationship:
+          $ref: "#/components/schemas/KinRelationshipEnum"
+        numberOfTransactionsPerMonth:
+          $ref: "#/components/schemas/NumberOfTransactionsEnum"
+        employmentStatus:
+          $ref: "#/components/schemas/EmploymentStatusEnum"
+        employmentSector:
+          $ref: "#/components/schemas/EmploymentSectorEnum"
+        employmentOccupation:
+          type: string
+        employmentSourceOfFunds:
+          $ref: "#/components/schemas/SourceOfFundsEnum"
+        employmentOtherSourceOfFunds:
+          type: string
+          nullable: true
+        employmentInstitutionName:
+          type: string
+          nullable: true
+        employmentIncomeRange:
+          $ref: "#/components/schemas/IncomeRangeEnum"
+        employerName:
+          type: string
+          nullable: true
+        employerGhanaPostAddress:
+          type: string
+          nullable: true
+        employerBusinessAddressHouseNumber:
+          type: string
+          nullable: true
+        employerBusinessAddressStreetName:
+          type: string
+          nullable: true
+        employerBusinessAddressArea:
+          type: string
+          nullable: true
+        employerBusinessAddressDescription:
+          type: string
+          nullable: true
+        physicallyChallenged:
+          $ref: "#/components/schemas/EKYCDisabilityChoiceEnum"
+        disabilityType:
+          type: array
+          items:
+            $ref: "#/components/schemas/DisabilityTypeEnum"
+        channel:
+          $ref: "#/components/schemas/AgencyStorePersonalDetailsRequestChannelEnum"
+      required:
+        - title
+        - sex
+        - firstName
+        - lastName
+        - dateOfBirth
+        - placeOfBirth
+        - nationality
+        - countryOfResidence
+        - phoneNumber
+        - ghanaPostAddress
+        - residentialAddressHouseNumber
+        - residentialAddressStreetName
+        - residentialAddressArea
+        - proofOfResidenceType
+        - proofOfResidenceFileKey
+        - identificationType
+        - identificationNumber
+        - identificationIssueDate
+        - identificationFileKey
+        - identificationBackFileKey
+        - identificationIssuingCountry
+        - profilePicture
+        - signature
+        - branch
+        - relationshipOfficer
+        - relationshipOfficerEncodedKey
+        - maritalStatus
+        - nextOfKinName
+        - nextOfKinPhoneNumber
+        - nextOfKinRelationship
+        - numberOfTransactionsPerMonth
+        - employmentStatus
+        - physicallyChallenged
+    PortalEkycUpgrade:
+      type: object
+      x-examples: {}
+      title: PortalEkycUpgrade
+      description: ""
+      properties:
+        title:
+          $ref: "#/components/schemas/TitleEnum"
+        otherTitle:
+          type: string
+        sex:
+          enum:
+            - Male
+            - Female
+          type: string
+        firstName:
+          type: string
+        otherNames:
+          type: string
+        lastName:
+          type: string
+        dateOfBirth:
+          type: string
+        placeOfBirth:
+          type: string
+        nationality:
+          type: string
+        countryOfResidence:
+          type: string
+        phoneNumber:
+          type: string
+        secondaryPhone:
+          type: string
+        email:
+          type: string
+        ghanaPostAddress:
+          type: string
+        residentialAddressHouseNumber:
+          type: string
+        residentialAddressStreetName:
+          type: string
+        residentialAddressArea:
+          type: string
+        residentialAddressDescription:
+          type: string
+        proofOfResidenceType:
+          $ref: "#/components/schemas/ProofOfResidenceTypeEnum"
+        proofOfResidenceFileKey:
+          type: string
+          pattern: ^(PROOF_OF_RESIDENCE\/)
+        identificationType:
+          type: string
+          enum:
+            - PASSPORT
+            - GHANA_CARD
+        identificationNumber:
+          type: string
+        identificationIssueDate:
+          type: string
+          pattern: '^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$'
+        identificationExpiryDate:
+          type: string
+          pattern: '^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$'
+        identificationFileKey:
+          type: string
+          pattern: ^(IDENTIFICATION\/)
+        identificationBackFileKey:
+          type: string
+          pattern: ^(IDENTIFICATION\/)
+        identificationIssuingCountry:
+          type: string
+        residencyPermitNumber:
+          type: string
+        residencyPermitIssueDate:
+          type: string
+          pattern: '^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$'
+        residencyPermitExpiryDate:
+          type: string
+          pattern: '^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$'
+        residencyPermitFileKey:
+          type: string
+          pattern: ^(RESIDENCY_PERMIT\/)
+        profilePicture:
+          type: string
+          pattern: ^(PROFILE_PICTURE\/)
+        signature:
+          type: string
+          pattern: ^(SIGNATURE\/)
+        branch:
+          type: string
+        relationshipOfficer:
+          type: string
+        relationshipOfficerEncodedKey:
+          type: string
+        referrer:
+          type: string
+        maritalStatus:
+          $ref: "#/components/schemas/MaritalStatusEnum"
+        nextOfKinName:
+          type: string
+        nextOfKinPhoneNumber:
+          type: string
+          pattern: '^(?=\d{9,}$)(233)\d+'
+        nextOfKinRelationship:
+          $ref: "#/components/schemas/KinRelationshipEnum"
+        numberOfTransactionsPerMonth:
+          $ref: "#/components/schemas/NumberOfTransactionsEnum"
+        employmentStatus:
+          $ref: "#/components/schemas/EmploymentStatusEnum"
+        employmentSector:
+          $ref: "#/components/schemas/EmploymentSectorEnum"
+        employmentOccupation:
+          type: string
+        employmentSourceOfFunds:
+          $ref: "#/components/schemas/SourceOfFundsEnum"
+        employmentOtherSourceOfFunds:
+          type: string
+          nullable: true
+        employmentInstitutionName:
+          type: string
+          nullable: true
+        employmentIncomeRange:
+          $ref: "#/components/schemas/IncomeRangeEnum"
+        employerName:
+          type: string
+          nullable: true
+        employerGhanaPostAddress:
+          type: string
+          nullable: true
+        employerBusinessAddressHouseNumber:
+          type: string
+          nullable: true
+        employerBusinessAddressStreetName:
+          type: string
+          nullable: true
+        employerBusinessAddressArea:
+          type: string
+          nullable: true
+        employerBusinessAddressDescription:
+          type: string
+          nullable: true
+        physicallyChallenged:
+          $ref: "#/components/schemas/EKYCDisabilityChoiceEnum"
+        disabilityType:
+          type: array
+          items:
+            $ref: "#/components/schemas/DisabilityTypeEnum"
+        channel:
+          $ref: "#/components/schemas/AgencyStorePersonalDetailsRequestChannelEnum"
+        mambuProfileID:
+          type: string
+        mambuProfileEncodedKey:
+          type: string
+      required:
+        - title
+        - sex
+        - firstName
+        - lastName
+        - dateOfBirth
+        - placeOfBirth
+        - nationality
+        - countryOfResidence
+        - phoneNumber
+        - ghanaPostAddress
+        - residentialAddressHouseNumber
+        - residentialAddressStreetName
+        - residentialAddressArea
+        - proofOfResidenceType
+        - proofOfResidenceFileKey
+        - identificationType
+        - identificationNumber
+        - identificationIssueDate
+        - identificationFileKey
+        - identificationBackFileKey
+        - identificationIssuingCountry
+        - profilePicture
+        - signature
+        - branch
+        - relationshipOfficer
+        - relationshipOfficerEncodedKey
+        - maritalStatus
+        - nextOfKinName
+        - nextOfKinPhoneNumber
+        - nextOfKinRelationship
+        - numberOfTransactionsPerMonth
+        - employmentStatus
+        - physicallyChallenged
+        - mambuProfileID
+        - mambuProfileEncodedKey
+    PortalRejectInquireRequest:
+      title: PortalChangeCustomerStatusRequest
+      x-stoplight:
+        id: uskt43dauwqjw
+      type: object
+      properties:
+        errors:
+          type: array
+          minItems: 1
+          items:
+            type: string
+      required:
+        - errors
+    MambuBranchesResponse:
+      title: MambuBranchesResponse
+      x-stoplight:
+        id: ahkgbwjb14ywi
+      type: array
+      description: Branch locations in Mambu
+      x-examples:
+        example-1:
+          - key: 8a858fe8555f401f01556e3a4c6c2552
+            name: Abossey Okai
+          - key: 8a858fcf5591c5cf0155968f53c53708
+            name: Osu Branch
+      items:
+        type: object
+        properties:
+          key:
+            type: string
+          name:
+            type: string
+        required:
+          - key
+          - name
+  requestBodies: {}
+  securitySchemes:
+    xApiKey:
+      name: X-API-KEY
+      type: apiKey
+      in: header
+tags:
+  - name: Agency
+  - name: Files
+  - name: Mobile
+  - name: Portal
