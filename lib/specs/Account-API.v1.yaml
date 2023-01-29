@@ -1,0 +1,4707 @@
+openapi: 3.0.1
+info:
+  title: Account-API.v1
+  version: '1.0'
+  description: APIs for account microservice
+servers:
+  - url: 'https://api.affinitylabstest.com/{basePath}'
+    variables:
+      basePath:
+        default: account
+paths:
+  '/client/future-account/{accountNumber}/certificate':
+    get:
+      operationId: getInvestmnentCertificate
+      parameters:
+        - name: accountNumber
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 200 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvestmentCertificate'
+        '400':
+          description: 400 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      x-amazon-apigateway-integration:
+        httpMethod: GET
+        uri: 'https://${stageVariables.albUrl}/account/client/future-account/{accountNumber}/certificate'
+        responses:
+          default:
+            statusCode: '200'
+        requestParameters:
+          integration.request.path.accountNumber: method.request.path.accountNumber
+        passthroughBehavior: when_no_match
+        type: http_proxy
+    options:
+      parameters:
+        - name: accountNumber
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 200 response
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+            Access-Control-Allow-Methods:
+              schema:
+                type: string
+            Access-Control-Allow-Headers:
+              schema:
+                type: string
+          content: {}
+      x-amazon-apigateway-integration:
+        responses:
+          default:
+            statusCode: '200'
+            responseParameters:
+              method.response.header.Access-Control-Allow-Methods: '''GET,OPTIONS'''
+              method.response.header.Access-Control-Allow-Headers: '''Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'''
+              method.response.header.Access-Control-Allow-Origin: '''*'''
+        requestTemplates:
+          application/json: '{"statusCode": 200}'
+        passthroughBehavior: when_no_match
+        type: mock
+  '/backoffice/future-account/{accountNumber}/certificate':
+    get:
+      operationId: backofficeDownloadInvestmnentCertificate
+      parameters:
+        - name: accountNumber
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 200 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvestmentCertificate'
+        '400':
+          description: 400 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      x-amazon-apigateway-integration:
+        httpMethod: GET
+        uri: 'https://${stageVariables.albUrl}/account/backoffice/future-account/{accountNumber}/certificate'
+        responses:
+          default:
+            statusCode: '200'
+        requestParameters:
+          integration.request.path.accountNumber: method.request.path.accountNumber
+        passthroughBehavior: when_no_match
+        type: http_proxy
+      description: ''
+      tags:
+        - backoffice
+    options:
+      parameters:
+        - name: accountNumber
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 200 response
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+            Access-Control-Allow-Methods:
+              schema:
+                type: string
+            Access-Control-Allow-Headers:
+              schema:
+                type: string
+          content: {}
+      x-amazon-apigateway-integration:
+        responses:
+          default:
+            statusCode: '200'
+            responseParameters:
+              method.response.header.Access-Control-Allow-Methods: '''GET,OPTIONS'''
+              method.response.header.Access-Control-Allow-Headers: '''Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'''
+              method.response.header.Access-Control-Allow-Origin: '''*'''
+        requestTemplates:
+          application/json: '{"statusCode": 200}'
+        passthroughBehavior: when_no_match
+        type: mock
+    parameters:
+      - schema:
+          type: string
+        name: accountNumber
+        in: path
+        required: true
+  /client/future-account/investment-rates:
+    get:
+      operationId: futureAccountInvestmentRates
+      responses:
+        '200':
+          description: 200 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArrayOfInvestmentRate'
+      x-amazon-apigateway-integration:
+        httpMethod: GET
+        uri: 'https://${stageVariables.albUrl}/account/client/future-account/investment-rates'
+        responses:
+          default:
+            statusCode: '200'
+        passthroughBehavior: when_no_match
+        type: http_proxy
+    options:
+      responses:
+        '200':
+          description: 200 response
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+            Access-Control-Allow-Methods:
+              schema:
+                type: string
+            Access-Control-Allow-Headers:
+              schema:
+                type: string
+          content: {}
+      x-amazon-apigateway-integration:
+        responses:
+          default:
+            statusCode: '200'
+            responseParameters:
+              method.response.header.Access-Control-Allow-Methods: '''GET,OPTIONS'''
+              method.response.header.Access-Control-Allow-Headers: '''Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'''
+              method.response.header.Access-Control-Allow-Origin: '''*'''
+        requestTemplates:
+          application/json: '{"statusCode": 200}'
+        passthroughBehavior: when_no_match
+        type: mock
+  /backoffice/cron/pending-approvals:
+    get:
+      operationId: cronPendingApproval
+      responses:
+        '200':
+          description: 200 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArrayOfAccountPendingApprovalBackOfficeApp'
+      x-amazon-apigateway-integration:
+        httpMethod: GET
+        uri: 'https://${stageVariables.albUrl}/account/backoffice/cron/pending-approvals'
+        responses:
+          default:
+            statusCode: '200'
+        passthroughBehavior: when_no_match
+        type: http_proxy
+      tags:
+        - backoffice
+  '/backoffice/passbase/identities/{identityId}/resources/{resourceId}':
+    get:
+      tags:
+        - backoffice
+      operationId: backofficePassbaseGetIdentityByResourceIDandIdentityID
+      parameters:
+        - name: identityId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: resourceId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 200 response
+          content: {}
+      x-amazon-apigateway-integration:
+        httpMethod: GET
+        uri: 'https://${stageVariables.albUrl}/account/backoffice/passbase/identities/{identityId}/resources/{resourceId}'
+        responses:
+          default:
+            statusCode: '200'
+        requestParameters:
+          integration.request.path.resourceId: method.request.path.resourceId
+          integration.request.path.identityId: method.request.path.identityId
+        passthroughBehavior: when_no_match
+        type: http_proxy
+  /backoffice/generate-certificates:
+    options:
+      responses:
+        '200':
+          description: 200 response
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+            Access-Control-Allow-Methods:
+              schema:
+                type: string
+            Access-Control-Allow-Headers:
+              schema:
+                type: string
+          content: {}
+      x-amazon-apigateway-integration:
+        responses:
+          default:
+            statusCode: '200'
+            responseParameters:
+              method.response.header.Access-Control-Allow-Methods: '''GET,OPTIONS'''
+              method.response.header.Access-Control-Allow-Headers: '''Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'''
+              method.response.header.Access-Control-Allow-Origin: '''*'''
+        requestTemplates:
+          application/json: '{"statusCode": 200}'
+        passthroughBehavior: when_no_match
+        type: mock
+    get:
+      tags:
+        - backoffice
+      operationId: backofficeGenerateInvestmentCertficates
+      responses:
+        '200':
+          description: 200 response
+          content: {}
+      x-amazon-apigateway-integration:
+        httpMethod: GET
+        uri: 'https://${stageVariables.albUrl}/account/backoffice/generate-certificates'
+        responses:
+          default:
+            statusCode: '200'
+        passthroughBehavior: when_no_match
+        type: http_proxy
+  /backoffice/cron/oncreate:
+    get:
+      tags:
+        - backoffice
+      operationId: cronOnCreate
+      responses:
+        '200':
+          description: 200 response
+          content: {}
+      x-amazon-apigateway-integration:
+        httpMethod: GET
+        uri: 'https://${stageVariables.albUrl}/account/backoffice/cron/oncreate'
+        responses:
+          default:
+            statusCode: '200'
+        passthroughBehavior: when_no_match
+        type: http_proxy
+  /backoffice/cron/process-import:
+    get:
+      tags:
+        - backoffice
+      operationId: processImports
+      responses:
+        '200':
+          description: 200 response
+          content: {}
+      x-amazon-apigateway-integration:
+        httpMethod: GET
+        uri: 'https://${stageVariables.albUrl}/account/backoffice/cron/process-import'
+        responses:
+          default:
+            statusCode: '200'
+        passthroughBehavior: when_no_match
+        requestParameters:
+          integration.request.querystring.startDate: method.request.querystring.startDate
+        type: http_proxy
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: startDate
+    parameters: []
+  /client/check-id:
+    post:
+      operationId: postCheckCustomerId
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GviveData'
+        required: true
+      responses:
+        '200':
+          description: 200 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CheckIdResponse'
+      x-amazon-apigateway-integration:
+        httpMethod: POST
+        uri: 'https://${stageVariables.albUrl}/account/client/check-id'
+        responses:
+          default:
+            statusCode: '200'
+        passthroughBehavior: when_no_match
+        type: http_proxy
+  /client/customer/ekyc/all-data:
+    get:
+      operationId: clientEkycUpgradeAllData
+      responses:
+        '200':
+          description: 200 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EkycUpgradeAllData'
+      x-amazon-apigateway-integration:
+        httpMethod: GET
+        uri: 'https://${stageVariables.albUrl}/account/client/customer/ekyc/all-data'
+        responses:
+          default:
+            statusCode: '200'
+        passthroughBehavior: when_no_match
+        type: http_proxy
+  /client/customer/ekyc/employment-data:
+    put:
+      operationId: clientEkycUpgradeEmploymentData
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EkycUpgradeEmploymentData'
+        required: true
+      responses:
+        '200':
+          description: 200 response
+          content: {}
+        '400':
+          description: 400 response
+          content: {}
+      x-amazon-apigateway-integration:
+        httpMethod: PUT
+        uri: 'https://${stageVariables.albUrl}/account/client/customer/ekyc/employment-data'
+        responses:
+          default:
+            statusCode: '200'
+        passthroughBehavior: when_no_match
+        type: http_proxy
+  '/backoffice/block-customer/{customerId}':
+    options:
+      parameters:
+        - name: customerId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 200 response
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+            Access-Control-Allow-Methods:
+              schema:
+                type: string
+            Access-Control-Allow-Headers:
+              schema:
+                type: string
+          content: {}
+      x-amazon-apigateway-integration:
+        responses:
+          default:
+            statusCode: '200'
+            responseParameters:
+              method.response.header.Access-Control-Allow-Methods: '''PATCH,OPTIONS'''
+              method.response.header.Access-Control-Allow-Headers: '''Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'''
+              method.response.header.Access-Control-Allow-Origin: '''*'''
+        requestTemplates:
+          application/json: '{"statusCode": 200}'
+        passthroughBehavior: when_no_match
+        type: mock
+    patch:
+      tags:
+        - backoffice
+      operationId: blackOfficeBlockCustomer
+      parameters:
+        - name: customerId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserBlockingRequest'
+        required: true
+      responses:
+        '200':
+          description: 200 response
+          content: {}
+        '404':
+          description: 404 response
+          content: {}
+      x-amazon-apigateway-integration:
+        httpMethod: PATCH
+        uri: 'https://${stageVariables.albUrl}/account/backoffice/block-customer/{customerId}'
+        responses:
+          default:
+            statusCode: '200'
+        requestParameters:
+          integration.request.path.customerId: method.request.path.customerId
+        passthroughBehavior: when_no_match
+        type: http_proxy
+  '/client/beneficiary/{beneficiaryId}':
+    get:
+      operationId: getBeneficiarById
+      parameters:
+        - name: beneficiaryId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 200 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Beneficiary'
+        '404':
+          description: 404 response
+          content: {}
+      x-amazon-apigateway-integration:
+        httpMethod: GET
+        uri: 'https://${stageVariables.albUrl}/account/client/beneficiary/{beneficiaryId}'
+        responses:
+          default:
+            statusCode: '200'
+        requestParameters:
+          integration.request.path.beneficiaryId: method.request.path.beneficiaryId
+        passthroughBehavior: when_no_match
+        type: http_proxy
+    delete:
+      operationId: deleteBeneficiary
+      parameters:
+        - name: beneficiaryId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 200 response
+          content: {}
+      x-amazon-apigateway-integration:
+        httpMethod: DELETE
+        uri: 'https://${stageVariables.albUrl}/account/client/beneficiary/{beneficiaryId}'
+        responses:
+          default:
+            statusCode: '200'
+        requestParameters:
+          integration.request.path.beneficiaryId: method.request.path.beneficiaryId
+        passthroughBehavior: when_no_match
+        type: http_proxy
+    options:
+      parameters:
+        - name: beneficiaryId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 200 response
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+            Access-Control-Allow-Methods:
+              schema:
+                type: string
+            Access-Control-Allow-Headers:
+              schema:
+                type: string
+          content: {}
+      x-amazon-apigateway-integration:
+        responses:
+          default:
+            statusCode: '200'
+            responseParameters:
+              method.response.header.Access-Control-Allow-Methods: '''GET,OPTIONS'''
+              method.response.header.Access-Control-Allow-Headers: '''Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'''
+              method.response.header.Access-Control-Allow-Origin: '''*'''
+        requestTemplates:
+          application/json: '{"statusCode": 200}'
+        passthroughBehavior: when_no_match
+        type: mock
+  '/backoffice/passbase/identities/{identityId}':
+    get:
+      tags:
+        - backoffice
+      operationId: backofficeGetPassbaseIdentity
+      parameters:
+        - name: identityId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 200 response
+          content: {}
+      x-amazon-apigateway-integration:
+        httpMethod: GET
+        uri: 'https://${stageVariables.albUrl}/account/backoffice/passbase/identities/{identityId}'
+        responses:
+          default:
+            statusCode: '200'
+        requestParameters:
+          integration.request.path.identityId: method.request.path.identityId
+        passthroughBehavior: when_no_match
+        type: http_proxy
+  '/client/{accountId}/declaration':
+    put:
+      operationId: updateCustomerDeclaration
+      parameters:
+        - name: accountId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeclarationStep'
+        required: true
+      responses:
+        '200':
+          description: 200 response
+          content: {}
+        '400':
+          description: 400 response
+          content: {}
+      x-amazon-apigateway-integration:
+        httpMethod: PUT
+        uri: 'https://${stageVariables.albUrl}/account/client/{accountId}/declaration'
+        responses:
+          default:
+            statusCode: '200'
+        requestParameters:
+          integration.request.path.accountId: method.request.path.accountId
+        passthroughBehavior: when_no_match
+        type: http_proxy
+  /backoffice/customers:
+    options:
+      responses:
+        '200':
+          description: 200 response
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+            Access-Control-Allow-Methods:
+              schema:
+                type: string
+            Access-Control-Allow-Headers:
+              schema:
+                type: string
+          content: {}
+      x-amazon-apigateway-integration:
+        responses:
+          default:
+            statusCode: '200'
+            responseParameters:
+              method.response.header.Access-Control-Allow-Methods: '''GET,DELETE,OPTIONS'''
+              method.response.header.Access-Control-Allow-Headers: '''Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'''
+              method.response.header.Access-Control-Allow-Origin: '''*'''
+        requestTemplates:
+          application/json: '{"statusCode": 200}'
+        passthroughBehavior: when_no_match
+        type: mock
+    get:
+      tags:
+        - backoffice
+      operationId: backOfficeGetCustomers
+      responses:
+        '200':
+          description: 200 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArrayOfCustomerResponse'
+      x-amazon-apigateway-integration:
+        httpMethod: GET
+        uri: 'https://${stageVariables.albUrl}/account/backoffice/customers'
+        requestParameters:
+          integration.request.querystring.limit: method.request.querystring.limit
+          integration.request.path.status: method.request.path.status
+          integration.request.querystring.lastId: method.request.querystring.lastId
+        responses:
+          default:
+            statusCode: '200'
+        passthroughBehavior: when_no_match
+        type: http_proxy
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: limit
+          description: Number of records to return. Default is 10
+        - schema:
+            type: string
+          in: query
+          name: lastId
+          description: Last ID of the previous records returned. This is to retrieve the next page
+        - schema:
+            type: string
+            enum:
+              - NEW_USER
+              - ACTIVE
+              - BLOCKED
+              - INACTIVE
+          in: query
+          name: status
+          description: Status of the customer
+    delete:
+      tags:
+        - backoffice
+      operationId: delete-backoffice-customers
+      parameters:
+        - name: p
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 200 response
+          content: {}
+        '400':
+          description: 400 response
+          content: {}
+      x-amazon-apigateway-integration:
+        httpMethod: DELETE
+        uri: 'https://${stageVariables.albUrl}/account/backoffice/customers'
+        responses:
+          default:
+            statusCode: '200'
+        requestParameters:
+          integration.request.querystring.p: method.request.querystring.p
+        passthroughBehavior: when_no_match
+        type: http_proxy
+  /backoffice/customers-without-accounts:
+    options:
+      responses:
+        '200':
+          description: 200 response
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+            Access-Control-Allow-Methods:
+              schema:
+                type: string
+            Access-Control-Allow-Headers:
+              schema:
+                type: string
+          content: {}
+      x-amazon-apigateway-integration:
+        responses:
+          default:
+            statusCode: '200'
+            responseParameters:
+              method.response.header.Access-Control-Allow-Methods: '''GET,OPTIONS'''
+              method.response.header.Access-Control-Allow-Headers: '''Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'''
+              method.response.header.Access-Control-Allow-Origin: '''*'''
+        requestTemplates:
+          application/json: '{"statusCode": 200}'
+        passthroughBehavior: when_no_match
+        type: mock
+    get:
+      tags:
+        - backoffice
+      operationId: backOfficeGetCustomersWithoutAccounts
+      responses:
+        '200':
+          description: 200 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArrayOfCustomerResponse'
+      x-amazon-apigateway-integration:
+        httpMethod: GET
+        uri: 'https://${stageVariables.albUrl}/account/backoffice/customers-without-accounts'
+        requestParameters:
+          integration.request.querystring.limit: method.request.querystring.limit
+          integration.request.querystring.lastId: method.request.querystring.lastId
+        responses:
+          default:
+            statusCode: '200'
+        passthroughBehavior: when_no_match
+        type: http_proxy
+      parameters:
+        - schema:
+            type: integer
+            default: 25
+          in: query
+          name: limit
+          description: Number of records to return. Default is 25
+        - schema:
+            type: string
+          in: query
+          name: lastId
+          description: Last ID of the previous records returned. This is to retrieve the next page
+    parameters: []
+  '/client/upgrade/{customerId}/{accountId}':
+    put:
+      operationId: upgradeAccount
+      parameters:
+        - name: customerId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: accountId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 200 response
+          content: {}
+      x-amazon-apigateway-integration:
+        httpMethod: PUT
+        uri: 'https://${stageVariables.albUrl}/account/client/upgrade/{customerId}/{accountId}'
+        responses:
+          default:
+            statusCode: '200'
+        requestParameters:
+          integration.request.path.accountId: method.request.path.accountId
+          integration.request.path.customerId: method.request.path.customerId
+        passthroughBehavior: when_no_match
+        type: http_proxy
+    options:
+      parameters:
+        - name: customerId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: accountId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 200 response
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+            Access-Control-Allow-Methods:
+              schema:
+                type: string
+            Access-Control-Allow-Headers:
+              schema:
+                type: string
+          content: {}
+      x-amazon-apigateway-integration:
+        responses:
+          default:
+            statusCode: '200'
+            responseParameters:
+              method.response.header.Access-Control-Allow-Methods: '''GET,OPTIONS'''
+              method.response.header.Access-Control-Allow-Headers: '''Content-Type,X-Amz-Date,Authorization,X-AFFINITY-API-KEY,X-Api-Key,X-Amz-Security-Token'''
+              method.response.header.Access-Control-Allow-Origin: '''*'''
+        requestTemplates:
+          application/json: '{"statusCode": 200}'
+        passthroughBehavior: when_no_match
+        type: mock
+  /client/customer/ekyc/spouse-data:
+    put:
+      operationId: clientEkycUpgradeSpouseData
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EkycUpgradeSpouseData'
+        required: true
+      responses:
+        '200':
+          description: 200 response
+          content: {}
+      x-amazon-apigateway-integration:
+        httpMethod: PUT
+        uri: 'https://${stageVariables.albUrl}/account/client/customer/ekyc/spouse-data'
+        responses:
+          default:
+            statusCode: '200'
+        passthroughBehavior: when_no_match
+        type: http_proxy
+  /backoffice/pending-approvals:
+    get:
+      tags:
+        - backoffice
+      operationId: backofficeGetAllPendingApprovals
+      responses:
+        '200':
+          description: 200 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PendingApprovals'
+      x-amazon-apigateway-integration:
+        httpMethod: GET
+        uri: 'https://${stageVariables.albUrl}/account/backoffice/pending-approvals'
+        responses:
+          default:
+            statusCode: '200'
+        passthroughBehavior: when_no_match
+        type: http_proxy
+  '/client/future-account/{accountNumber}/terminate':
+    put:
+      operationId: clientTermininateFutureAccount
+      parameters:
+        - name: accountNumber
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 200 response
+          content: {}
+      x-amazon-apigateway-integration:
+        httpMethod: PUT
+        uri: 'https://${stageVariables.albUrl}/account/client/future-account/{accountNumber}/terminate'
+        responses:
+          default:
+            statusCode: '200'
+        requestParameters:
+          integration.request.path.accountNumber: method.request.path.accountNumber
+        passthroughBehavior: when_no_match
+        type: http_proxy
+  /external/ip-check:
+    get:
+      operationId: ipchecker
+      responses:
+        '200':
+          description: 200 response
+          content: {}
+      x-amazon-apigateway-integration:
+        httpMethod: GET
+        uri: 'https://${stageVariables.albUrl}/account/external/ip-check'
+        responses:
+          default:
+            statusCode: '200'
+        passthroughBehavior: when_no_match
+        type: http_proxy
+      security: []
+  '/client/future-account/{accountNumber}/rollover':
+    put:
+      operationId: clientUpdateRolloverOption
+      parameters:
+        - name: accountNumber
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Rollover'
+        required: true
+      responses:
+        '200':
+          description: 200 response
+          content: {}
+        '400':
+          description: 400 response
+          content: {}
+        '500':
+          description: 500 response
+          content: {}
+      x-amazon-apigateway-integration:
+        httpMethod: PUT
+        uri: 'https://${stageVariables.albUrl}/account/client/future-account/{accountNumber}/rollover'
+        responses:
+          default:
+            statusCode: '200'
+        requestParameters:
+          integration.request.path.accountNumber: method.request.path.accountNumber
+        passthroughBehavior: when_no_match
+        type: http_proxy
+  '/backoffice/documents/{customerId}':
+    options:
+      parameters:
+        - name: customerId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 200 response
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+            Access-Control-Allow-Methods:
+              schema:
+                type: string
+            Access-Control-Allow-Headers:
+              schema:
+                type: string
+          content: {}
+      x-amazon-apigateway-integration:
+        responses:
+          default:
+            statusCode: '200'
+            responseParameters:
+              method.response.header.Access-Control-Allow-Methods: '''GET,OPTIONS'''
+              method.response.header.Access-Control-Allow-Headers: '''Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'''
+              method.response.header.Access-Control-Allow-Origin: '''*'''
+        requestTemplates:
+          application/json: '{"statusCode": 200}'
+        passthroughBehavior: when_no_match
+        type: mock
+    get:
+      tags:
+        - backoffice
+      operationId: backOfficeDocuments
+      parameters:
+        - name: customerId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 200 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArrayOfCustomerDocumentsResponse'
+      x-amazon-apigateway-integration:
+        httpMethod: GET
+        uri: 'https://${stageVariables.albUrl}/transactions/backoffice/documents'
+        responses:
+          default:
+            statusCode: '200'
+        requestParameters:
+          integration.request.querystring.customerId: method.request.path.customerId
+        passthroughBehavior: when_no_match
+        type: http_proxy
+  '/backoffice/unblock-customer/{customerId}':
+    parameters:
+      - name: customerId
+        in: path
+        required: true
+        schema:
+          type: string
+    options:
+      responses:
+        '200':
+          description: 200 response
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+            Access-Control-Allow-Methods:
+              schema:
+                type: string
+            Access-Control-Allow-Headers:
+              schema:
+                type: string
+          content: {}
+      x-amazon-apigateway-integration:
+        responses:
+          default:
+            statusCode: '200'
+            responseParameters:
+              method.response.header.Access-Control-Allow-Methods: '''PATCH,OPTIONS'''
+              method.response.header.Access-Control-Allow-Headers: '''Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'''
+              method.response.header.Access-Control-Allow-Origin: '''*'''
+        requestTemplates:
+          application/json: '{"statusCode": 200}'
+        passthroughBehavior: when_no_match
+        type: mock
+    patch:
+      tags:
+        - backoffice
+      operationId: backofficeUnblockCustomer
+      parameters:
+        - name: customerId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserUnblockRequest'
+        required: true
+      responses:
+        '200':
+          description: 200 response
+          content: {}
+        '404':
+          description: 404 response
+          content: {}
+      x-amazon-apigateway-integration:
+        httpMethod: PATCH
+        uri: 'https://${stageVariables.albUrl}/account/backoffice/unblock-customer/{customerId}'
+        responses:
+          default:
+            statusCode: '200'
+        requestParameters:
+          integration.request.path.customerId: method.request.path.customerId
+        passthroughBehavior: when_no_match
+        type: http_proxy
+  '/backoffice/customer-blocking-history/{customerId}':
+    get:
+      tags:
+        - backoffice
+      operationId: backOfficeCustomerBlockHistory
+      parameters:
+        - name: customerId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 200 response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CustomerBlockResponse'
+      x-amazon-apigateway-integration:
+        httpMethod: GET
+        uri: 'https://${stageVariables.albUrl}/account/backoffice/customer-blocking-history/{customerId}'
+        responses:
+          default:
+            statusCode: '200'
+        requestParameters:
+          integration.request.path.customerId: method.request.path.customerId
+        passthroughBehavior: when_no_match
+        type: http_proxy
+  /client/customer/ekyc/proof-of-identity-data:
+    put:
+      operationId: clientEkycUpgradeProofOfIdentity
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EkycUpgradeProofOfIdentityData'
+        required: true
+      responses:
+        '200':
+          description: 200 response
+          content: {}
+        '400':
+          description: 400 response
+          content: {}
+      x-amazon-apigateway-integration:
+        httpMethod: PUT
+        uri: 'https://${stageVariables.albUrl}/account/client/customer/ekyc/proof-of-identity-data'
+        responses:
+          default:
+            statusCode: '200'
+        passthroughBehavior: when_no_match
+        type: http_proxy
+  '/client/{accountId}':
+    get:
+      operationId: getAccountDetails
+      parameters:
+        - name: accountId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 200 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountResponse'
+      x-amazon-apigateway-integration:
+        httpMethod: GET
+        uri: 'https://${stageVariables.albUrl}/account/client/{accountId}'
+        responses:
+          default:
+            statusCode: '200'
+        requestParameters:
+          integration.request.path.accountId: method.request.path.accountId
+        passthroughBehavior: when_no_match
+        type: http_proxy
+    put:
+      operationId: updateAccountDetails
+      parameters:
+        - name: accountId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 200 response
+          content: {}
+      x-amazon-apigateway-integration:
+        httpMethod: PUT
+        uri: 'https://${stageVariables.albUrl}/account/client/{accountId}'
+        responses:
+          default:
+            statusCode: '200'
+        requestParameters:
+          integration.request.path.accountId: method.request.path.accountId
+        passthroughBehavior: when_no_match
+        type: http_proxy
+    options:
+      parameters:
+        - name: accountId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 200 response
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+            Access-Control-Allow-Methods:
+              schema:
+                type: string
+            Access-Control-Allow-Headers:
+              schema:
+                type: string
+          content: {}
+      x-amazon-apigateway-integration:
+        responses:
+          default:
+            statusCode: '200'
+            responseParameters:
+              method.response.header.Access-Control-Allow-Methods: '''GET,PUT,OPTIONS'''
+              method.response.header.Access-Control-Allow-Headers: '''Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'''
+              method.response.header.Access-Control-Allow-Origin: '''*'''
+        requestTemplates:
+          application/json: '{"statusCode": 200}'
+        passthroughBehavior: when_no_match
+        type: mock
+  /client/biodata:
+    post:
+      operationId: createClientBiodata
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BiodataStep'
+        required: true
+      responses:
+        '200':
+          description: 200 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BiodataStepResponse'
+        '400':
+          description: 400 response
+          content: {}
+      x-amazon-apigateway-integration:
+        httpMethod: POST
+        uri: 'https://${stageVariables.albUrl}/account/client/biodata'
+        responses:
+          default:
+            statusCode: '200'
+        passthroughBehavior: when_no_match
+        type: http_proxy
+  '/client/profile-picture/{customerId}':
+    get:
+      operationId: getProfilePicture
+      parameters:
+        - name: customerId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 200 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProfileImageResponse'
+      x-amazon-apigateway-integration:
+        httpMethod: GET
+        uri: 'https://${stageVariables.albUrl}/account/client/profile-picture/{customerId}'
+        responses:
+          default:
+            statusCode: '200'
+        requestParameters:
+          integration.request.path.customerId: method.request.path.customerId
+        passthroughBehavior: when_no_match
+        type: http_proxy
+    post:
+      operationId: updateUsersProfilePicture
+      parameters:
+        - name: customerId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProfileImageRequest'
+        required: true
+      responses:
+        '200':
+          description: 200 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProfileImageResponse'
+      x-amazon-apigateway-integration:
+        httpMethod: POST
+        uri: 'https://${stageVariables.albUrl}/account/client/profile-picture/{customerId}'
+        responses:
+          default:
+            statusCode: '200'
+        requestParameters:
+          integration.request.path.customerId: method.request.path.customerId
+        passthroughBehavior: when_no_match
+        type: http_proxy
+    options:
+      parameters:
+        - name: customerId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 200 response
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+            Access-Control-Allow-Methods:
+              schema:
+                type: string
+            Access-Control-Allow-Headers:
+              schema:
+                type: string
+          content: {}
+      x-amazon-apigateway-integration:
+        responses:
+          default:
+            statusCode: '200'
+            responseParameters:
+              method.response.header.Access-Control-Allow-Methods: '''GET,OPTIONS'''
+              method.response.header.Access-Control-Allow-Headers: '''Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'''
+              method.response.header.Access-Control-Allow-Origin: '''*'''
+        requestTemplates:
+          application/json: '{"statusCode": 200}'
+        passthroughBehavior: when_no_match
+        type: mock
+  '/client/{accountId}/id-document':
+    put:
+      operationId: updateClientIdDocument
+      parameters:
+        - name: accountId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IdDocumentStep'
+        required: true
+      responses:
+        '200':
+          description: 200 response
+          content: {}
+        '400':
+          description: 400 response
+          content: {}
+      x-amazon-apigateway-integration:
+        httpMethod: PUT
+        uri: 'https://${stageVariables.albUrl}/account/client/{accountId}/id-document'
+        responses:
+          default:
+            statusCode: '200'
+        requestParameters:
+          integration.request.path.accountId: method.request.path.accountId
+        passthroughBehavior: when_no_match
+        type: http_proxy
+  '/backoffice/customers/{customerId}/profile-picture':
+    get:
+      tags:
+        - backoffice
+      operationId: getProfilePictureBackoffice
+      parameters:
+        - name: customerId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 200 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProfileImage'
+      x-amazon-apigateway-integration:
+        httpMethod: GET
+        uri: 'https://${stageVariables.albUrl}/account/backoffice/customers/{customerId}/profile-picture'
+        responses:
+          default:
+            statusCode: '200'
+        requestParameters:
+          integration.request.path.customerId: method.request.path.customerId
+        passthroughBehavior: when_no_match
+        type: http_proxy
+  /client/beneficiaries:
+    get:
+      operationId: getClientbeneficiaries
+      responses:
+        '200':
+          description: 200 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArrayOfBeneficiary'
+      x-amazon-apigateway-integration:
+        httpMethod: GET
+        uri: 'https://${stageVariables.albUrl}/account/client/beneficiaries'
+        responses:
+          default:
+            statusCode: '200'
+        passthroughBehavior: when_no_match
+        type: http_proxy
+    post:
+      operationId: addBeneficary
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Beneficiary'
+        required: true
+      responses:
+        '200':
+          description: 200 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Beneficiary'
+      x-amazon-apigateway-integration:
+        httpMethod: POST
+        uri: 'https://${stageVariables.albUrl}/account/client/beneficiaries'
+        responses:
+          default:
+            statusCode: '200'
+        passthroughBehavior: when_no_match
+        type: http_proxy
+    options:
+      responses:
+        '200':
+          description: 200 response
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+            Access-Control-Allow-Methods:
+              schema:
+                type: string
+            Access-Control-Allow-Headers:
+              schema:
+                type: string
+          content: {}
+      x-amazon-apigateway-integration:
+        responses:
+          default:
+            statusCode: '200'
+            responseParameters:
+              method.response.header.Access-Control-Allow-Methods: '''GET,OPTIONS'''
+              method.response.header.Access-Control-Allow-Headers: '''Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'''
+              method.response.header.Access-Control-Allow-Origin: '''*'''
+        requestTemplates:
+          application/json: '{"statusCode": 200}'
+        passthroughBehavior: when_no_match
+        type: mock
+  '/client/future-account/{accountNumber}/profile':
+    get:
+      operationId: getClientFixedDepositProfile
+      parameters:
+        - name: accountNumber
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 200 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FixedDepositProfile'
+      x-amazon-apigateway-integration:
+        httpMethod: GET
+        uri: 'https://${stageVariables.albUrl}/account/client/future-account/{accountNumber}/profile'
+        responses:
+          default:
+            statusCode: '200'
+        requestParameters:
+          integration.request.path.accountNumber: method.request.path.accountNumber
+        passthroughBehavior: when_no_match
+        type: http_proxy
+    options:
+      parameters:
+        - name: accountNumber
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 200 response
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+            Access-Control-Allow-Methods:
+              schema:
+                type: string
+            Access-Control-Allow-Headers:
+              schema:
+                type: string
+          content: {}
+      x-amazon-apigateway-integration:
+        responses:
+          default:
+            statusCode: '200'
+            responseParameters:
+              method.response.header.Access-Control-Allow-Methods: '''GET,OPTIONS'''
+              method.response.header.Access-Control-Allow-Headers: '''Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'''
+              method.response.header.Access-Control-Allow-Origin: '''*'''
+        requestTemplates:
+          application/json: '{"statusCode": 200}'
+        passthroughBehavior: when_no_match
+        type: mock
+  '/client/withdrawal-limits/{accountId}':
+    get:
+      operationId: getWithdrawalLimits
+      parameters:
+        - name: accountId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 200 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WithdrawalLimits'
+      x-amazon-apigateway-integration:
+        httpMethod: GET
+        uri: 'https://${stageVariables.albUrl}/account/client/withdrawal-limits/{accountId}'
+        responses:
+          default:
+            statusCode: '200'
+        requestParameters:
+          integration.request.path.accountId: method.request.path.accountId
+        passthroughBehavior: when_no_match
+        type: http_proxy
+    options:
+      parameters:
+        - name: accountId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 200 response
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+            Access-Control-Allow-Methods:
+              schema:
+                type: string
+            Access-Control-Allow-Headers:
+              schema:
+                type: string
+          content: {}
+      x-amazon-apigateway-integration:
+        responses:
+          default:
+            statusCode: '200'
+            responseParameters:
+              method.response.header.Access-Control-Allow-Methods: '''GET,PATCH,OPTIONS'''
+              method.response.header.Access-Control-Allow-Headers: '''Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'''
+              method.response.header.Access-Control-Allow-Origin: '''*'''
+        requestTemplates:
+          application/json: '{"statusCode": 200}'
+        passthroughBehavior: when_no_match
+        type: mock
+    patch:
+      operationId: updateWithdrawalLimits
+      parameters:
+        - name: accountId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WithdrawalLimits'
+        required: true
+      responses:
+        '200':
+          description: 200 response
+          content: {}
+      x-amazon-apigateway-integration:
+        httpMethod: PATCH
+        uri: 'https://${stageVariables.albUrl}/account/client/withdrawal-limits/{accountId}'
+        responses:
+          default:
+            statusCode: '200'
+        requestParameters:
+          integration.request.path.accountId: method.request.path.accountId
+        passthroughBehavior: when_no_match
+        type: http_proxy
+  '/client/{accountId}/permit':
+    put:
+      operationId: clientUpdatePermitStep
+      parameters:
+        - name: accountId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PermitStep'
+        required: true
+      responses:
+        '200':
+          description: 200 response
+          content: {}
+        '400':
+          description: 400 response
+          content: {}
+      x-amazon-apigateway-integration:
+        httpMethod: PUT
+        uri: 'https://${stageVariables.albUrl}/account/client/{accountId}/permit'
+        responses:
+          default:
+            statusCode: '200'
+        requestParameters:
+          integration.request.path.accountId: method.request.path.accountId
+        passthroughBehavior: when_no_match
+        type: http_proxy
+  /client/customer/ekyc/start-upgrade:
+    post:
+      operationId: postCleintStartEkycUpgrade
+      responses:
+        '200':
+          description: 200 response
+          content: {}
+      x-amazon-apigateway-integration:
+        httpMethod: POST
+        uri: 'https://${stageVariables.albUrl}/account/client/customer/ekyc/start-upgrade'
+        responses:
+          default:
+            statusCode: '200'
+        passthroughBehavior: when_no_match
+        type: http_proxy
+  '/backoffice/approvals/reject/{accountId}':
+    put:
+      tags:
+        - backoffice
+      operationId: backofficeRejectApproval
+      parameters:
+        - name: accountId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Reason'
+        required: true
+      responses:
+        '200':
+          description: 200 response
+          content: {}
+        '404':
+          description: 404 response
+          content: {}
+      x-amazon-apigateway-integration:
+        httpMethod: PUT
+        uri: 'https://${stageVariables.albUrl}/account/backoffice/approvals/reject/{accountId}'
+        responses:
+          default:
+            statusCode: '200'
+        requestParameters:
+          integration.request.path.accountId: method.request.path.accountId
+        passthroughBehavior: when_no_match
+        type: http_proxy
+  '/backoffice/approvals/{accountId}':
+    get:
+      tags:
+        - backoffice
+      operationId: backofficeGetApprovalById
+      parameters:
+        - name: accountId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 200 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PendingApprovalResponse'
+      x-amazon-apigateway-integration:
+        httpMethod: GET
+        uri: 'https://${stageVariables.albUrl}/account/backoffice/approvals/{accountId}'
+        responses:
+          default:
+            statusCode: '200'
+        requestParameters:
+          integration.request.path.accountId: method.request.path.accountId
+        passthroughBehavior: when_no_match
+        type: http_proxy
+  /backoffice/ussd/customer:
+    get:
+      tags:
+        - backoffice
+      operationId: ussdGetCustomer
+      parameters:
+        - name: phoneNumber
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 200 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerDetailResponse'
+      x-amazon-apigateway-integration:
+        httpMethod: GET
+        uri: 'https://${stageVariables.albUrl}/account/backoffice/ussd/customer'
+        responses:
+          default:
+            statusCode: '200'
+        passthroughBehavior: when_no_match
+        type: http_proxy
+  /backoffice/index/customers:
+    get:
+      tags:
+        - backoffice
+      operationId: indexAllCustomers
+      parameters: []
+      responses:
+        '200':
+          description: 200 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerDetailResponse'
+      x-amazon-apigateway-integration:
+        httpMethod: GET
+        uri: 'https://${stageVariables.albUrl}/account/backoffice/index/customers'
+        responses:
+          default:
+            statusCode: '200'
+        passthroughBehavior: when_no_match
+        type: http_proxy
+      description: Index All customer. to be used as a scheduled job
+    parameters: []
+  '/client/close/{accountNumber}':
+    delete:
+      operationId: clientCloseAccount
+      parameters:
+        - name: accountNumber
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 200 response
+          content: {}
+      x-amazon-apigateway-integration:
+        httpMethod: DELETE
+        uri: 'https://${stageVariables.albUrl}/account/client/close/{accountNumber}'
+        responses:
+          default:
+            statusCode: '200'
+        requestParameters:
+          integration.request.path.accountNumber: method.request.path.accountNumber
+        passthroughBehavior: when_no_match
+        type: http_proxy
+  '/backoffice/ekyc/decline/{customerId}':
+    put:
+      tags:
+        - backoffice
+      operationId: backofficeEkycDecline
+      parameters:
+        - name: customerId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SuccessResponse'
+        required: true
+      responses:
+        '200':
+          description: 200 response
+          content: {}
+      x-amazon-apigateway-integration:
+        httpMethod: PUT
+        uri: 'https://${stageVariables.albUrl}/account/backoffice/ekyc/decline/{customerId}'
+        responses:
+          default:
+            statusCode: '200'
+        requestParameters:
+          integration.request.path.customerId: method.request.path.customerId
+        passthroughBehavior: when_no_match
+        type: http_proxy
+  '/backoffice/ussd/account/{accountNumber}/available-balance':
+    get:
+      tags:
+        - backoffice
+      operationId: ussdGetAvailableBalance
+      parameters:
+        - name: accountNumber
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 200 response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  availableBalance:
+                    type: number
+      x-amazon-apigateway-integration:
+        httpMethod: GET
+        uri: 'https://${stageVariables.albUrl}/account/backoffice/ussd/account/{accountNumber}/available-balance'
+        responses:
+          default:
+            statusCode: '200'
+        requestParameters:
+          integration.request.path.accountNumber: method.request.path.accountNumber
+        passthroughBehavior: when_no_match
+        type: http_proxy
+  /client/customer/ekyc/personal-data:
+    put:
+      operationId: clientEkyUpgradePersonalData
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EkycUpgradePersonalDataRequest'
+        required: true
+      responses:
+        '200':
+          description: 200 response
+          content: {}
+        '400':
+          description: 400 response
+          content: {}
+      x-amazon-apigateway-integration:
+        httpMethod: PUT
+        uri: 'https://${stageVariables.albUrl}/account/client/customer/ekyc/personal-data'
+        responses:
+          default:
+            statusCode: '200'
+        passthroughBehavior: when_no_match
+        type: http_proxy
+  /client/verify-email:
+    post:
+      operationId: clientVerifyEmail
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmailVerificationRequest'
+        required: true
+      responses:
+        '200':
+          description: 200 response
+          content: {}
+      x-amazon-apigateway-integration:
+        httpMethod: POST
+        uri: 'https://${stageVariables.albUrl}/account/client/verify-email'
+        responses:
+          default:
+            statusCode: '200'
+        passthroughBehavior: when_no_match
+        type: http_proxy
+  '/backoffice/ekyc/approve/{customerId}':
+    put:
+      tags:
+        - backoffice
+      operationId: backofficeEkycApprove
+      parameters:
+        - name: customerId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 200 response
+          content: {}
+      x-amazon-apigateway-integration:
+        httpMethod: PUT
+        uri: 'https://${stageVariables.albUrl}/account/backoffice/ekyc/approve/{customerId}'
+        responses:
+          default:
+            statusCode: '200'
+        requestParameters:
+          integration.request.path.customerId: method.request.path.customerId
+        passthroughBehavior: when_no_match
+        type: http_proxy
+  /client/current-step:
+    get:
+      operationId: clientGetAccountCreationStep
+      responses:
+        '200':
+          description: 200 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StepResponse'
+      x-amazon-apigateway-integration:
+        httpMethod: GET
+        uri: 'https://${stageVariables.albUrl}/account/client/current-step'
+        responses:
+          default:
+            statusCode: '200'
+        passthroughBehavior: when_no_match
+        type: http_proxy
+  /client/customer:
+    get:
+      operationId: GetCustomerDetails
+      responses:
+        '200':
+          description: 200 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerDetailResponse'
+      x-amazon-apigateway-integration:
+        httpMethod: GET
+        uri: 'https://${stageVariables.albUrl}/account/client/customer'
+        responses:
+          default:
+            statusCode: '200'
+        passthroughBehavior: when_no_match
+        type: http_proxy
+    options:
+      responses:
+        '200':
+          description: 200 response
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+            Access-Control-Allow-Methods:
+              schema:
+                type: string
+            Access-Control-Allow-Headers:
+              schema:
+                type: string
+          content: {}
+      x-amazon-apigateway-integration:
+        responses:
+          default:
+            statusCode: '200'
+            responseParameters:
+              method.response.header.Access-Control-Allow-Methods: '''GET,OPTIONS'''
+              method.response.header.Access-Control-Allow-Headers: '''Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'''
+              method.response.header.Access-Control-Allow-Origin: '''*'''
+        requestTemplates:
+          application/json: '{"statusCode": 200}'
+        passthroughBehavior: when_no_match
+        type: mock
+  '/backoffice/approvals/approve/{accountId}':
+    put:
+      tags:
+        - backoffice
+      operationId: backofficeApproveAccountByAccountId
+      parameters:
+        - name: accountId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 200 response
+          content: {}
+        '404':
+          description: 404 response
+          content: {}
+      x-amazon-apigateway-integration:
+        httpMethod: PUT
+        uri: 'https://${stageVariables.albUrl}/account/backoffice/approvals/approve/{accountId}'
+        responses:
+          default:
+            statusCode: '200'
+        requestParameters:
+          integration.request.path.accountId: method.request.path.accountId
+        passthroughBehavior: when_no_match
+        type: http_proxy
+  /client/notification-settings:
+    get:
+      operationId: getAccountNotificationSettings
+      parameters:
+        - name: accountType
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 200 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerNotificationSettings'
+      x-amazon-apigateway-integration:
+        httpMethod: GET
+        uri: 'https://${stageVariables.albUrl}/account/client/notification-settings'
+        responses:
+          default:
+            statusCode: '200'
+        requestParameters:
+          integration.request.querystring.accountType: method.request.querystring.accountType
+        passthroughBehavior: when_no_match
+        type: http_proxy
+    put:
+      operationId: putNotificationSettingsCustomerId
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomerNotificationSettings'
+        required: true
+      responses:
+        '200':
+          description: 200 response
+          content: {}
+      x-amazon-apigateway-integration:
+        httpMethod: PUT
+        uri: 'https://${stageVariables.albUrl}/account/client/notification-settings'
+        responses:
+          default:
+            statusCode: '200'
+        passthroughBehavior: when_no_match
+        type: http_proxy
+    post:
+      operationId: postNotificationSettingsCustomerId
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomerNotificationSettings'
+        required: true
+      responses:
+        '200':
+          description: 200 response
+          content: {}
+      x-amazon-apigateway-integration:
+        httpMethod: POST
+        uri: 'https://${stageVariables.albUrl}/account/client/notification-settings'
+        responses:
+          default:
+            statusCode: '200'
+        passthroughBehavior: when_no_match
+        type: http_proxy
+    options:
+      responses:
+        '200':
+          description: 200 response
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+            Access-Control-Allow-Methods:
+              schema:
+                type: string
+            Access-Control-Allow-Headers:
+              schema:
+                type: string
+          content: {}
+      x-amazon-apigateway-integration:
+        responses:
+          default:
+            statusCode: '200'
+            responseParameters:
+              method.response.header.Access-Control-Allow-Methods: '''GET,PUT,OPTIONS'''
+              method.response.header.Access-Control-Allow-Headers: '''Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'''
+              method.response.header.Access-Control-Allow-Origin: '''*'''
+        requestTemplates:
+          application/json: '{"statusCode": 200}'
+        passthroughBehavior: when_no_match
+        type: mock
+  /client/customer/ekyc/next-of-kin-data:
+    put:
+      operationId: clientEkycUpgradeNextOfKinData
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EkycUpgradeNextOfKinData'
+        required: true
+      responses:
+        '200':
+          description: 200 response
+          content: {}
+        '400':
+          description: 400 response
+          content: {}
+      x-amazon-apigateway-integration:
+        httpMethod: PUT
+        uri: 'https://${stageVariables.albUrl}/account/client/customer/ekyc/next-of-kin-data'
+        responses:
+          default:
+            statusCode: '200'
+        passthroughBehavior: when_no_match
+        type: http_proxy
+  /backoffice/passbase/identities:
+    get:
+      tags:
+        - backoffice
+      operationId: backofficePassbaseGetIdentities
+      parameters:
+        - name: cursor
+          in: query
+          schema:
+            type: string
+        - name: limit
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 200 response
+          content: {}
+      x-amazon-apigateway-integration:
+        httpMethod: GET
+        uri: 'https://${stageVariables.albUrl}/account/backoffice/passbase/identities'
+        responses:
+          default:
+            statusCode: '200'
+        passthroughBehavior: when_no_match
+        type: http_proxy
+  '/client/growth-account/{accountNumber}/profile':
+    get:
+      operationId: getGrowthAccountProfile
+      parameters:
+        - name: accountNumber
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 200 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GrowthAccountProfile'
+      x-amazon-apigateway-integration:
+        httpMethod: GET
+        uri: 'https://${stageVariables.albUrl}/account/client/growth-account/{accountNumber}/profile'
+        responses:
+          default:
+            statusCode: '200'
+        requestParameters:
+          integration.request.path.accountNumber: method.request.path.accountNumber
+        passthroughBehavior: when_no_match
+        type: http_proxy
+    options:
+      parameters:
+        - name: accountNumber
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 200 response
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+            Access-Control-Allow-Methods:
+              schema:
+                type: string
+            Access-Control-Allow-Headers:
+              schema:
+                type: string
+          content: {}
+      x-amazon-apigateway-integration:
+        responses:
+          default:
+            statusCode: '200'
+            responseParameters:
+              method.response.header.Access-Control-Allow-Methods: '''GET,OPTIONS'''
+              method.response.header.Access-Control-Allow-Headers: '''Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'''
+              method.response.header.Access-Control-Allow-Origin: '''*'''
+        requestTemplates:
+          application/json: '{"statusCode": 200}'
+        passthroughBehavior: when_no_match
+        type: mock
+  /client/step/klippa-data:
+    post:
+      operationId: postClientKlippaData
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccountCreationKlippaData'
+        required: true
+      responses:
+        '200':
+          description: 200 response
+          content: {}
+      x-amazon-apigateway-integration:
+        httpMethod: POST
+        uri: 'https://${stageVariables.albUrl}/account/client/step/klippa-data'
+        responses:
+          default:
+            statusCode: '200'
+        passthroughBehavior: when_no_match
+        type: http_proxy
+  '/backoffice/notification-settings/{customerId}':
+    get:
+      operationId: backofficeGetAccountNotificationSettings
+      parameters:
+        - name: accountType
+          in: query
+          schema:
+            type: string
+        - name: customerId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 200 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerNotificationSettings'
+      x-amazon-apigateway-integration:
+        httpMethod: GET
+        uri: 'https://${stageVariables.albUrl}/account/backoffice/notification-settings/{customerId}'
+        responses:
+          default:
+            statusCode: '200'
+        requestParameters:
+          integration.request.querystring.accountType: method.request.querystring.accountType
+          integration.request.path.customerId: method.request.path.customerId
+        passthroughBehavior: when_no_match
+        type: http_proxy
+      tags:
+        - backoffice
+    put:
+      tags:
+        - backoffice
+      operationId: backofficePutNotificationSettingsCustomerId
+      parameters:
+        - name: customerId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomerNotificationSettings'
+        required: true
+      responses:
+        '200':
+          description: 200 response
+          content: {}
+      x-amazon-apigateway-integration:
+        httpMethod: PUT
+        uri: 'https://${stageVariables.albUrl}/account/backoffice/notification-settings/{customerId}'
+        responses:
+          default:
+            statusCode: '200'
+        requestParameters:
+          integration.request.path.customerId: method.request.path.customerId
+        passthroughBehavior: when_no_match
+        type: http_proxy
+    post:
+      tags:
+        - backoffice
+      operationId: backofficePostNotificationSettingsCustomerId
+      parameters:
+        - name: customerId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomerNotificationSettings'
+        required: true
+      responses:
+        '200':
+          description: 200 response
+          content: {}
+      x-amazon-apigateway-integration:
+        httpMethod: POST
+        uri: 'https://${stageVariables.albUrl}/account/backoffice/notification-settings/{customerId}'
+        responses:
+          default:
+            statusCode: '200'
+        requestParameters:
+          integration.request.path.customerId: method.request.path.customerId
+        passthroughBehavior: when_no_match
+        type: http_proxy
+  '/backoffice/withdrawal-limits/{accountId}':
+    get:
+      tags:
+        - backoffice
+      operationId: backofficeGetWithdrawalLimits
+      parameters:
+        - name: accountId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 200 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WithdrawalLimits'
+      x-amazon-apigateway-integration:
+        httpMethod: GET
+        uri: 'https://${stageVariables.albUrl}/account/backoffice/withdrawal-limits/{accountId}'
+        responses:
+          default:
+            statusCode: '200'
+        requestParameters:
+          integration.request.path.accountId: method.request.path.accountId
+        passthroughBehavior: when_no_match
+        type: http_proxy
+    patch:
+      tags:
+        - backoffice
+      operationId: backofficePatchWithdrawalLimits
+      parameters:
+        - name: accountId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WithdrawalLimits'
+        required: true
+      responses:
+        '200':
+          description: 200 response
+          content: {}
+      x-amazon-apigateway-integration:
+        httpMethod: PATCH
+        uri: 'https://${stageVariables.albUrl}/account/backoffice/withdrawal-limits/{accountId}'
+        responses:
+          default:
+            statusCode: '200'
+        requestParameters:
+          integration.request.path.accountId: method.request.path.accountId
+        passthroughBehavior: when_no_match
+        type: http_proxy
+  /client/new:
+    post:
+      operationId: createAccount
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccountRequest'
+        required: true
+      responses:
+        '200':
+          description: 200 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusResponse'
+        '400':
+          description: 400 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArrayOfError'
+      x-amazon-apigateway-integration:
+        httpMethod: POST
+        uri: 'https://${stageVariables.albUrl}/account/client/new'
+        responses:
+          default:
+            statusCode: '200'
+        passthroughBehavior: when_no_match
+        type: http_proxy
+  /client/all:
+    get:
+      operationId: getAllCustomerAccounts
+      parameters:
+        - name: includePendingAccounts
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 200 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArrayOfAccountResponse'
+      x-amazon-apigateway-integration:
+        httpMethod: GET
+        uri: 'https://${stageVariables.albUrl}/account/client/all'
+        requestParameters:
+          integration.request.querystring.includePendingAccounts: method.request.querystring.includePendingAccounts
+        responses:
+          default:
+            statusCode: '200'
+        passthroughBehavior: when_no_match
+        type: http_proxy
+    options:
+      responses:
+        '200':
+          description: 200 response
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+            Access-Control-Allow-Methods:
+              schema:
+                type: string
+            Access-Control-Allow-Headers:
+              schema:
+                type: string
+          content: {}
+      x-amazon-apigateway-integration:
+        responses:
+          default:
+            statusCode: '200'
+            responseParameters:
+              method.response.header.Access-Control-Allow-Methods: '''GET,OPTIONS'''
+              method.response.header.Access-Control-Allow-Headers: '''Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'''
+              method.response.header.Access-Control-Allow-Origin: '''*'''
+        requestTemplates:
+          application/json: '{"statusCode": 200}'
+        passthroughBehavior: when_no_match
+        type: mock
+  /client/add:
+    post:
+      operationId: addNewAccount
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddAccountRequest'
+        required: true
+      responses:
+        '200':
+          description: 200 response
+          content: {}
+      x-amazon-apigateway-integration:
+        httpMethod: POST
+        uri: 'https://${stageVariables.albUrl}/account/client/add'
+        responses:
+          default:
+            statusCode: '200'
+        passthroughBehavior: when_no_match
+        type: http_proxy
+  /backoffice/add-new-account:
+    options:
+      responses:
+        '200':
+          description: 200 response
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+            Access-Control-Allow-Methods:
+              schema:
+                type: string
+            Access-Control-Allow-Headers:
+              schema:
+                type: string
+          content: {}
+      x-amazon-apigateway-integration:
+        responses:
+          default:
+            statusCode: '200'
+            responseParameters:
+              method.response.header.Access-Control-Allow-Methods: '''POST,OPTIONS'''
+              method.response.header.Access-Control-Allow-Headers: '''Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'''
+              method.response.header.Access-Control-Allow-Origin: '''*'''
+        requestTemplates:
+          application/json: '{"statusCode": 200}'
+        passthroughBehavior: when_no_match
+        type: mock
+      operationId: backofficeAddAccountOption
+    post:
+      operationId: backofficeAddNewAccount
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddAccountRequest'
+        required: true
+      responses:
+        '200':
+          description: 200 response
+          content: {}
+      x-amazon-apigateway-integration:
+        httpMethod: POST
+        uri: 'https://${stageVariables.albUrl}/account/backoffice/add-new-account'
+        responses:
+          default:
+            statusCode: '200'
+        passthroughBehavior: when_no_match
+        type: http_proxy
+      tags:
+        - backoffice
+      description: ''
+    parameters: []
+  /backoffice/webhook/oncreate:
+    post:
+      operationId: webhookOnCreateAccount
+      responses:
+        '200':
+          description: 200 response
+          content: {}
+      x-amazon-apigateway-integration:
+        httpMethod: POST
+        uri: 'https://${stageVariables.albUrl}/account/backoffice/webhook/oncreate'
+        responses:
+          default:
+            statusCode: '200'
+        passthroughBehavior: when_no_match
+        type: http_proxy
+  '/backoffice/customers/{customerId}/id-picture':
+    options:
+      parameters:
+        - name: customerId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 200 response
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+            Access-Control-Allow-Methods:
+              schema:
+                type: string
+            Access-Control-Allow-Headers:
+              schema:
+                type: string
+          content: {}
+      x-amazon-apigateway-integration:
+        responses:
+          default:
+            statusCode: '200'
+            responseParameters:
+              method.response.header.Access-Control-Allow-Methods: '''GET,OPTIONS'''
+              method.response.header.Access-Control-Allow-Headers: '''Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'''
+              method.response.header.Access-Control-Allow-Origin: '''*'''
+        requestTemplates:
+          application/json: '{"statusCode": 200}'
+        passthroughBehavior: when_no_match
+        type: mock
+    get:
+      tags:
+        - backoffice
+      operationId: getIDPicturesBackoffice
+      parameters:
+        - name: customerId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 200 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IDPicture'
+      x-amazon-apigateway-integration:
+        httpMethod: GET
+        uri: 'https://${stageVariables.albUrl}/account/backoffice/customers/{customerId}/id-picture'
+        responses:
+          default:
+            statusCode: '200'
+        requestParameters:
+          integration.request.path.customerId: method.request.path.customerId
+        passthroughBehavior: when_no_match
+        type: http_proxy
+  '/backoffice/customers/{customerId}/onboarding-profile':
+    options:
+      parameters:
+        - name: customerId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 200 response
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+            Access-Control-Allow-Methods:
+              schema:
+                type: string
+            Access-Control-Allow-Headers:
+              schema:
+                type: string
+          content: {}
+      x-amazon-apigateway-integration:
+        responses:
+          default:
+            statusCode: '200'
+            responseParameters:
+              method.response.header.Access-Control-Allow-Methods: '''GET,OPTIONS'''
+              method.response.header.Access-Control-Allow-Headers: '''Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'''
+              method.response.header.Access-Control-Allow-Origin: '''*'''
+        requestTemplates:
+          application/json: '{"statusCode": 200}'
+        passthroughBehavior: when_no_match
+        type: mock
+    get:
+      tags:
+        - backoffice
+      operationId: getCustomerBackofficeOnboardingProfile
+      parameters:
+        - name: customerId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 200 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OnboardingProfile'
+      x-amazon-apigateway-integration:
+        httpMethod: GET
+        uri: 'https://${stageVariables.albUrl}/account/backoffice/customers/{customerId}/onboarding-profile'
+        responses:
+          default:
+            statusCode: '200'
+        requestParameters:
+          integration.request.path.customerId: method.request.path.customerId
+        passthroughBehavior: when_no_match
+        type: http_proxy
+  '/backoffice/customers/{customerId}':
+    options:
+      parameters:
+        - name: customerId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 200 response
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+            Access-Control-Allow-Methods:
+              schema:
+                type: string
+            Access-Control-Allow-Headers:
+              schema:
+                type: string
+          content: {}
+      x-amazon-apigateway-integration:
+        responses:
+          default:
+            statusCode: '200'
+            responseParameters:
+              method.response.header.Access-Control-Allow-Methods: '''GET,OPTIONS'''
+              method.response.header.Access-Control-Allow-Headers: '''Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'''
+              method.response.header.Access-Control-Allow-Origin: '''*'''
+        requestTemplates:
+          application/json: '{"statusCode": 200}'
+        passthroughBehavior: when_no_match
+        type: mock
+    get:
+      tags:
+        - backoffice
+      operationId: backOfficeGetCustomerDetails
+      parameters:
+        - name: customerId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 200 response
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerDetailResponse'
+      x-amazon-apigateway-integration:
+        httpMethod: GET
+        uri: 'https://${stageVariables.albUrl}/account/backoffice/customers/{customerId}'
+        responses:
+          default:
+            statusCode: '200'
+        requestParameters:
+          integration.request.path.customerId: method.request.path.customerId
+        passthroughBehavior: when_no_match
+        type: http_proxy
+  '/backoffice/passbase/identities/{identityId}/resources':
+    get:
+      tags:
+        - backoffice
+      operationId: backofficePassbaseGetResourcesByIdenityID
+      parameters:
+        - name: identityId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 200 response
+          content: {}
+      x-amazon-apigateway-integration:
+        httpMethod: GET
+        uri: 'https://${stageVariables.albUrl}/account/backoffice/passbase/identities/{identityId}/resources'
+        responses:
+          default:
+            statusCode: '200'
+        requestParameters:
+          integration.request.path.identityId: method.request.path.identityId
+        passthroughBehavior: when_no_match
+        type: http_proxy
+  '/client/{accountId}/selfie':
+    put:
+      operationId: updateCustomerSelfie
+      parameters:
+        - name: accountId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SelfieStep'
+        required: true
+      responses:
+        '200':
+          description: 200 response
+          content: {}
+        '400':
+          description: 400 response
+          content: {}
+      x-amazon-apigateway-integration:
+        httpMethod: PUT
+        uri: 'https://${stageVariables.albUrl}/account/client/{accountId}/selfie'
+        responses:
+          default:
+            statusCode: '200'
+        requestParameters:
+          integration.request.path.accountId: method.request.path.accountId
+        passthroughBehavior: when_no_match
+        type: http_proxy
+  /client/step/submitted-data:
+    get:
+      operationId: getStepwiseAccountCreationData
+      responses:
+        '200':
+          description: 200 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountCreationStepData'
+      x-amazon-apigateway-integration:
+        httpMethod: GET
+        uri: 'https://${stageVariables.albUrl}/account/client/step/submitted-data'
+        responses:
+          default:
+            statusCode: '200'
+        passthroughBehavior: when_no_match
+        type: http_proxy
+  '/client/deactivate/{accountId}':
+    put:
+      operationId: deactivateAccount
+      parameters:
+        - name: accountId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 200 response
+          content: {}
+      x-amazon-apigateway-integration:
+        httpMethod: PUT
+        uri: 'https://${stageVariables.albUrl}/account/client/{accountId}/deactivate'
+        responses:
+          default:
+            statusCode: '200'
+        requestParameters:
+          integration.request.path.accountId: method.request.path.accountId
+        passthroughBehavior: when_no_match
+        type: http_proxy
+    options:
+      parameters:
+        - name: accountId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 200 response
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+            Access-Control-Allow-Methods:
+              schema:
+                type: string
+            Access-Control-Allow-Headers:
+              schema:
+                type: string
+          content: {}
+      x-amazon-apigateway-integration:
+        responses:
+          default:
+            statusCode: '200'
+            responseParameters:
+              method.response.header.Access-Control-Allow-Methods: '''PUT,OPTIONS'''
+              method.response.header.Access-Control-Allow-Headers: '''Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'''
+              method.response.header.Access-Control-Allow-Origin: '''*'''
+        requestTemplates:
+          application/json: '{"statusCode": 200}'
+        passthroughBehavior: when_no_match
+        type: mock
+  /backoffice/cheques/booklets:
+    options:
+      responses:
+        '200':
+          description: 200 response
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+            Access-Control-Allow-Methods:
+              schema:
+                type: string
+            Access-Control-Allow-Headers:
+              schema:
+                type: string
+          content: {}
+      x-amazon-apigateway-integration:
+        responses:
+          default:
+            statusCode: '200'
+            responseParameters:
+              method.response.header.Access-Control-Allow-Methods: '''POST,GET,OPTIONS'''
+              method.response.header.Access-Control-Allow-Headers: '''Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'''
+              method.response.header.Access-Control-Allow-Origin: '''*'''
+        requestTemplates:
+          application/json: '{"statusCode": 200}'
+        passthroughBehavior: when_no_match
+        type: mock
+    get:
+      summary: ''
+      tags:
+        - backoffice
+      responses:
+        '200':
+          $ref: '#/components/responses/PaginatedChequeBooklets'
+      operationId: backofficeGetChequeBooklets
+      description: Get list of all cheque booklets
+      x-amazon-apigateway-integration:
+        httpMethod: GET
+        uri: 'https://${stageVariables.albUrl}/account/backoffice/cheques/booklets'
+        responses:
+          default:
+            statusCode: '200'
+        passthroughBehavior: when_no_match
+        type: http_proxy
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: cursor
+        - schema:
+            type: integer
+            maximum: 500
+          in: query
+          name: limit
+          description: number of records to retrieve
+    post:
+      summary: ''
+      operationId: backofficeCreateChequeBooklet
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChequeBookletResponse'
+      description: Add new cheque booklet request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChequeBookletRequest'
+      x-amazon-apigateway-integration:
+        httpMethod: POST
+        uri: 'https://${stageVariables.albUrl}/account/backoffice/cheques/booklets'
+        responses:
+          default:
+            statusCode: '200'
+        passthroughBehavior: when_no_match
+        type: http_proxy
+      tags:
+        - backoffice
+  '/backoffice/cheques/booklets/{bookletId}':
+    options:
+      responses:
+        '200':
+          description: 200 response
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+            Access-Control-Allow-Methods:
+              schema:
+                type: string
+            Access-Control-Allow-Headers:
+              schema:
+                type: string
+          content: {}
+      x-amazon-apigateway-integration:
+        responses:
+          default:
+            statusCode: '200'
+            responseParameters:
+              method.response.header.Access-Control-Allow-Methods: '''PUT,GET,DELETE,OPTIONS'''
+              method.response.header.Access-Control-Allow-Headers: '''Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'''
+              method.response.header.Access-Control-Allow-Origin: '''*'''
+        requestTemplates:
+          application/json: '{"statusCode": 200}'
+        passthroughBehavior: when_no_match
+        type: mock
+    delete:
+      summary: ''
+      tags:
+        - backoffice
+      operationId: deleteChequeBooklet
+      description: Delete a cheque booklet
+      x-amazon-apigateway-integration:
+        httpMethod: DELETE
+        uri: 'https://${stageVariables.albUrl}/account/backoffice/cheques/booklets/{bookletId}'
+        responses:
+          default:
+            statusCode: '200'
+        passthroughBehavior: when_no_match
+        requestParameters:
+          integration.request.path.bookletId: method.request.path.bookletId
+        type: http_proxy
+      responses:
+        '200':
+          description: OK
+    get:
+      summary: ''
+      tags:
+        - backoffice
+      operationId: backofficeGetChequeRequest
+      description: Retrieve a cheque booklet
+      x-amazon-apigateway-integration:
+        httpMethod: GET
+        uri: 'https://${stageVariables.albUrl}/account/backoffice/cheques/booklets/{bookletId}'
+        responses:
+          default:
+            statusCode: '200'
+        passthroughBehavior: when_no_match
+        requestParameters:
+          integration.request.path.bookletId: method.request.path.bookletId
+        type: http_proxy
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChequeBookletResponse'
+    put:
+      summary: ''
+      operationId: backofficeUpdateChequeRequest
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChequeBookletResponse'
+      description: Update cheque booklet request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChequeBookletRequest'
+        description: ''
+      x-amazon-apigateway-integration:
+        httpMethod: PUT
+        uri: 'https://${stageVariables.albUrl}/account/backoffice/cheques/booklets/{bookletId}'
+        responses:
+          default:
+            statusCode: '200'
+        passthroughBehavior: when_no_match
+        requestParameters:
+          integration.request.path.bookletId: method.request.path.bookletId
+        type: http_proxy
+      tags:
+        - backoffice
+    parameters:
+      - schema:
+          type: string
+        name: bookletId
+        in: path
+        required: true
+  '/backoffice/cheques/booklets/{bookletId}/deliver':
+    options:
+      responses:
+        '200':
+          description: 200 response
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+            Access-Control-Allow-Methods:
+              schema:
+                type: string
+            Access-Control-Allow-Headers:
+              schema:
+                type: string
+          content: {}
+      x-amazon-apigateway-integration:
+        responses:
+          default:
+            statusCode: '200'
+            responseParameters:
+              method.response.header.Access-Control-Allow-Methods: '''PUT,GET,DELETE,OPTIONS'''
+              method.response.header.Access-Control-Allow-Headers: '''Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'''
+              method.response.header.Access-Control-Allow-Origin: '''*'''
+        requestTemplates:
+          application/json: '{"statusCode": 200}'
+        passthroughBehavior: when_no_match
+        type: mock
+    put:
+      summary: ''
+      operationId: backofficeUpdateChequeBookletStatus
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChequeBookletResponse'
+      description: Update cheque booklet status
+      x-amazon-apigateway-integration:
+        httpMethod: PUT
+        uri: 'https://${stageVariables.albUrl}/account/backoffice/cheques/booklets/{bookletId}/deliver'
+        responses:
+          default:
+            statusCode: '200'
+        passthroughBehavior: when_no_match
+        requestParameters:
+          integration.request.path.bookletId: method.request.path.bookletId
+        type: http_proxy
+      tags:
+        - backoffice
+    parameters:
+      - schema:
+          type: string
+        name: bookletId
+        in: path
+        required: true
+components:
+  schemas:
+    ArrayOfInvestmentRate:
+      type: array
+      items:
+        $ref: '#/components/schemas/InvestmentRate'
+    DeclarationStep:
+      title: DeclarationStep
+      required:
+        - accepted
+      type: object
+      properties:
+        accepted:
+          type: boolean
+    EkycUpgradeAllData:
+      title: EkycUpgradeAllData
+      type: object
+      properties:
+        additionalPersonalData:
+          $ref: '#/components/schemas/EkycUpgradePersonalDataRequest'
+        employmentData:
+          $ref: '#/components/schemas/EkycUpgradeEmploymentData'
+        spouseData:
+          $ref: '#/components/schemas/EkycUpgradeSpouseData'
+        nextOfKinData:
+          $ref: '#/components/schemas/EkycUpgradeNextOfKinData'
+        proofOfIdentificationData:
+          $ref: '#/components/schemas/EkycUpgradeProofOfIdentityData'
+    ProfileImage:
+      type: object
+      properties:
+        image:
+          type: string
+          description: Base64 encoding of image
+    WithdrawalLimits:
+      title: WithdrawalLimits
+      required:
+        - withdrawalLimitPeriod
+      type: object
+      properties:
+        withdrawalLimitAmount:
+          type: number
+        withdrawalLimitPeriod:
+          type: string
+          enum:
+            - DAILY
+            - WEEKLY
+            - MONTHLY
+            - YEARLY
+    UserBlockingRequest:
+      type: object
+      title: UserBlockingRequest
+      properties:
+        reasons:
+          type: array
+          description: An array of reasonIDs
+          items:
+            type: string
+        status:
+          type: string
+          enum:
+            - BLOCKED
+            - BLACKLISTED
+        note:
+          type: string
+      required:
+        - reasons
+        - status
+    IdDocumentStep:
+      title: IdDocumentStep
+      type: object
+      properties:
+        idNumber:
+          type: string
+        idType:
+          type: string
+        idKey:
+          type: string
+        permitKey:
+          type: string
+        issueDate:
+          type: string
+        expiryDate:
+          type: string
+        idPictureBackKey:
+          type: string
+        klippaIdRef:
+          type: string
+        klippaIdBackRef:
+          type: string
+        klippaSelfieRef:
+          type: string
+        klippaSessionId:
+          type: string
+      required:
+        - idNumber
+        - issueDate
+        - expiryDate
+    EkycUpgradeProofOfIdentityData:
+      required:
+        - hasConfirmedDataValid
+        - postalAddress
+        - proofOfResidencePictureKey
+        - proofOfResidencyType
+        - tinNumber
+      type: object
+      properties:
+        postalAddress:
+          minLength: 1
+          type: string
+        proofOfResidencePictureKey:
+          minLength: 1
+          type: string
+        tinNumber:
+          minLength: 1
+          type: string
+        hasConfirmedDataValid:
+          type: boolean
+        proofOfResidencyType:
+          type: string
+          enum:
+            - WATER_BILL
+            - ELECTRICITY_BILL
+            - TENANCY_AGREEMENT
+            - LAND_TITLE
+            - INDENTURE
+            - RESIDENCY_PERMIT
+    EkycUpgradePersonalDataRequest:
+      required:
+        - countryOfBirth
+        - maritalStatus
+        - numberOfDependents
+      type: object
+      properties:
+        countryOfBirth:
+          minLength: 1
+          type: string
+        maritalStatus:
+          minLength: 1
+          type: string
+          enum:
+            - SINGLE
+            - MARRIED
+            - DIVORCED
+            - WIDOWED
+        numberOfDependents:
+          type: number
+          default: 0
+        secondaryPhoneNumber:
+          type: string
+        tetiaryPhoneNumber:
+          type: string
+        email:
+          type: string
+        emailVerified:
+          type: boolean
+    SelfieStep:
+      title: SelfieStep
+      type: object
+      properties:
+        selfieKey:
+          type: string
+    BiodataStep:
+      title: Biodata
+      required:
+        - address
+        - dateOfBirth
+        - gender
+        - nationality
+      type: object
+      properties:
+        dateOfBirth:
+          type: string
+        nationality:
+          type: string
+        gender:
+          type: string
+          enum:
+            - M
+            - F
+        address:
+          type: object
+          properties:
+            street:
+              type: string
+            city:
+              type: string
+            area:
+              type: string
+    CustomerNotificationSettings:
+      title: CustomerNotificationSettings
+      type: object
+      properties:
+        tfEmail:
+          type: boolean
+        tfApp:
+          type: boolean
+        tfSms:
+          type: boolean
+        pcApp:
+          type: boolean
+        pcEmail:
+          type: boolean
+        pcSms:
+          type: boolean
+        posApp:
+          type: boolean
+        posEmail:
+          type: boolean
+        wfApp:
+          type: boolean
+        wfEmail:
+          type: boolean
+        wfSms:
+          type: boolean
+        posSms:
+          type: boolean
+        accountType:
+          type: string
+        customerId:
+          type: string
+    AccountRequest:
+      title: Account
+      required:
+        - IdNumber
+        - IdType
+        - accountType
+        - dateOfBirth
+        - gender
+      type: object
+      properties:
+        accountType:
+          type: string
+          enum:
+            - PERSONAL
+            - BUSINESS
+        dateOfBirth:
+          type: string
+        gender:
+          type: string
+          enum:
+            - M
+            - F
+        region:
+          type: string
+          enum:
+            - GREATER_ACCRA_REGION
+            - ASHANTI_REGION
+            - EASTERN_REGION
+            - UPPER_EAST_REGION
+            - UPPER_WEST_REGION
+            - CENTRAL_REGION
+            - NORTHERN_REGION
+            - BONO_REGION
+            - VOLTA_REGION
+            - WESTERN_REGION
+            - OTI_REGION
+            - BONO_EAST_REGION
+            - AHAFO_REGION
+            - NORTH_EAST_REGION
+            - SAVANNAH_REGION
+            - WESTERN_NORTH_REGION
+        IdType:
+          type: string
+          enum:
+            - voters
+            - passport
+            - drivers
+            - national_id
+            - nhis
+            - ssnit
+            - other
+        IdNumber:
+          type: string
+        issueDate:
+          type: string
+        expiryDate:
+          type: string
+        idPictureBackKey:
+          type: string
+        numberOfWorkers:
+          type: number
+        flowType:
+          type: string
+          enum:
+            - INTERNAL
+            - EXTERNAL
+        nationality:
+          type: string
+        idKey:
+          type: string
+        selfieKey:
+          type: string
+        permitKey:
+          type: string
+        debitCard:
+          type: boolean
+        accountName:
+          type: string
+        appruveReferenceId:
+          type: string
+        registeredBusiness:
+          type: boolean
+        businessType:
+          type: string
+          enum:
+            - LIMITED_LIABILITY
+            - FOREIGN_COMPANY
+            - PARTNERSHIP
+            - NGO
+            - SOCIETY_CLUB
+            - GOVERNMENT
+            - SCHOOL_INSTITUTION
+            - CLIENT_ACCOUNT
+        nameOfBusiness:
+          type: string
+        businessService:
+          type: string
+        address:
+          type: object
+          properties:
+            street:
+              type: string
+            city:
+              type: string
+            area:
+              type: string
+            areaCode:
+              type: string
+            addressType:
+              type: string
+              enum:
+                - RESIDENTIAL
+                - BUSINESS
+                - POSTAL
+            postOfficeAddress:
+              type: string
+            country:
+              type: string
+            digitalAddress:
+              type: string
+        location:
+          type: object
+          properties:
+            latitude:
+              type: number
+            longitude:
+              type: number
+        notifications:
+          type: object
+          properties:
+            sms:
+              type: boolean
+            email:
+              type: boolean
+            push:
+              type: boolean
+        businessAddress:
+          type: object
+          properties:
+            street:
+              type: string
+            city:
+              type: string
+            area:
+              type: string
+            areaCode:
+              type: string
+            postOfficeAddress:
+              type: string
+            country:
+              type: string
+            digitalAddress:
+              type: string
+        klippaIdFrontRef:
+          type: string
+        klippaIdBackRef:
+          type: string
+        klippaSelfieRef:
+          type: string
+    ProfileImageRequest:
+      title: ProfileImageRequest
+      type: object
+      properties:
+        profileImageKey:
+          type: string
+    CheckIdResponse:
+      type: object
+      properties:
+        fullName:
+          type: string
+        picture:
+          type: string
+        nameComparisonScore:
+          type: number
+        idNumber:
+          type: string
+        nationality:
+          type: string
+        expiryDate:
+          type: string
+        idType:
+          type: string
+        dateOfBirth:
+          type: string
+    CustomerDetailResponse:
+      title: CustomerDetailResponse
+      type: object
+      description: ''
+      properties:
+        customerId:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        otherNames:
+          type: string
+        email:
+          type: string
+        phoneNumber:
+          type: string
+        sex:
+          type: string
+        status:
+          type: string
+        dateOfBirth:
+          type: string
+        employment:
+          $ref: '#/components/schemas/EkycUpgradeEmploymentData'
+        accounts:
+          type: array
+          items:
+            $ref: '#/components/schemas/AccountResponse'
+        documents:
+          type: array
+          items:
+            $ref: '#/components/schemas/CustomerDocumentsResponse'
+        dateCreated:
+          type: string
+        address:
+          $ref: '#/components/schemas/CustomerAddress'
+        emailVerified:
+          type: boolean
+          default: false
+        profilePictureUrl:
+          type: string
+        customerProfileCreationDate:
+          type: string
+        secondaryPhoneNumber:
+          type: string
+        countryOfBirth:
+          type: string
+        nationality:
+          type: string
+        maritalStatus:
+          type: string
+        nextOfKin:
+          $ref: '#/components/schemas/EkycUpgradeNextOfKinData'
+        signatureUrl:
+          type: string
+        title:
+          type: string
+        dailyAccountApprovalDate:
+          type: string
+        kycLevel:
+          type: string
+        assignedBranch:
+          $ref: '#/components/schemas/Branch'
+        assignedRelationshipOfficer:
+          type: string
+        assignedStatus:
+          type: string
+          enum:
+            - ASSIGNED
+            - UNASSIGNED
+        mambuClientId:
+          type: string
+        mambuClientKey:
+          type: string
+    IDPicture:
+      type: object
+      properties:
+        image:
+          type: string
+        documentType:
+          type: string
+        documentSubType:
+          type: string
+        documentNumber:
+          type: string
+    OnboardingProfile:
+      title: OnboardingProfile
+      type: object
+      properties:
+        accountId:
+          type: string
+        step:
+          type: string
+          enum:
+            - INVALID_BIODATA
+            - ID_DOCUMENTS_VALIDATED
+            - SELFIE_VALIDATED
+            - DECLARATION_ACCEPTED
+            - DECLARATION_DECLINED
+            - INVALID_SELFIE
+            - PROCCESSING_ERROR
+            - INVALID_ID_DOCUMENT
+            - INVALID_PERMIT
+            - PERMIT_VALIDATED
+            - BIODATA_VALIDATED
+        accountState:
+          type: string
+          enum:
+            - PENDING_APPROVAL
+            - APPROVED
+            - ACTIVE
+            - ACTIVE_IN_ARREARS
+            - MATURED
+            - LOCKED
+            - DORMANT
+            - CLOSED
+            - CLOSED_WRITTEN_OFF
+            - WITHDRAWN
+            - CLOSED_REJECTED
+            - MANUALLY_APPROVED
+            - APPROVAL_REJECTED
+            - PROCESSING
+            - PROCESSING_ERROR
+        title:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        otherNames:
+          type: string
+        referralCode:
+          type: string
+        dateOfBirth:
+          type: string
+        nationality:
+          type: string
+        gender:
+          type: string
+        residentialAddress:
+          type: string
+        phoneNumber:
+          type: string
+        idType:
+          type: string
+          enum:
+            - voters
+            - voter
+            - driver_license
+            - driver_licence
+            - national_id
+            - nhis
+            - ssnit
+            - tin
+            - other
+            - drivers
+        documentNumberByUser:
+          type: string
+        documentNumberGvive:
+          type: string
+        idPicUrlByUser:
+          type: string
+        idPicByGvive:
+          type: string
+        residencePermitUrl:
+          type: string
+        profilePictureUrl:
+          type: string
+        gviveNameScore:
+          type: string
+    AddAccountRequest:
+      title: AddAccountRequest
+      type: object
+      properties:
+        accountType:
+          type: string
+          enum:
+            - PERSONAL
+            - BUSINESS
+        subType:
+          type: string
+          enum:
+            - GROWTH
+            - FUTURE
+            - DAILY
+        funding:
+          type: object
+          properties:
+            source:
+              type: string
+              enum:
+                - MOBILE_MONEY
+                - OWN_ACCOUNT
+            amount:
+              type: number
+            phoneNumber:
+              type: string
+            mobileOperator:
+              type: string
+              enum:
+                - MTN_MM
+                - AIRTELTIGO_MM
+                - VODA_MM
+            sourceAccountNumber:
+              type: string
+            idempotentKey:
+              type: string
+        future:
+          type: object
+          properties:
+            investmentName:
+              type: string
+            duration:
+              type: string
+              description: Duration in Days
+        customerId:
+          type: string
+        alias:
+          type: string
+          pattern: '^[a-zA-Z0-9_() ]+$'
+    FixedDepositProfile:
+      title: FixedDepositProfile
+      type: object
+      properties:
+        amountDeposited:
+          type: number
+        name:
+          type: string
+        nameAlias:
+          type: string
+        startDate:
+          type: string
+        maturityDate:
+          type: string
+        interestRate:
+          type: number
+        interestAccrued:
+          type: number
+        accountState:
+          type: string
+          enum:
+            - INVALID_BIODATA
+            - ID_DOCUMENTS_VALIDATED
+            - SELFIE_VALIDATED
+            - DECLARATION_ACCEPTED
+            - DECLARATION_DECLINED
+            - INVALID_SELFIE
+            - PROCCESSING_ERROR
+            - INVALID_ID_DOCUMENT
+            - INVALID_PERMIT
+            - PERMIT_VALIDATED
+            - BIODATA_VALIDATED
+        rolloverOption:
+          type: string
+          enum:
+            - NONE
+            - INTEREST ONLY
+            - PRINCIPAL ONLY
+            - PRINCIPAL AND INTEREST
+    PendingApprovals:
+      type: object
+      properties:
+        accountId:
+          type: string
+        customerId:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        otherNames:
+          type: string
+        idType:
+          type: string
+        phoneNumber:
+          type: string
+        nationality:
+          type: string
+        dateCreated:
+          type: string
+    EkycUpgradeEmploymentData:
+      required:
+        - status
+      type: object
+      properties:
+        status:
+          minLength: 1
+          type: string
+          enum:
+            - EMPLOYED_FULL_TIME
+            - EMPLOYED_PART_TIME
+            - SELF_EMPLOYED
+            - STUDENT
+            - UNEMPLOYED
+            - HOMEMAKER
+            - RETIRED
+        occupation:
+          minLength: 1
+          type: string
+        employerType:
+          $ref: '#/components/schemas/EmployerType'
+        occupation - copy:
+          minLength: 1
+          type: string
+        address:
+          type: string
+        positionHeld:
+          type: string
+        appointmentMonth:
+          type: number
+        appointmentYear:
+          type: number
+        sector:
+          type: string
+        schoolType:
+          type: string
+          enum:
+            - SECONDARY
+            - TERTIARY
+        previousEmployerType:
+          $ref: '#/components/schemas/EmployerType'
+        incomeSource:
+          type: string
+          enum:
+            - SALES_PROCEEDS
+            - SERVICE_RENDERED
+            - SALARY_WAGE
+            - REMMITTANCE
+        schoolName:
+          type: string
+        employerName:
+          type: string
+    AccountResponse:
+      title: AccountResponse
+      type: object
+      properties:
+        accountId:
+          type: string
+        accountNumber:
+          type: string
+        accountState:
+          type: string
+          enum:
+            - PENDING_APPROVAL
+            - APPROVED
+            - ACTIVE
+            - ACTIVE_IN_ARREARS
+            - MATURED
+            - LOCKED
+            - DORMANT
+            - CLOSED
+            - CLOSED_WRITTEN_OFF
+            - WITHDRAWN
+            - CLOSED_REJECTED
+            - MANUALLY_APPROVED
+            - APPROVAL_REJECTED
+            - PROCESSING
+            - PROCESSING_ERROR
+            - NOT_CREATED
+        availableBalance:
+          type: number
+        accountName:
+          type: string
+        accountType:
+          type: string
+        accountAlias:
+          type: string
+        accountSubType:
+          type: string
+        currency:
+          type: string
+        maturityDate:
+          type: string
+        assignedBranch:
+          $ref: '#/components/schemas/Branch'
+        rolloverOption:
+          type: string
+        totalBalance:
+          type: number
+        lastModified:
+          type: string
+        dateCreated:
+          type: string
+        interestDetail:
+          $ref: '#/components/schemas/InterestDetails'
+    ArrayOfCustomerDocumentsResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/CustomerDocumentsResponse'
+    BiodataStepResponse:
+      title: BiodataStepResponse
+      type: object
+      properties:
+        accountId:
+          type: string
+        step:
+          type: string
+          enum:
+            - BIODATA_VALIDATED
+            - INVALID_BIODATA
+    ProfileImageResponse:
+      title: ProfileImageResponse
+      type: object
+      properties:
+        profileImageUrl:
+          type: string
+        profileImageKey:
+          type: string
+      required:
+        - profileImageUrl
+    CustomerResponse:
+      title: CustomerResponse
+      type: object
+      description: ''
+      properties:
+        customerId:
+          type: string
+        profilePictureUrl:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        phoneNumber:
+          type: string
+        sex:
+          type: string
+        status:
+          type: string
+        email:
+          type: string
+        dailyAccountState:
+          type: string
+          enum:
+            - PENDING_APPROVAL
+            - APPROVED
+            - ACTIVE
+            - ACTIVE_IN_ARREARS
+            - MATURED
+            - LOCKED
+            - DORMANT
+            - CLOSED
+            - CLOSED_WRITTEN_OFF
+            - WITHDRAWN
+            - CLOSED_REJECTED
+            - MANUALLY_APPROVED
+            - APPROVAL_REJECTED
+            - PROCESSING
+            - PROCESSING_ERROR
+        dailyAccountApprovalDate:
+          type: string
+        customerProfileCreationDate:
+          type: string
+        kycLevel:
+          type: string
+        assignedRelationshipOfficer:
+          type: string
+        assignedBranch:
+          $ref: '#/components/schemas/Branch'
+    Rollover:
+      required:
+        - rolloverOption
+      type: object
+      properties:
+        rolloverOption:
+          type: string
+          enum:
+            - NONE
+            - INTEREST ONLY
+            - PRINCIPAL ONLY
+            - PRINCIPAL AND INTEREST
+    EkycUpgradeSpouseData:
+      title: EkycUpgradeSpouseData
+      required:
+        - firstName
+        - isNextOfKin
+        - lastName
+        - phoneNumber
+        - title
+      type: object
+      properties:
+        title:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        otherNames:
+          type: string
+        phoneNumber:
+          type: string
+        secondaryPhoneNumber:
+          type: string
+        occupation:
+          type: string
+        employerName:
+          type: string
+        employerAddress:
+          type: string
+        isNextOfKin:
+          type: boolean
+    EmailVerificationRequest:
+      title: EmailVerificationRequest
+      type: object
+      properties:
+        email:
+          type: string
+    EmployerType:
+      title: EmployerType
+      type: string
+      enum:
+        - GOVERNMENT_EMPLOYEE
+        - INFORMAL_WORKER
+        - PRIVATE_SECTOR_EMPLOYEE
+        - REGISTERED_BUSINESS_OWNER
+        - CHARITY_NGO
+    CustomerBlockResponse:
+      type: object
+      properties:
+        customerId:
+          type: string
+        userId:
+          type: string
+        reason:
+          type: string
+        status:
+          type: string
+          enum:
+            - BlOCKED
+            - UNBLOCKED
+        dateCreated:
+          type: string
+        note:
+          type: string
+        createdBy:
+          type: string
+    GviveData:
+      required:
+        - customerName
+        - idNumber
+        - idType
+      type: object
+      properties:
+        idNumber:
+          type: string
+        idType:
+          type: string
+          enum:
+            - voters
+            - voters_old
+            - passport
+            - drivers_license
+        customerName:
+          required:
+            - firstName
+            - lastName
+          type: object
+          properties:
+            firstName:
+              type: string
+            lastName:
+              type: string
+            otherNames:
+              type: string
+    CustomerDocumentsResponse:
+      title: CustomerDocumentsResponse
+      type: object
+      properties:
+        documentUrl:
+          type: string
+        documentType:
+          type: string
+        documentSubType:
+          type: string
+        documentNumber:
+          type: string
+        dateCreated:
+          type: string
+        secondaryDocumentUrl:
+          type: string
+    PermitStep:
+      title: PermitStep
+      type: object
+      properties:
+        permitKey:
+          type: string
+    PendingApprovalResponse:
+      type: object
+      properties:
+        accountId:
+          type: string
+        customerId:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        otherNames:
+          type: string
+        idType:
+          type: string
+        phoneNumber:
+          type: string
+        nationality:
+          type: string
+        dateCreated:
+          type: string
+        idNumber:
+          type: string
+        area:
+          type: string
+        street:
+          type: string
+        city:
+          type: string
+        profilePictureUrl:
+          type: string
+        idPictureUrl:
+          type: string
+        dateOfBirth:
+          type: string
+        gender:
+          type: string
+        accountState:
+          type: string
+    GrowthAccountProfile:
+      title: GrowthAccountProfile
+      type: object
+      properties:
+        name:
+          type: string
+        balance:
+          type: number
+        interestRate:
+          type: number
+        interestAccrued:
+          type: number
+        nextInterestPayout:
+          type: string
+        freeTransactionsLeft:
+          type: number
+    ArrayOfBeneficiary:
+      type: array
+      items:
+        $ref: '#/components/schemas/Beneficiary'
+    ArrayOfAccountPendingApprovalBackOfficeApp:
+      type: array
+      items:
+        $ref: '#/components/schemas/AccountPendingApprovalBackOfficeApp'
+    AccountCreationKlippaData:
+      title: AccountCreationKlippaData
+      type: object
+      properties:
+        accountId:
+          type: string
+        klippaResponse:
+          type: string
+        klippaStatus:
+          type: string
+    ArrayOfError:
+      type: array
+      items:
+        $ref: '#/components/schemas/Error'
+    Error:
+      title: Error
+      type: object
+      properties:
+        errorCode:
+          type: string
+        errorMsg:
+          type: string
+    AccountPendingApprovalBackOfficeApp:
+      title: AccountPendingApprovalBackOfficeApp
+      type: object
+      properties:
+        documentNumberGvive:
+          type: string
+        idPicUrlByUser:
+          type: string
+        idPicByGvive:
+          type: string
+        residentialAddress:
+          type: string
+        dateOfBirthByGvive:
+          type: string
+        gviveNameScore:
+          type: number
+        accountId:
+          type: string
+        customerId:
+          type: string
+        title:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        otherNames:
+          type: string
+        idType:
+          type: string
+          enum:
+            - voters
+            - voter
+            - driver_license
+            - driver_licence
+            - national_id
+            - nhis
+            - ssnit
+            - tin
+            - other
+            - drivers
+        phoneNumber:
+          type: string
+        nationality:
+          type: string
+        dateCreated:
+          type: string
+        idNumber:
+          type: string
+        area:
+          type: string
+        street:
+          type: string
+        city:
+          type: string
+        profilePictureUrl:
+          type: string
+        idPictureUrl:
+          type: string
+        dateOfBirth:
+          type: string
+        gender:
+          type: string
+        accountState:
+          type: string
+          enum:
+            - PENDING_APPROVAL
+            - APPROVED
+            - ACTIVE
+            - ACTIVE_IN_ARREARS
+            - MATURED
+            - LOCKED
+            - DORMANT
+            - CLOSED
+            - CLOSED_WRITTEN_OFF
+            - WITHDRAWN
+            - CLOSED_REJECTED
+            - MANUALLY_APPROVED
+            - APPROVAL_REJECTED
+            - PROCESSING
+            - PROCESSING_ERROR
+        referalCode:
+          type: string
+        permitUrl:
+          type: string
+    StatusResponse:
+      title: StatusResponse
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+            - OK
+    SuccessResponse:
+      type: object
+      properties:
+        reasonId:
+          type: string
+    InvestmentRate:
+      title: InvestmentRate
+      type: object
+      properties:
+        duration:
+          type: number
+          enum:
+            - 91
+            - 182
+            - 270
+            - 365
+            - 3
+        name:
+          type: string
+        minAmount:
+          type: number
+        maxAmount:
+          type: number
+        interestTiers:
+          type: array
+          items:
+            type: object
+            properties:
+              interestRate:
+                type: number
+              endingAmount:
+                type: number
+    AccountCreationStepData:
+      title: AccountCreationStepData
+      type: object
+      properties:
+        dateOfBirth:
+          type: string
+        nationality:
+          type: string
+        gender:
+          type: string
+          enum:
+            - M
+            - F
+        address:
+          type: object
+          properties:
+            street:
+              type: string
+            city:
+              type: string
+            area:
+              type: string
+        idNumber:
+          type: string
+        idType:
+          type: string
+        idKey:
+          type: string
+        permitKey:
+          type: string
+        selfieKey:
+          type: string
+        declarationAccepted:
+          type: boolean
+        accountId:
+          type: string
+        idExpiryDate:
+          type: string
+        idIssueDate:
+          type: string
+        idPictureBackKey:
+          type: string
+        klippaIdFrontRef:
+          type: string
+        klippaIdBackRef:
+          type: string
+        selfieRef:
+          type: string
+    InvestmentCertificate:
+      type: object
+      properties:
+        file:
+          type: string
+      title: InvestmentCertificate
+      description: ''
+    StepResponse:
+      title: StepResponse
+      type: object
+      properties:
+        step:
+          type: string
+          enum:
+            - INVALID_BIODATA
+            - ID_DOCUMENTS_VALIDATED
+            - SELFIE_VALIDATED
+            - DECLARATION_ACCEPTED
+            - DECLARATION_DECLINED
+            - INVALID_SELFIE
+            - PROCCESSING_ERROR
+            - INVALID_ID_DOCUMENT
+            - INVALID_PERMIT
+            - PERMIT_VALIDATED
+            - BIODATA_VALIDATED
+        accountState:
+          type: string
+          enum:
+            - PENDING_APPROVAL
+            - APPROVED
+            - ACTIVE
+            - ACTIVE_IN_ARREARS
+            - MATURED
+            - LOCKED
+            - DORMANT
+            - CLOSED
+            - CLOSED_WRITTEN_OFF
+            - WITHDRAWN
+            - CLOSED_REJECTED
+            - MANUALLY_APPROVED
+            - APPROVAL_REJECTED
+            - PROCESSING
+            - PROCESSING_ERROR
+            - NOT_CREATED
+        accountId:
+          type: string
+    EkycUpgradeNextOfKinData:
+      title: EkycUpgradeNextOfKinData
+      required:
+        - firstName
+        - lastName
+        - phoneNumber
+        - relationship
+        - title
+      type: object
+      properties:
+        title:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        otherNames:
+          type: string
+        relationship:
+          type: string
+        phoneNumber:
+          type: string
+        secondaryPhoneNumber:
+          type: string
+    ArrayOfAccountResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/AccountResponse'
+    Reason:
+      type: object
+      properties:
+        reasonId:
+          type: string
+      title: ''
+    ArrayOfCustomerResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/CustomerResponse'
+    Beneficiary:
+      title: Beneficiary
+      type: object
+      properties:
+        id:
+          minLength: 1
+          type: string
+        customerId:
+          minLength: 1
+          type: string
+        accountName:
+          minLength: 1
+          type: string
+        accountNumber:
+          minLength: 1
+          type: string
+        accountType:
+          minLength: 1
+          type: string
+        accountBranch:
+          type: string
+        bankName:
+          minLength: 1
+          type: string
+        bankSortCode:
+          type: string
+        network:
+          type: string
+        note:
+          type: string
+        deleted:
+          type: boolean
+        tags:
+          type: array
+          items:
+            type: string
+        bankId:
+          type: string
+    CustomerAddress:
+      title: CustomerAddress
+      type: object
+      properties:
+        street:
+          type: string
+        city:
+          type: string
+        area:
+          type: string
+        addressType:
+          type: string
+        country:
+          type: string
+        postOfficeAddress:
+          type: string
+        areaCode:
+          type: string
+        digitalAddress:
+          type: string
+    Account:
+      title: Account
+      x-stoplight:
+        id: swmyqrkmytkov
+      type: object
+      properties:
+        accountId:
+          type: string
+        accountName:
+          type: string
+        subType:
+          type: string
+        accountType:
+          type: string
+        accountNumber:
+          type: string
+        approvalDate:
+          type: string
+        availableBalance:
+          type: number
+    Branch:
+      type: object
+      properties:
+        branchKey:
+          type: string
+        branchName:
+          type: string
+        branchPhoneNumber:
+          type: string
+        branchEmailAddress:
+          type: string
+      x-examples:
+        example-1:
+          branchKey: 8a858fe8555f401f01556e3a4c6c2552
+          branchName: Abossey Okai
+          branchPhoneNumber: '0302631408'
+          branchEmailAddress: info@payflexghana.com
+    IdDocumentStepResponse:
+      title: IdDocumentStepResponse
+      x-stoplight:
+        id: koe5tyhh5yc9h
+      type: object
+      properties:
+        documentKey:
+          type: string
+    InterestDetails:
+      type: object
+      x-examples:
+        example-1:
+          encodedKey: 8a858e0256b781d80156dac1ff2146c9
+          interestRate: 10
+          interestChargeFrequency: ANNUALIZED
+          interestChargeFrequencyCount: 1
+          interestRateTerms: FIXED
+          interestRateSource: FIXED_INTEREST_RATE
+          interestPaymentPoint: EVERY_3_MONTHS
+          interestAccrued: 0
+          negativeInterestAccrued: 0
+      properties:
+        interestRate:
+          type: number
+        interestChargeFrequency:
+          type: string
+        interestChargeFrequencyCount:
+          type: integer
+        interestRateTerms:
+          type: string
+          enum:
+            - FIXED
+            - TIERED
+            - TIERED_PERIOD
+            - TIERED_BAND
+        interestRateSource:
+          type: string
+        interestPaymentPoint:
+          type: string
+        interestAccrued:
+          type: number
+        negativeInterestAccrued:
+          type: number
+    UserUnblockRequest:
+      type: object
+      x-examples: {}
+      properties:
+        reasons:
+          type: array
+          items:
+            type: string
+        status:
+          type: string
+          enum:
+            - ACTIVE
+        note:
+          type: string
+      title: UserUnblockRequest
+    ChequeBookletRequest:
+      title: ChequeBookletRequest
+      x-stoplight:
+        id: 0yqah555qafkr
+      type: object
+      properties:
+        branchEncodedKey:
+          type: string
+        customerEncodedKey:
+          type: string
+        accountNumber:
+          type: string
+        serviceType:
+          type: string
+          enum:
+            - PREMIUM
+            - STANDARD
+        noOfPages:
+          type: integer
+        startingNumber:
+          type: integer
+      required:
+        - branchEncodedKey
+        - customerEncodedKey
+        - accountNumber
+        - serviceType
+        - noOfPages
+        - startingNumber
+    ChequeBookletResponse:
+      title: ChequeBookletResponse
+      x-stoplight:
+        id: t7v7wvt1p3d4q
+      type: object
+      properties:
+        id:
+          type: string
+        branch:
+          $ref: '#/components/schemas/Branch'
+        customer:
+          $ref: '#/components/schemas/CustomerResponse'
+        account:
+          $ref: '#/components/schemas/Account'
+        createdAt:
+          type: string
+        serviceType:
+          type: string
+          enum:
+            - STANDARD
+            - PREMIUM
+        noOfPages:
+          type: integer
+        startingNumber:
+          type: integer
+        user:
+          $ref: '#/components/schemas/User'
+        status:
+          type: string
+          enum:
+            - PENDING
+            - PROCESSING
+            - PRINTED
+            - DELIVERED
+        issueDate:
+          type: string
+        updatedAt:
+          type: string
+        deletedAt:
+          type: string
+    User:
+      title: User
+      x-stoplight:
+        id: 0oadho14kuuv5
+      type: object
+      properties:
+        id:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        otherNames:
+          type: string
+        email:
+          type: string
+        displayName:
+          type: string
+  securitySchemes:
+    api_key:
+      name: x-api-key
+      type: apiKey
+      in: header
+  responses:
+    PaginatedChequeBooklets:
+      description: Example response
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              count:
+                type: integer
+              cursor:
+                type: string
+              items:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ChequeBookletResponse'

@@ -726,10 +726,10 @@ paths:
           application/json: '{"statusCode": 200}'
         passthroughBehavior: when_no_match
         type: mock
-  /targets:
+  /supervisors/agents/targets:
     post:
       tags:
-        - Agency
+        - Supervisor
       description: Updating respective targets belonging to an agent.
       operationId: postUpdateTargets
       requestBody:
@@ -753,7 +753,7 @@ paths:
       x-amazon-apigateway-integration:
         type: http_proxy
         httpMethod: POST
-        uri: 'https://${stageVariables.albUrl}/agency/targets'
+        uri: 'https://${stageVariables.albUrl}/agency/supervisors/agents/targets'
         responses:
           default:
             statusCode: '200'
@@ -3811,6 +3811,9 @@ components:
         monthlyTarget:
           type: integer
           format: int64
+        agentId:
+          type: integer
+          format: int64
     AgentTargetResponse:
       type: object
       properties:
@@ -3818,6 +3821,9 @@ components:
           type: integer
           format: int64
         monthlyTarget:
+          type: integer
+          format: int64
+        agentId:
           type: integer
           format: int64
         dateCreated:
@@ -4008,6 +4014,12 @@ components:
         cashAtHand:
           type: integer
           format: int64
+        customerNumber:
+          type: integer
+          format: int32
+        transactionsNumber:
+          type: integer
+          format: int32
         ecash:
           type: integer
           format: int64
