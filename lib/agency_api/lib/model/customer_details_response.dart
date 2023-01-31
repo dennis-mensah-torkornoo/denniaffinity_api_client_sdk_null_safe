@@ -247,7 +247,7 @@ class CustomerDetailsResponse {
         accountCreated: mapDateTime(json, r'accountCreated', ''),
         birthDate: mapDateTime(json, r'birthDate', ''),
         depositAmount: mapValueOfType<int>(json, r'depositAmount'),
-        depositTimes: (json[r'depositTimes'] as List<String>).map((e) => DateTime.parse(e)).toList(),  //DateTime.listFromJson(json[r'depositTimes']) ?? const [],
+        depositTimes: (json[r'depositTimes'] as List).map((e) => DateTime.parse(e.toString())).toList(),  //DateTime.listFromJson(json[r'depositTimes']) ?? const [],
         others: mapCastOfType<String, Object>(json, r'others') ?? const {},
         accounts: AccountResponse.listFromJson(json[r'accounts']) ?? const [],
       );
