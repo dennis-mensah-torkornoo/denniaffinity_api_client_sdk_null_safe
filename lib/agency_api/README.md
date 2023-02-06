@@ -175,6 +175,7 @@ Class | Method | HTTP request | Description
  - [HomeResponse](doc//HomeResponse.md)
  - [InfoResponse](doc//InfoResponse.md)
  - [IntermediaryModel](doc//IntermediaryModel.md)
+ - [LocationMetadata](doc//LocationMetadata.md)
  - [LocationUpdateRequest](doc//LocationUpdateRequest.md)
  - [LoginResponse](doc//LoginResponse.md)
  - [NetworkProvider](doc//NetworkProvider.md)

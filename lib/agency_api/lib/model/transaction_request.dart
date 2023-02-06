@@ -21,7 +21,7 @@ class TransactionRequest {
     required this.amount,
     this.fee,
     this.note,
-    this.locationCoordinates,
+    this.locationMetadata,
     this.idempotencyKey,
     this.intermediary,
   });
@@ -66,7 +66,7 @@ class TransactionRequest {
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
-  String? locationCoordinates;
+  LocationMetadata? locationMetadata;
 
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
@@ -94,7 +94,7 @@ class TransactionRequest {
      other.amount == amount &&
      other.fee == fee &&
      other.note == note &&
-     other.locationCoordinates == locationCoordinates &&
+     other.locationMetadata == locationMetadata &&
      other.idempotencyKey == idempotencyKey &&
      other.intermediary == intermediary;
 
@@ -109,12 +109,12 @@ class TransactionRequest {
     (amount.hashCode) +
     (fee == null ? 0 : fee!.hashCode) +
     (note == null ? 0 : note!.hashCode) +
-    (locationCoordinates == null ? 0 : locationCoordinates!.hashCode) +
+    (locationMetadata == null ? 0 : locationMetadata!.hashCode) +
     (idempotencyKey == null ? 0 : idempotencyKey!.hashCode) +
     (intermediary == null ? 0 : intermediary!.hashCode);
 
   @override
-  String toString() => 'TransactionRequest[accountId=$accountId, customerEncodedKey=$customerEncodedKey, customerPhoneNumber=$customerPhoneNumber, referenceNumber=$referenceNumber, currency=$currency, amount=$amount, fee=$fee, note=$note, locationCoordinates=$locationCoordinates, idempotencyKey=$idempotencyKey, intermediary=$intermediary]';
+  String toString() => 'TransactionRequest[accountId=$accountId, customerEncodedKey=$customerEncodedKey, customerPhoneNumber=$customerPhoneNumber, referenceNumber=$referenceNumber, currency=$currency, amount=$amount, fee=$fee, note=$note, locationMetadata=$locationMetadata, idempotencyKey=$idempotencyKey, intermediary=$intermediary]';
 
   Map<String, dynamic> toJson() {
     final _json = <String, dynamic>{};
@@ -132,8 +132,8 @@ class TransactionRequest {
     if (note != null) {
       _json[r'note'] = note;
     }
-    if (locationCoordinates != null) {
-      _json[r'locationCoordinates'] = locationCoordinates;
+    if (locationMetadata != null) {
+      _json[r'locationMetadata'] = locationMetadata;
     }
     if (idempotencyKey != null) {
       _json[r'idempotencyKey'] = idempotencyKey;
@@ -168,12 +168,12 @@ class TransactionRequest {
         customerPhoneNumber: mapValueOfType<String>(json, r'customerPhoneNumber')!,
         referenceNumber: mapValueOfType<String>(json, r'referenceNumber'),
         currency: mapValueOfType<String>(json, r'currency')!,
-        amount: num.parse(json[r'amount'].toString()),
+        amount:  num.parse(json[r'amount'].toString()),
         fee: json[r'fee'] == null
             ? null
             : num.parse(json[r'fee'].toString()),
         note: mapValueOfType<String>(json, r'note'),
-        locationCoordinates: mapValueOfType<String>(json, r'locationCoordinates'),
+        locationMetadata: LocationMetadata.fromJson(json[r'locationMetadata']),
         idempotencyKey: mapValueOfType<String>(json, r'idempotencyKey'),
         intermediary: IntermediaryModel.fromJson(json[r'intermediary']),
       );

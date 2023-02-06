@@ -248,6 +248,8 @@ class ApiClient {
           return InfoResponse.fromJson(value);
         case 'IntermediaryModel':
           return IntermediaryModel.fromJson(value);
+        case 'LocationMetadata':
+          return LocationMetadata.fromJson(value);
         case 'LocationUpdateRequest':
           return LocationUpdateRequest.fromJson(value);
         case 'LoginResponse':

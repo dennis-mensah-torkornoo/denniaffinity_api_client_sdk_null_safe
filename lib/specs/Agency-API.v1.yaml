@@ -3242,12 +3242,27 @@ components:
           type: number
         note:
           type: string
-        locationCoordinates:
-          type: string
+        locationMetadata:
+          $ref: '#/components/schemas/LocationMetadata'
         idempotencyKey:
           type: string
         intermediary:
           $ref: '#/components/schemas/IntermediaryModel'
+    LocationMetadata:
+      type: object
+      properties:
+        region:
+          type: string
+        metropolis:
+          type: string
+        city:
+          type: string
+        countryCode:
+          type: string
+        district:
+          type: string
+        countryName:
+          type: string
     StatusResponse:
       type: object
       properties:

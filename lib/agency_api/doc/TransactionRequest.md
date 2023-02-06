@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 **amount** | **num** |  | 
 **fee** | **num** |  | [optional] 
 **note** | **String** |  | [optional] 
-**locationCoordinates** | **String** |  | [optional] 
+**locationMetadata** | [**LocationMetadata**](LocationMetadata.md) |  | [optional] 
 **idempotencyKey** | **String** |  | [optional] 
 **intermediary** | [**IntermediaryModel**](IntermediaryModel.md) |  | [optional] 
 
