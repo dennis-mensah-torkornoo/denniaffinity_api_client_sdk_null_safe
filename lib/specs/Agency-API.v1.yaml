@@ -1487,7 +1487,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/LocationUpdateRequest'
+              $ref: '#/components/schemas/LocationMetadata'
       responses:
         '200':
           description: OK
@@ -3263,6 +3263,8 @@ components:
           type: string
         countryName:
           type: string
+        coordinates:
+          type: string
     StatusResponse:
       type: object
       properties:
@@ -4150,11 +4152,6 @@ components:
         commissionDeposit:
           type: integer
           format: int64
-    LocationUpdateRequest:
-      type: object
-      properties:
-        location:
-          type: string
     ApplicationStatusResponse:
       type: object
       properties:

@@ -65,7 +65,6 @@ part 'model/home_response.dart';
 part 'model/info_response.dart';
 part 'model/intermediary_model.dart';
 part 'model/location_metadata.dart';
-part 'model/location_update_request.dart';
 part 'model/login_response.dart';
 part 'model/network_provider.dart';
 part 'model/notification_request.dart';

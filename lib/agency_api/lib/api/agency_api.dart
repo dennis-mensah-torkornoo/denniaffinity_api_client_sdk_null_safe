@@ -805,13 +805,13 @@ class AgencyApi {
   ///
   /// Parameters:
   ///
-  /// * [LocationUpdateRequest] locationUpdateRequest:
-  Future<Response> postAgentLocationWithHttpInfo({ LocationUpdateRequest? locationUpdateRequest, }) async {
+  /// * [LocationMetadata] locationMetadata:
+  Future<Response> postAgentLocationWithHttpInfo({ LocationMetadata? locationMetadata, }) async {
     // ignore: prefer_const_declarations
     final path = r'/location';
 
     // ignore: prefer_final_locals
-    Object? postBody = locationUpdateRequest;
+    Object? postBody = locationMetadata;
 
     final queryParams = <QueryParam>[];
     final headerParams = <String, String>{};
@@ -835,9 +835,9 @@ class AgencyApi {
   ///
   /// Parameters:
   ///
-  /// * [LocationUpdateRequest] locationUpdateRequest:
-  Future<InfoResponse?> postAgentLocation({ LocationUpdateRequest? locationUpdateRequest, }) async {
-    final response = await postAgentLocationWithHttpInfo( locationUpdateRequest: locationUpdateRequest, );
+  /// * [LocationMetadata] locationMetadata:
+  Future<InfoResponse?> postAgentLocation({ LocationMetadata? locationMetadata, }) async {
+    final response = await postAgentLocationWithHttpInfo( locationMetadata: locationMetadata, );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }

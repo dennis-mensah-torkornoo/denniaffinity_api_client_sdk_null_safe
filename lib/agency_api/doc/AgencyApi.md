@@ -663,7 +663,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **postAgentLocation**
-> InfoResponse postAgentLocation(locationUpdateRequest)
+> InfoResponse postAgentLocation(locationMetadata)
 
 
 
@@ -674,10 +674,10 @@ Log a new location coordinate for an agent
 import 'package:agency_api/api.dart';
 
 final api_instance = AgencyApi();
-final locationUpdateRequest = LocationUpdateRequest(); // LocationUpdateRequest | 
+final locationMetadata = LocationMetadata(); // LocationMetadata | 
 
 try {
-    final result = api_instance.postAgentLocation(locationUpdateRequest);
+    final result = api_instance.postAgentLocation(locationMetadata);
     print(result);
 } catch (e) {
     print('Exception when calling AgencyApi->postAgentLocation: $e\n');
@@ -688,7 +688,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **locationUpdateRequest** | [**LocationUpdateRequest**](LocationUpdateRequest.md)|  | [optional] 
+ **locationMetadata** | [**LocationMetadata**](LocationMetadata.md)|  | [optional] 
 
 ### Return type
 

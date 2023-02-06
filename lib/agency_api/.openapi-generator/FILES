@@ -37,7 +37,6 @@ doc/HomeResponse.md
 doc/InfoResponse.md
 doc/IntermediaryModel.md
 doc/LocationMetadata.md
-doc/LocationUpdateRequest.md
 doc/LoginResponse.md
 doc/NetworkProvider.md
 doc/NotificationRequest.md
@@ -111,7 +110,6 @@ lib/model/home_response.dart
 lib/model/info_response.dart
 lib/model/intermediary_model.dart
 lib/model/location_metadata.dart
-lib/model/location_update_request.dart
 lib/model/login_response.dart
 lib/model/network_provider.dart
 lib/model/notification_request.dart
@@ -137,4 +135,3 @@ lib/model/transactions_page.dart
 lib/model/update_customer_id_request.dart
 lib/model/user.dart
 pubspec.yaml
-test/location_metadata_test.dart

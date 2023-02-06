@@ -19,6 +19,7 @@ class LocationMetadata {
     this.countryCode,
     this.district,
     this.countryName,
+    this.coordinates,
   });
 
   ///
@@ -69,6 +70,14 @@ class LocationMetadata {
   ///
   String? countryName;
 
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? coordinates;
+
   @override
   bool operator ==(Object other) => identical(this, other) || other is LocationMetadata &&
      other.region == region &&
@@ -76,7 +85,8 @@ class LocationMetadata {
      other.city == city &&
      other.countryCode == countryCode &&
      other.district == district &&
-     other.countryName == countryName;
+     other.countryName == countryName &&
+     other.coordinates == coordinates;
 
   @override
   int get hashCode =>
@@ -86,10 +96,11 @@ class LocationMetadata {
     (city == null ? 0 : city!.hashCode) +
     (countryCode == null ? 0 : countryCode!.hashCode) +
     (district == null ? 0 : district!.hashCode) +
-    (countryName == null ? 0 : countryName!.hashCode);
+    (countryName == null ? 0 : countryName!.hashCode) +
+    (coordinates == null ? 0 : coordinates!.hashCode);
 
   @override
-  String toString() => 'LocationMetadata[region=$region, metropolis=$metropolis, city=$city, countryCode=$countryCode, district=$district, countryName=$countryName]';
+  String toString() => 'LocationMetadata[region=$region, metropolis=$metropolis, city=$city, countryCode=$countryCode, district=$district, countryName=$countryName, coordinates=$coordinates]';
 
   Map<String, dynamic> toJson() {
     final _json = <String, dynamic>{};
@@ -110,6 +121,9 @@ class LocationMetadata {
     }
     if (countryName != null) {
       _json[r'countryName'] = countryName;
+    }
+    if (coordinates != null) {
+      _json[r'coordinates'] = coordinates;
     }
     return _json;
   }
@@ -139,6 +153,7 @@ class LocationMetadata {
         countryCode: mapValueOfType<String>(json, r'countryCode'),
         district: mapValueOfType<String>(json, r'district'),
         countryName: mapValueOfType<String>(json, r'countryName'),
+        coordinates: mapValueOfType<String>(json, r'coordinates'),
       );
     }
     return null;

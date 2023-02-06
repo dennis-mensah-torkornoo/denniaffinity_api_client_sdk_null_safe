@@ -25,13 +25,14 @@ class LocationUpdateRequest {
   String? location;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is LocationUpdateRequest &&
-     other.location == location;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is LocationUpdateRequest && other.location == location;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (location == null ? 0 : location!.hashCode);
+      // ignore: unnecessary_parenthesis
+      (location == null ? 0 : location!.hashCode);
 
   @override
   String toString() => 'LocationUpdateRequest[location=$location]';
@@ -56,20 +57,26 @@ class LocationUpdateRequest {
       // Note 2: this code is stripped in release mode!
       assert(() {
         requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "LocationUpdateRequest[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "LocationUpdateRequest[$key]" has a null value in JSON.');
+          assert(json.containsKey(key),
+              'Required key "LocationUpdateRequest[$key]" is missing from JSON.');
+          assert(json[key] != null,
+              'Required key "LocationUpdateRequest[$key]" has a null value in JSON.');
         });
         return true;
       }());
-
+      final dynamic v = json is Map ? json[r'location'] : null;
+      final r = v is String ? v : null;
       return LocationUpdateRequest(
-        location: mapValueOfType<String>(json, r'location'),
+        location: r, //mapValueOfType<String>(json, r'location'),
       );
     }
     return null;
   }
 
-  static List<LocationUpdateRequest>? listFromJson(dynamic json, {bool growable = false,}) {
+  static List<LocationUpdateRequest>? listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <LocationUpdateRequest>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -97,12 +104,18 @@ class LocationUpdateRequest {
   }
 
   // maps a json object with a list of LocationUpdateRequest-objects as value to a dart map
-  static Map<String, List<LocationUpdateRequest>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<LocationUpdateRequest>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<LocationUpdateRequest>>{};
     if (json is Map && json.isNotEmpty) {
       json = json.cast<String, dynamic>(); // ignore: parameter_assignments
       for (final entry in json.entries) {
-        final value = LocationUpdateRequest.listFromJson(entry.value, growable: growable,);
+        final value = LocationUpdateRequest.listFromJson(
+          entry.value,
+          growable: growable,
+        );
         if (value != null) {
           map[entry.key] = value;
         }
@@ -112,7 +125,5 @@ class LocationUpdateRequest {
   }
 
   /// The list of required keys that must be present in a JSON.
-  static const requiredKeys = <String>{
-  };
+  static const requiredKeys = <String>{};
 }
-
