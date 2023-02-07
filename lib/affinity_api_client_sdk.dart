@@ -13,8 +13,8 @@ import 'package:affinity_api_client_sdk/utility_api/lib/api.dart'
     as utility_api;
 import 'package:affinity_api_client_sdk/customer_service_api/lib/api.dart'
     as customer_service_api;
-// import 'package:affinity_api_client_sdk/account_api//lib/api.dart'
-// as account_api;
+import 'package:affinity_api_client_sdk/account_api//lib/api.dart'
+as account_api;
 import 'package:http_interceptor/http/http.dart';
 import 'package:http_interceptor/http_interceptor.dart';
 
@@ -27,7 +27,7 @@ class AgencyApiClient {
   late ApiClient apiClient;
   late utility_api.ApiClient utilityApiClient;
   late customer_service_api.ApiClient customerServiceApiClient;
-  // late account_api.ApiClient accountApiClient;
+  late account_api.ApiClient accountApiClient;
 
   AgencyApiClient(
       [List<InterceptorContract>? interceptors, RetryPolicy? retryPolicy]) {
@@ -41,14 +41,14 @@ class AgencyApiClient {
         basePath: 'https://staging-customer-service-api.affnty.co')
       ..client = InterceptedClient.build(
           interceptors: interceptors ?? [], retryPolicy: retryPolicy);
-    // accountApiClient = account_api.ApiClient(
-    //     basePath: buildUrls['staging']?? '')
-    //   ..client = InterceptedClient.build(
-    //       interceptors: interceptors ?? [], retryPolicy: retryPolicy);
+    accountApiClient = account_api.ApiClient(
+        basePath: buildUrls['staging']?? '')
+      ..client = InterceptedClient.build(
+          interceptors: interceptors ?? [], retryPolicy: retryPolicy);
   }
 
   AgencyApi get agencyApi => AgencyApi(apiClient);
-  // account_api.
+  account_api.DefaultApi get accountApi => account_api.DefaultApi(accountApiClient);
   AuthenticationApi get authenticationApi => AuthenticationApi(apiClient);
   DefaultApi get defaultApi => DefaultApi(apiClient);
   TasksApi get tasksApi => TasksApi(apiClient);
