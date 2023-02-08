@@ -13,7 +13,7 @@ import 'package:affinity_api_client_sdk/utility_api/lib/api.dart'
     as utility_api;
 import 'package:affinity_api_client_sdk/customer_service_api/lib/api.dart'
     as customer_service_api;
-import 'package:affinity_api_client_sdk/account_api//lib/api.dart'
+import 'package:affinity_api_client_sdk/account_api/lib/api.dart'
 as account_api;
 import 'package:http_interceptor/http/http.dart';
 import 'package:http_interceptor/http_interceptor.dart';
