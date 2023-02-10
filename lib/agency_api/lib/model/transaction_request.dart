@@ -168,7 +168,7 @@ class TransactionRequest {
         customerPhoneNumber: mapValueOfType<String>(json, r'customerPhoneNumber')!,
         referenceNumber: mapValueOfType<String>(json, r'referenceNumber'),
         currency: mapValueOfType<String>(json, r'currency')!,
-        amount:  num.parse(json[r'amount'].toString()),
+        amount:num.parse(json[r'amount'].toString()),
         fee: json[r'fee'] == null
             ? null
             : num.parse(json[r'fee'].toString()),
