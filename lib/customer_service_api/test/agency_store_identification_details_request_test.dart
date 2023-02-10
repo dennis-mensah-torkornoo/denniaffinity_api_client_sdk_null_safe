@@ -51,6 +51,11 @@ void main() {
       // TODO
     });
 
+    // IdTypeEnum idType
+    test('to test the property `idType`', () async {
+      // TODO
+    });
+
 
   });
 

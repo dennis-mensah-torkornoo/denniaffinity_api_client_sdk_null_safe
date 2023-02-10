@@ -29,6 +29,9 @@ class MambuStatusEnum {
   static const MKYC_CREATED = MambuStatusEnum._(r'MKYC_CREATED');
   static const EKYC_CREATED = MambuStatusEnum._(r'EKYC_CREATED');
   static const EKYC_UPGRADED = MambuStatusEnum._(r'EKYC_UPGRADED');
+  static const MKYC_CREATION_FAILED = MambuStatusEnum._(r'MKYC_CREATION_FAILED');
+  static const EKYC_CREATION_FAILED = MambuStatusEnum._(r'EKYC_CREATION_FAILED');
+  static const EKYC_UPGRADE_FAILED = MambuStatusEnum._(r'EKYC_UPGRADE_FAILED');
 
   /// List of all possible values in this [enum][MambuStatusEnum].
   static const values = <MambuStatusEnum>[
@@ -38,6 +41,9 @@ class MambuStatusEnum {
     MKYC_CREATED,
     EKYC_CREATED,
     EKYC_UPGRADED,
+    MKYC_CREATION_FAILED,
+    EKYC_CREATION_FAILED,
+    EKYC_UPGRADE_FAILED,
   ];
 
   static MambuStatusEnum? fromJson(dynamic value) => MambuStatusEnumTypeTransformer().decode(value);
@@ -82,6 +88,9 @@ class MambuStatusEnumTypeTransformer {
         case r'MKYC_CREATED': return MambuStatusEnum.MKYC_CREATED;
         case r'EKYC_CREATED': return MambuStatusEnum.EKYC_CREATED;
         case r'EKYC_UPGRADED': return MambuStatusEnum.EKYC_UPGRADED;
+        case r'MKYC_CREATION_FAILED': return MambuStatusEnum.MKYC_CREATION_FAILED;
+        case r'EKYC_CREATION_FAILED': return MambuStatusEnum.EKYC_CREATION_FAILED;
+        case r'EKYC_UPGRADE_FAILED': return MambuStatusEnum.EKYC_UPGRADE_FAILED;
         default:
           if (!allowNull) {
             throw ArgumentError('Unknown enum value to decode: $data');

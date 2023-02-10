@@ -28,6 +28,7 @@ class UploadFileTypeEnum {
   static const IDENTIFICATION = UploadFileTypeEnum._(r'IDENTIFICATION');
   static const RESIDENCY_PERMIT = UploadFileTypeEnum._(r'RESIDENCY_PERMIT');
   static const SIGNATURE = UploadFileTypeEnum._(r'SIGNATURE');
+  static const CHEQUE = UploadFileTypeEnum._(r'CHEQUE');
 
   /// List of all possible values in this [enum][UploadFileTypeEnum].
   static const values = <UploadFileTypeEnum>[
@@ -36,6 +37,7 @@ class UploadFileTypeEnum {
     IDENTIFICATION,
     RESIDENCY_PERMIT,
     SIGNATURE,
+    CHEQUE,
   ];
 
   static UploadFileTypeEnum? fromJson(dynamic value) => UploadFileTypeEnumTypeTransformer().decode(value);
@@ -79,6 +81,7 @@ class UploadFileTypeEnumTypeTransformer {
         case r'IDENTIFICATION': return UploadFileTypeEnum.IDENTIFICATION;
         case r'RESIDENCY_PERMIT': return UploadFileTypeEnum.RESIDENCY_PERMIT;
         case r'SIGNATURE': return UploadFileTypeEnum.SIGNATURE;
+        case r'CHEQUE': return UploadFileTypeEnum.CHEQUE;
         default:
           if (!allowNull) {
             throw ArgumentError('Unknown enum value to decode: $data');

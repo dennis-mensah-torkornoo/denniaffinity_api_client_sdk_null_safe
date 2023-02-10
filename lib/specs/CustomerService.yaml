@@ -1212,6 +1212,7 @@ components:
         - IDENTIFICATION
         - RESIDENCY_PERMIT
         - SIGNATURE
+        - CHEQUE
     MobileOnboardingStepEnum:
       type: string
       description: Mobile onboarding steps
@@ -1280,6 +1281,9 @@ components:
         - MKYC_CREATED
         - EKYC_CREATED
         - EKYC_UPGRADED
+        - MKYC_CREATION_FAILED
+        - EKYC_CREATION_FAILED
+        - EKYC_UPGRADE_FAILED
     MaritalStatusEnum:
       type: string
       description: Marital status of customer
@@ -1747,6 +1751,8 @@ components:
         idNumber:
           type: string
           example: GHA-000000000-0
+        idType:
+          $ref: "#/components/schemas/IdTypeEnum"
       required:
         - profilePictureFileKey
         - idFrontFileKey
@@ -1754,7 +1760,6 @@ components:
         - idExpiryDate
         - idIssuingCountry
         - idNumber
-      description: ""
     MobileStorePersonalDetailsRequest:
       title: MobileStorePersonalDetailsRequest
       x-stoplight:

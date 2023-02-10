@@ -20,6 +20,7 @@ class AgencyStoreIdentificationDetailsRequest {
     required this.idExpiryDate,
     required this.idIssuingCountry,
     required this.idNumber,
+    this.idType,
   });
 
   String profilePictureFileKey;
@@ -42,6 +43,14 @@ class AgencyStoreIdentificationDetailsRequest {
 
   String idNumber;
 
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  IdTypeEnum? idType;
+
   @override
   bool operator ==(Object other) => identical(this, other) || other is AgencyStoreIdentificationDetailsRequest &&
      other.profilePictureFileKey == profilePictureFileKey &&
@@ -50,7 +59,8 @@ class AgencyStoreIdentificationDetailsRequest {
      other.idIssueDate == idIssueDate &&
      other.idExpiryDate == idExpiryDate &&
      other.idIssuingCountry == idIssuingCountry &&
-     other.idNumber == idNumber;
+     other.idNumber == idNumber &&
+     other.idType == idType;
 
   @override
   int get hashCode =>
@@ -61,10 +71,11 @@ class AgencyStoreIdentificationDetailsRequest {
     (idIssueDate.hashCode) +
     (idExpiryDate.hashCode) +
     (idIssuingCountry.hashCode) +
-    (idNumber.hashCode);
+    (idNumber.hashCode) +
+    (idType == null ? 0 : idType!.hashCode);
 
   @override
-  String toString() => 'AgencyStoreIdentificationDetailsRequest[profilePictureFileKey=$profilePictureFileKey, idFrontFileKey=$idFrontFileKey, idBackFileKey=$idBackFileKey, idIssueDate=$idIssueDate, idExpiryDate=$idExpiryDate, idIssuingCountry=$idIssuingCountry, idNumber=$idNumber]';
+  String toString() => 'AgencyStoreIdentificationDetailsRequest[profilePictureFileKey=$profilePictureFileKey, idFrontFileKey=$idFrontFileKey, idBackFileKey=$idBackFileKey, idIssueDate=$idIssueDate, idExpiryDate=$idExpiryDate, idIssuingCountry=$idIssuingCountry, idNumber=$idNumber, idType=$idType]';
 
   Map<String, dynamic> toJson() {
     final _json = <String, dynamic>{};
@@ -77,6 +88,9 @@ class AgencyStoreIdentificationDetailsRequest {
       _json[r'idExpiryDate'] = idExpiryDate;
       _json[r'idIssuingCountry'] = idIssuingCountry;
       _json[r'idNumber'] = idNumber;
+    if (idType != null) {
+      _json[r'idType'] = idType;
+    }
     return _json;
   }
 
@@ -106,6 +120,7 @@ class AgencyStoreIdentificationDetailsRequest {
         idExpiryDate: mapValueOfType<String>(json, r'idExpiryDate')!,
         idIssuingCountry: mapValueOfType<String>(json, r'idIssuingCountry')!,
         idNumber: mapValueOfType<String>(json, r'idNumber')!,
+        idType: IdTypeEnum.fromJson(json[r'idType']),
       );
     }
     return null;
