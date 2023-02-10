@@ -42,7 +42,7 @@ class AgencyApiClient {
       ..client = InterceptedClient.build(
           interceptors: interceptors ?? [], retryPolicy: retryPolicy);
     accountApiClient = account_api.ApiClient(
-        basePath: buildUrls['staging']?? '')
+        basePath: 'https://api.affinitylabstest.com/account')
       ..client = InterceptedClient.build(
           interceptors: interceptors ?? [], retryPolicy: retryPolicy);
   }
