@@ -60,4 +60,6 @@ class AgencyApiClient {
       customer_service_api.FilesApi(customerServiceApiClient);
   utility_api.BackofficeApi get backOfficeApi =>
       utility_api.BackofficeApi(utilityApiClient);
+  utility_api.DefaultApi get backOfficeDefaultApi =>
+      utility_api.DefaultApi(utilityApiClient);
 }
