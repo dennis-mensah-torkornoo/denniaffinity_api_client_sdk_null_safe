@@ -49,6 +49,7 @@ class AgencyApiClient {
 
   AgencyApi get agencyApi => AgencyApi(apiClient);
   account_api.DefaultApi get accountApi => account_api.DefaultApi(accountApiClient);
+  account_api.BackofficeApi get accountBackOfficeApi => account_api.BackofficeApi(accountApiClient);
   AuthenticationApi get authenticationApi => AuthenticationApi(apiClient);
   DefaultApi get defaultApi => DefaultApi(apiClient);
   TasksApi get tasksApi => TasksApi(apiClient);
@@ -59,6 +60,4 @@ class AgencyApiClient {
       customer_service_api.FilesApi(customerServiceApiClient);
   utility_api.BackofficeApi get backOfficeApi =>
       utility_api.BackofficeApi(utilityApiClient);
-  utility_api.DefaultApi get backOfficeDefaultApi =>
-      utility_api.DefaultApi(utilityApiClient);
 }
