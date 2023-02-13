@@ -14,7 +14,7 @@ import 'package:affinity_api_client_sdk/utility_api/lib/api.dart'
 import 'package:affinity_api_client_sdk/customer_service_api/lib/api.dart'
     as customer_service_api;
 import 'package:affinity_api_client_sdk/account_api/lib/api.dart'
-as account_api;
+    as account_api;
 import 'package:http_interceptor/http/http.dart';
 import 'package:http_interceptor/http_interceptor.dart';
 
@@ -34,7 +34,8 @@ class AgencyApiClient {
     apiClient = ApiClient(basePath: buildUrls['staging'] ?? '')
       ..client = InterceptedClient.build(
           interceptors: interceptors ?? [], retryPolicy: retryPolicy);
-    utilityApiClient = utility_api.ApiClient(basePath: 'https://api.affinitylabstest.com/utility')
+    utilityApiClient = utility_api.ApiClient(
+        basePath: 'https://api.affinitylabstest.com/utility')
       ..client = InterceptedClient.build(
           interceptors: interceptors ?? [], retryPolicy: retryPolicy);
     customerServiceApiClient = customer_service_api.ApiClient(
@@ -48,8 +49,10 @@ class AgencyApiClient {
   }
 
   AgencyApi get agencyApi => AgencyApi(apiClient);
-  account_api.DefaultApi get accountApi => account_api.DefaultApi(accountApiClient);
-  account_api.BackofficeApi get accountBackOfficeApi => account_api.BackofficeApi(accountApiClient);
+  account_api.DefaultApi get accountApi =>
+      account_api.DefaultApi(accountApiClient);
+  account_api.BackofficeApi get accountBackOfficeApi =>
+      account_api.BackofficeApi(accountApiClient);
   AuthenticationApi get authenticationApi => AuthenticationApi(apiClient);
   DefaultApi get defaultApi => DefaultApi(apiClient);
   TasksApi get tasksApi => TasksApi(apiClient);

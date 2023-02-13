@@ -1463,7 +1463,6 @@ components:
           createdBy: dennis.mensah-torkornoo@affinitylabsafrica.com
           step: RESIDENTIAL_ADDRESS
           createdAt: "2022-08-22T01:17:21.439Z"
-      description: ""
       properties:
         id:
           type: string
@@ -1559,6 +1558,8 @@ components:
           type: string
         proofOfResidenceFileUrl:
           type: string
+        approvalStatus:
+          $ref: "#/components/schemas/ApprovalStatusEnum"
       required:
         - id
         - title
