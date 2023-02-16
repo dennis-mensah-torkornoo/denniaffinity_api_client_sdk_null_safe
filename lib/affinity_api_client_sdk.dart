@@ -78,11 +78,10 @@ class AgencyApiClientSdk {
   static final AgencyApiClientSdk instance = AgencyApiClientSdk._internal();
   late agency_api.ApiClient _agencyApiClient;
 
-  AgencyApiClientSdk.init({
-    required String baseUrl,
-    required List<InterceptorContract> interceptors,
-    required RetryPolicy retryPolicy,
-  }) {
+  AgencyApiClientSdk.init(
+      {required String baseUrl,
+      required List<InterceptorContract> interceptors,
+      RetryPolicy? retryPolicy}) {
     _agencyApiClient = agency_api.ApiClient(basePath: baseUrl)
       ..client = InterceptedClient.build(
         interceptors: interceptors,
