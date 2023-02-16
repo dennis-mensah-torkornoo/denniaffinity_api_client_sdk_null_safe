@@ -1,5 +1,11 @@
 library affinity_api_client_sdk;
 
+import 'package:http_interceptor/http/intercepted_client.dart';
+import 'package:http_interceptor/http/interceptor_contract.dart';
+import 'package:http_interceptor/models/retry_policy.dart';
+import 'package:affinity_api_client_sdk/agency_api//lib/api.dart' as agency_api
+    show ApiClient;
+
 import 'package:affinity_api_client_sdk/agency_api/lib/api.dart'
     show
         AgencyApi,
@@ -23,6 +29,7 @@ final buildUrls = {
   'production': 'https://api.affnty.co/agency',
 };
 
+@Deprecated("Please use `AgencyApiClientSdk`")
 class AgencyApiClient {
   late ApiClient apiClient;
   late utility_api.ApiClient utilityApiClient;
@@ -65,4 +72,25 @@ class AgencyApiClient {
       utility_api.BackofficeApi(utilityApiClient);
   utility_api.DefaultApi get backOfficeDefaultApi =>
       utility_api.DefaultApi(utilityApiClient);
+}
+
+class AgencyApiClientSdk {
+  static final AgencyApiClientSdk instance = AgencyApiClientSdk._internal();
+  late agency_api.ApiClient _agencyApiClient;
+
+  AgencyApiClientSdk.init({
+    required String baseUrl,
+    required List<InterceptorContract> interceptors,
+    required RetryPolicy retryPolicy,
+  }) {
+    _agencyApiClient = agency_api.ApiClient(basePath: baseUrl)
+      ..client = InterceptedClient.build(
+        interceptors: interceptors,
+        retryPolicy: retryPolicy,
+      );
+  }
+
+  AgencyApiClientSdk._internal();
+
+  AgencyApi get agencyApi => AgencyApi(_agencyApiClient);
 }
