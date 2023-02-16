@@ -3,7 +3,7 @@ library affinity_api_client_sdk;
 import 'package:http_interceptor/http/intercepted_client.dart';
 import 'package:http_interceptor/http/interceptor_contract.dart';
 import 'package:http_interceptor/models/retry_policy.dart';
-import 'package:affinity_api_client_sdk/agency_api//lib/api.dart' as agency_api
+import 'package:affinity_api_client_sdk/agency_api/lib/api.dart' as agency_api
     show ApiClient;
 
 import 'package:affinity_api_client_sdk/agency_api/lib/api.dart'
