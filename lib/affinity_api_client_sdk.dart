@@ -15,10 +15,14 @@ import 'package:affinity_api_client_sdk/agency_api/lib/api.dart'
         CustomersApi,
         ApiClient;
 
+import 'package:affinity_api_client_sdk/customer_service_api//lib/api.dart'
+    as customer_service show AgencyApi, FilesApi, MobileApi, ApiClient;
+
 import 'package:affinity_api_client_sdk/utility_api/lib/api.dart'
     as utility_api;
 import 'package:affinity_api_client_sdk/customer_service_api/lib/api.dart'
     as customer_service_api;
+
 import 'package:affinity_api_client_sdk/account_api/lib/api.dart'
     as account_api;
 import 'package:http_interceptor/http/http.dart';
@@ -77,6 +81,7 @@ class AgencyApiClient {
 class AgencyApiClientSdk {
   static final AgencyApiClientSdk instance = AgencyApiClientSdk._internal();
   late agency_api.ApiClient _agencyApiClient;
+  late customer_service.ApiClient _customerServiceApiClient;
 
   AgencyApiClientSdk.init(
       {required String baseUrl,
@@ -87,9 +92,18 @@ class AgencyApiClientSdk {
         interceptors: interceptors,
         retryPolicy: retryPolicy,
       );
+    _customerServiceApiClient = customer_service.ApiClient(basePath: baseUrl)
+      ..client = InterceptedClient.build(
+        interceptors: interceptors,
+        retryPolicy: retryPolicy,
+      );
   }
 
   AgencyApiClientSdk._internal();
 
   AgencyApi get agencyApi => AgencyApi(_agencyApiClient);
+  customer_service.AgencyApi get customerServiceAgencyApi =>
+      customer_service.AgencyApi(_customerServiceApiClient);
+  customer_service.MobileApi get customerServiceMobileApi =>
+      customer_service.MobileApi(_customerServiceApiClient);
 }
