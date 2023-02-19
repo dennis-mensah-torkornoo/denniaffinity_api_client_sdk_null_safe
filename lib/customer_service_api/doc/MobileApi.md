@@ -9,6 +9,11 @@ All URIs are relative to *https://staging-customer-service-api.affnty.co*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**agencyStoreEkycEmploymentDetails**](MobileApi.md#agencystoreekycemploymentdetails) | **PATCH** /customers-agency/{id}/ekyc-employment-details | AgencyStoreEkycEmploymentDetails
+[**agencyStoreEkycIdentityDetails**](MobileApi.md#agencystoreekycidentitydetails) | **PATCH** /customers-agency/{id}/ekyc-identity-details | AgencyStoreEkycIdentityDetails
+[**agencyStoreEkycKinDetails**](MobileApi.md#agencystoreekyckindetails) | **PATCH** /customers-agency/{id}/ekyc-kin-details | AgencyStoreEkycKinDetails
+[**agencyStoreEkycPersonalDetails**](MobileApi.md#agencystoreekycpersonaldetails) | **PATCH** /customers-agency/{id}/ekyc-personal-details | AgencyStoreEkycPersonalDetails
+[**finishAgencyEkycUpgrade**](MobileApi.md#finishagencyekycupgrade) | **POST** /customers-agency/{id}/ekyc-complete | AgencyEkycFinish
 [**finishMobileEkycUpgrade**](MobileApi.md#finishmobileekycupgrade) | **POST** /customers-mobile/{id}/ekyc-complete | MobileEkycFinish
 [**mobileCompleteOnboarding**](MobileApi.md#mobilecompleteonboarding) | **PATCH** /customers-mobile/{id}/save-customer | MobileMkycFinish
 [**mobileKlippaUpload**](MobileApi.md#mobileklippaupload) | **GET** /customers-mobile/klippa-upload/sessionId/{sessionId}/fileKey/{fileKey} | 
@@ -25,6 +30,249 @@ Method | HTTP request | Description
 [**mobileStoreResidencyPermitDetails**](MobileApi.md#mobilestoreresidencypermitdetails) | **PATCH** /customers-mobile/{id}/residency-permit-details | MobileStoreMkycResidencyPermitDetails
 [**mobileVerifyGpsAddress**](MobileApi.md#mobileverifygpsaddress) | **GET** /customers-mobile/verify-gps | Verify GPS address
 
+
+# **agencyStoreEkycEmploymentDetails**
+> MobileOnboardingResponse agencyStoreEkycEmploymentDetails(id, agencyStoreEkycEmploymentDetailsRequest)
+
+AgencyStoreEkycEmploymentDetails
+
+Store employment and income details for mobile EKYC upgrade
+
+### Example
+```dart
+import 'package:customer_service_api/api.dart';
+// TODO Configure API key authorization: xApiKey
+//defaultApiClient.getAuthentication<ApiKeyAuth>('xApiKey').apiKey = 'YOUR_API_KEY';
+// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//defaultApiClient.getAuthentication<ApiKeyAuth>('xApiKey').apiKeyPrefix = 'Bearer';
+
+final api_instance = MobileApi();
+final id = id_example; // String | 
+final agencyStoreEkycEmploymentDetailsRequest = AgencyStoreEkycEmploymentDetailsRequest(); // AgencyStoreEkycEmploymentDetailsRequest | 
+
+try {
+    final result = api_instance.agencyStoreEkycEmploymentDetails(id, agencyStoreEkycEmploymentDetailsRequest);
+    print(result);
+} catch (e) {
+    print('Exception when calling MobileApi->agencyStoreEkycEmploymentDetails: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | 
+ **agencyStoreEkycEmploymentDetailsRequest** | [**AgencyStoreEkycEmploymentDetailsRequest**](AgencyStoreEkycEmploymentDetailsRequest.md)|  | [optional] 
+
+### Return type
+
+[**MobileOnboardingResponse**](MobileOnboardingResponse.md)
+
+### Authorization
+
+[xApiKey](../README.md#xApiKey)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **agencyStoreEkycIdentityDetails**
+> MobileOnboardingResponse agencyStoreEkycIdentityDetails(id, agencyStoreEkycIdentityDetailsRequest)
+
+AgencyStoreEkycIdentityDetails
+
+Store proof details for agency EKYC upgrade
+
+### Example
+```dart
+import 'package:customer_service_api/api.dart';
+// TODO Configure API key authorization: xApiKey
+//defaultApiClient.getAuthentication<ApiKeyAuth>('xApiKey').apiKey = 'YOUR_API_KEY';
+// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//defaultApiClient.getAuthentication<ApiKeyAuth>('xApiKey').apiKeyPrefix = 'Bearer';
+
+final api_instance = MobileApi();
+final id = id_example; // String | 
+final agencyStoreEkycIdentityDetailsRequest = AgencyStoreEkycIdentityDetailsRequest(); // AgencyStoreEkycIdentityDetailsRequest | 
+
+try {
+    final result = api_instance.agencyStoreEkycIdentityDetails(id, agencyStoreEkycIdentityDetailsRequest);
+    print(result);
+} catch (e) {
+    print('Exception when calling MobileApi->agencyStoreEkycIdentityDetails: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | 
+ **agencyStoreEkycIdentityDetailsRequest** | [**AgencyStoreEkycIdentityDetailsRequest**](AgencyStoreEkycIdentityDetailsRequest.md)|  | [optional] 
+
+### Return type
+
+[**MobileOnboardingResponse**](MobileOnboardingResponse.md)
+
+### Authorization
+
+[xApiKey](../README.md#xApiKey)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **agencyStoreEkycKinDetails**
+> MobileOnboardingResponse agencyStoreEkycKinDetails(id, agencyStoreEkycKinDetailsRequest)
+
+AgencyStoreEkycKinDetails
+
+Store next of kin details for agency EKYC upgrade
+
+### Example
+```dart
+import 'package:customer_service_api/api.dart';
+// TODO Configure API key authorization: xApiKey
+//defaultApiClient.getAuthentication<ApiKeyAuth>('xApiKey').apiKey = 'YOUR_API_KEY';
+// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//defaultApiClient.getAuthentication<ApiKeyAuth>('xApiKey').apiKeyPrefix = 'Bearer';
+
+final api_instance = MobileApi();
+final id = id_example; // String | 
+final agencyStoreEkycKinDetailsRequest = AgencyStoreEkycKinDetailsRequest(); // AgencyStoreEkycKinDetailsRequest | 
+
+try {
+    final result = api_instance.agencyStoreEkycKinDetails(id, agencyStoreEkycKinDetailsRequest);
+    print(result);
+} catch (e) {
+    print('Exception when calling MobileApi->agencyStoreEkycKinDetails: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | 
+ **agencyStoreEkycKinDetailsRequest** | [**AgencyStoreEkycKinDetailsRequest**](AgencyStoreEkycKinDetailsRequest.md)|  | [optional] 
+
+### Return type
+
+[**MobileOnboardingResponse**](MobileOnboardingResponse.md)
+
+### Authorization
+
+[xApiKey](../README.md#xApiKey)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **agencyStoreEkycPersonalDetails**
+> MobileOnboardingResponse agencyStoreEkycPersonalDetails(id, agencyStoreEkycPersonalDetailsRequest)
+
+AgencyStoreEkycPersonalDetails
+
+Store personal details for agency EKYC upgrade
+
+### Example
+```dart
+import 'package:customer_service_api/api.dart';
+// TODO Configure API key authorization: xApiKey
+//defaultApiClient.getAuthentication<ApiKeyAuth>('xApiKey').apiKey = 'YOUR_API_KEY';
+// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//defaultApiClient.getAuthentication<ApiKeyAuth>('xApiKey').apiKeyPrefix = 'Bearer';
+
+final api_instance = MobileApi();
+final id = id_example; // String | 
+final agencyStoreEkycPersonalDetailsRequest = AgencyStoreEkycPersonalDetailsRequest(); // AgencyStoreEkycPersonalDetailsRequest | 
+
+try {
+    final result = api_instance.agencyStoreEkycPersonalDetails(id, agencyStoreEkycPersonalDetailsRequest);
+    print(result);
+} catch (e) {
+    print('Exception when calling MobileApi->agencyStoreEkycPersonalDetails: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | 
+ **agencyStoreEkycPersonalDetailsRequest** | [**AgencyStoreEkycPersonalDetailsRequest**](AgencyStoreEkycPersonalDetailsRequest.md)|  | [optional] 
+
+### Return type
+
+[**MobileOnboardingResponse**](MobileOnboardingResponse.md)
+
+### Authorization
+
+[xApiKey](../README.md#xApiKey)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **finishAgencyEkycUpgrade**
+> MobileOnboardingResponse finishAgencyEkycUpgrade(id)
+
+AgencyEkycFinish
+
+
+
+### Example
+```dart
+import 'package:customer_service_api/api.dart';
+// TODO Configure API key authorization: xApiKey
+//defaultApiClient.getAuthentication<ApiKeyAuth>('xApiKey').apiKey = 'YOUR_API_KEY';
+// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//defaultApiClient.getAuthentication<ApiKeyAuth>('xApiKey').apiKeyPrefix = 'Bearer';
+
+final api_instance = MobileApi();
+final id = id_example; // String | 
+
+try {
+    final result = api_instance.finishAgencyEkycUpgrade(id);
+    print(result);
+} catch (e) {
+    print('Exception when calling MobileApi->finishAgencyEkycUpgrade: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | 
+
+### Return type
+
+[**MobileOnboardingResponse**](MobileOnboardingResponse.md)
+
+### Authorization
+
+[xApiKey](../README.md#xApiKey)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **finishMobileEkycUpgrade**
 > MobileOnboardingResponse finishMobileEkycUpgrade(id)

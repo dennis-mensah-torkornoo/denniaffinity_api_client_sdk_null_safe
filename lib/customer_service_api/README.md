@@ -71,6 +71,11 @@ Class | Method | HTTP request | Description
 *AgencyApi* | [**agencyStoreCustomerResidentialAddress**](doc//AgencyApi.md#agencystorecustomerresidentialaddress) | **PATCH** /customers-agency/{id}/residential-address | 
 *FilesApi* | [**generateFileUrl**](doc//FilesApi.md#generatefileurl) | **POST** /files/generate-file-url | 
 *FilesApi* | [**uploadCustomerFile**](doc//FilesApi.md#uploadcustomerfile) | **POST** /files | 
+*MobileApi* | [**agencyStoreEkycEmploymentDetails**](doc//MobileApi.md#agencystoreekycemploymentdetails) | **PATCH** /customers-agency/{id}/ekyc-employment-details | AgencyStoreEkycEmploymentDetails
+*MobileApi* | [**agencyStoreEkycIdentityDetails**](doc//MobileApi.md#agencystoreekycidentitydetails) | **PATCH** /customers-agency/{id}/ekyc-identity-details | AgencyStoreEkycIdentityDetails
+*MobileApi* | [**agencyStoreEkycKinDetails**](doc//MobileApi.md#agencystoreekyckindetails) | **PATCH** /customers-agency/{id}/ekyc-kin-details | AgencyStoreEkycKinDetails
+*MobileApi* | [**agencyStoreEkycPersonalDetails**](doc//MobileApi.md#agencystoreekycpersonaldetails) | **PATCH** /customers-agency/{id}/ekyc-personal-details | AgencyStoreEkycPersonalDetails
+*MobileApi* | [**finishAgencyEkycUpgrade**](doc//MobileApi.md#finishagencyekycupgrade) | **POST** /customers-agency/{id}/ekyc-complete | AgencyEkycFinish
 *MobileApi* | [**finishMobileEkycUpgrade**](doc//MobileApi.md#finishmobileekycupgrade) | **POST** /customers-mobile/{id}/ekyc-complete | MobileEkycFinish
 *MobileApi* | [**mobileCompleteOnboarding**](doc//MobileApi.md#mobilecompleteonboarding) | **PATCH** /customers-mobile/{id}/save-customer | MobileMkycFinish
 *MobileApi* | [**mobileKlippaUpload**](doc//MobileApi.md#mobileklippaupload) | **GET** /customers-mobile/klippa-upload/sessionId/{sessionId}/fileKey/{fileKey} | 
@@ -102,6 +107,10 @@ Class | Method | HTTP request | Description
 ## Documentation For Models
 
  - [AgencyResidencyPermitRequest](doc//AgencyResidencyPermitRequest.md)
+ - [AgencyStoreEkycEmploymentDetailsRequest](doc//AgencyStoreEkycEmploymentDetailsRequest.md)
+ - [AgencyStoreEkycIdentityDetailsRequest](doc//AgencyStoreEkycIdentityDetailsRequest.md)
+ - [AgencyStoreEkycKinDetailsRequest](doc//AgencyStoreEkycKinDetailsRequest.md)
+ - [AgencyStoreEkycPersonalDetailsRequest](doc//AgencyStoreEkycPersonalDetailsRequest.md)
  - [AgencyStoreIdentificationDetailsRequest](doc//AgencyStoreIdentificationDetailsRequest.md)
  - [AgencyStorePersonalDetailsRequest](doc//AgencyStorePersonalDetailsRequest.md)
  - [AgencyStorePersonalDetailsRequestChannelEnum](doc//AgencyStorePersonalDetailsRequestChannelEnum.md)

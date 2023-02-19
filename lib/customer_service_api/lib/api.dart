@@ -33,6 +33,10 @@ part 'api/mobile_api.dart';
 part 'api/portal_api.dart';
 
 part 'model/agency_residency_permit_request.dart';
+part 'model/agency_store_ekyc_employment_details_request.dart';
+part 'model/agency_store_ekyc_identity_details_request.dart';
+part 'model/agency_store_ekyc_kin_details_request.dart';
+part 'model/agency_store_ekyc_personal_details_request.dart';
 part 'model/agency_store_identification_details_request.dart';
 part 'model/agency_store_personal_details_request.dart';
 part 'model/agency_store_personal_details_request_channel_enum.dart';

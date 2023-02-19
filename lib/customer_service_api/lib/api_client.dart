@@ -192,6 +192,14 @@ class ApiClient {
           return valueString == 'true' || valueString == '1';
         case 'AgencyResidencyPermitRequest':
           return AgencyResidencyPermitRequest.fromJson(value);
+        case 'AgencyStoreEkycEmploymentDetailsRequest':
+          return AgencyStoreEkycEmploymentDetailsRequest.fromJson(value);
+        case 'AgencyStoreEkycIdentityDetailsRequest':
+          return AgencyStoreEkycIdentityDetailsRequest.fromJson(value);
+        case 'AgencyStoreEkycKinDetailsRequest':
+          return AgencyStoreEkycKinDetailsRequest.fromJson(value);
+        case 'AgencyStoreEkycPersonalDetailsRequest':
+          return AgencyStoreEkycPersonalDetailsRequest.fromJson(value);
         case 'AgencyStoreIdentificationDetailsRequest':
           return AgencyStoreIdentificationDetailsRequest.fromJson(value);
         case 'AgencyStorePersonalDetailsRequest':

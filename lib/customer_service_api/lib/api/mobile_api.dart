@@ -16,6 +16,309 @@ class MobileApi {
 
   final ApiClient apiClient;
 
+  /// AgencyStoreEkycEmploymentDetails
+  ///
+  /// Store employment and income details for mobile EKYC upgrade
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  ///
+  /// * [AgencyStoreEkycEmploymentDetailsRequest] agencyStoreEkycEmploymentDetailsRequest:
+  ///   
+  Future<Response> agencyStoreEkycEmploymentDetailsWithHttpInfo(String id, { AgencyStoreEkycEmploymentDetailsRequest? agencyStoreEkycEmploymentDetailsRequest, }) async {
+    // ignore: prefer_const_declarations
+    final path = r'/customers-agency/{id}/ekyc-employment-details'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object? postBody = agencyStoreEkycEmploymentDetailsRequest;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const contentTypes = <String>['application/json'];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'PATCH',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes.first,
+    );
+  }
+
+  /// AgencyStoreEkycEmploymentDetails
+  ///
+  /// Store employment and income details for mobile EKYC upgrade
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  ///
+  /// * [AgencyStoreEkycEmploymentDetailsRequest] agencyStoreEkycEmploymentDetailsRequest:
+  ///   
+  Future<MobileOnboardingResponse?> agencyStoreEkycEmploymentDetails(String id, { AgencyStoreEkycEmploymentDetailsRequest? agencyStoreEkycEmploymentDetailsRequest, }) async {
+    final response = await agencyStoreEkycEmploymentDetailsWithHttpInfo(id,  agencyStoreEkycEmploymentDetailsRequest: agencyStoreEkycEmploymentDetailsRequest, );
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'MobileOnboardingResponse',) as MobileOnboardingResponse;
+    
+    }
+    return null;
+  }
+
+  /// AgencyStoreEkycIdentityDetails
+  ///
+  /// Store proof details for agency EKYC upgrade
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  ///
+  /// * [AgencyStoreEkycIdentityDetailsRequest] agencyStoreEkycIdentityDetailsRequest:
+  Future<Response> agencyStoreEkycIdentityDetailsWithHttpInfo(String id, { AgencyStoreEkycIdentityDetailsRequest? agencyStoreEkycIdentityDetailsRequest, }) async {
+    // ignore: prefer_const_declarations
+    final path = r'/customers-agency/{id}/ekyc-identity-details'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object? postBody = agencyStoreEkycIdentityDetailsRequest;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const contentTypes = <String>['application/json'];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'PATCH',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes.first,
+    );
+  }
+
+  /// AgencyStoreEkycIdentityDetails
+  ///
+  /// Store proof details for agency EKYC upgrade
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  ///
+  /// * [AgencyStoreEkycIdentityDetailsRequest] agencyStoreEkycIdentityDetailsRequest:
+  Future<MobileOnboardingResponse?> agencyStoreEkycIdentityDetails(String id, { AgencyStoreEkycIdentityDetailsRequest? agencyStoreEkycIdentityDetailsRequest, }) async {
+    final response = await agencyStoreEkycIdentityDetailsWithHttpInfo(id,  agencyStoreEkycIdentityDetailsRequest: agencyStoreEkycIdentityDetailsRequest, );
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'MobileOnboardingResponse',) as MobileOnboardingResponse;
+    
+    }
+    return null;
+  }
+
+  /// AgencyStoreEkycKinDetails
+  ///
+  /// Store next of kin details for agency EKYC upgrade
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  ///
+  /// * [AgencyStoreEkycKinDetailsRequest] agencyStoreEkycKinDetailsRequest:
+  Future<Response> agencyStoreEkycKinDetailsWithHttpInfo(String id, { AgencyStoreEkycKinDetailsRequest? agencyStoreEkycKinDetailsRequest, }) async {
+    // ignore: prefer_const_declarations
+    final path = r'/customers-agency/{id}/ekyc-kin-details'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object? postBody = agencyStoreEkycKinDetailsRequest;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const contentTypes = <String>['application/json'];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'PATCH',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes.first,
+    );
+  }
+
+  /// AgencyStoreEkycKinDetails
+  ///
+  /// Store next of kin details for agency EKYC upgrade
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  ///
+  /// * [AgencyStoreEkycKinDetailsRequest] agencyStoreEkycKinDetailsRequest:
+  Future<MobileOnboardingResponse?> agencyStoreEkycKinDetails(String id, { AgencyStoreEkycKinDetailsRequest? agencyStoreEkycKinDetailsRequest, }) async {
+    final response = await agencyStoreEkycKinDetailsWithHttpInfo(id,  agencyStoreEkycKinDetailsRequest: agencyStoreEkycKinDetailsRequest, );
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'MobileOnboardingResponse',) as MobileOnboardingResponse;
+    
+    }
+    return null;
+  }
+
+  /// AgencyStoreEkycPersonalDetails
+  ///
+  /// Store personal details for agency EKYC upgrade
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  ///
+  /// * [AgencyStoreEkycPersonalDetailsRequest] agencyStoreEkycPersonalDetailsRequest:
+  Future<Response> agencyStoreEkycPersonalDetailsWithHttpInfo(String id, { AgencyStoreEkycPersonalDetailsRequest? agencyStoreEkycPersonalDetailsRequest, }) async {
+    // ignore: prefer_const_declarations
+    final path = r'/customers-agency/{id}/ekyc-personal-details'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object? postBody = agencyStoreEkycPersonalDetailsRequest;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const contentTypes = <String>['application/json'];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'PATCH',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes.first,
+    );
+  }
+
+  /// AgencyStoreEkycPersonalDetails
+  ///
+  /// Store personal details for agency EKYC upgrade
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  ///
+  /// * [AgencyStoreEkycPersonalDetailsRequest] agencyStoreEkycPersonalDetailsRequest:
+  Future<MobileOnboardingResponse?> agencyStoreEkycPersonalDetails(String id, { AgencyStoreEkycPersonalDetailsRequest? agencyStoreEkycPersonalDetailsRequest, }) async {
+    final response = await agencyStoreEkycPersonalDetailsWithHttpInfo(id,  agencyStoreEkycPersonalDetailsRequest: agencyStoreEkycPersonalDetailsRequest, );
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'MobileOnboardingResponse',) as MobileOnboardingResponse;
+    
+    }
+    return null;
+  }
+
+  /// AgencyEkycFinish
+  ///
+  /// 
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> finishAgencyEkycUpgradeWithHttpInfo(String id,) async {
+    // ignore: prefer_const_declarations
+    final path = r'/customers-agency/{id}/ekyc-complete'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object? postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes.first,
+    );
+  }
+
+  /// AgencyEkycFinish
+  ///
+  /// 
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<MobileOnboardingResponse?> finishAgencyEkycUpgrade(String id,) async {
+    final response = await finishAgencyEkycUpgradeWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'MobileOnboardingResponse',) as MobileOnboardingResponse;
+    
+    }
+    return null;
+  }
+
   /// MobileEkycFinish
   ///
   /// 

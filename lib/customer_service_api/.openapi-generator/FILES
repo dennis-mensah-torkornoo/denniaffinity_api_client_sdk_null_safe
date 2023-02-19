@@ -5,6 +5,10 @@ README.md
 analysis_options.yaml
 doc/AgencyApi.md
 doc/AgencyResidencyPermitRequest.md
+doc/AgencyStoreEkycEmploymentDetailsRequest.md
+doc/AgencyStoreEkycIdentityDetailsRequest.md
+doc/AgencyStoreEkycKinDetailsRequest.md
+doc/AgencyStoreEkycPersonalDetailsRequest.md
 doc/AgencyStoreIdentificationDetailsRequest.md
 doc/AgencyStorePersonalDetailsRequest.md
 doc/AgencyStorePersonalDetailsRequestChannelEnum.md
@@ -81,6 +85,10 @@ lib/auth/http_basic_auth.dart
 lib/auth/http_bearer_auth.dart
 lib/auth/oauth.dart
 lib/model/agency_residency_permit_request.dart
+lib/model/agency_store_ekyc_employment_details_request.dart
+lib/model/agency_store_ekyc_identity_details_request.dart
+lib/model/agency_store_ekyc_kin_details_request.dart
+lib/model/agency_store_ekyc_personal_details_request.dart
 lib/model/agency_store_identification_details_request.dart
 lib/model/agency_store_personal_details_request.dart
 lib/model/agency_store_personal_details_request_channel_enum.dart
@@ -142,6 +150,10 @@ lib/model/upload_file_type_enum.dart
 pubspec.yaml
 test/agency_api_test.dart
 test/agency_residency_permit_request_test.dart
+test/agency_store_ekyc_employment_details_request_test.dart
+test/agency_store_ekyc_identity_details_request_test.dart
+test/agency_store_ekyc_kin_details_request_test.dart
+test/agency_store_ekyc_personal_details_request_test.dart
 test/agency_store_identification_details_request_test.dart
 test/agency_store_personal_details_request_channel_enum_test.dart
 test/agency_store_personal_details_request_test.dart

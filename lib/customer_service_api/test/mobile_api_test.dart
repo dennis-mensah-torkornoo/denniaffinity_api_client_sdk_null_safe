@@ -17,6 +17,51 @@ void main() {
   // final instance = MobileApi();
 
   group('tests for MobileApi', () {
+    // AgencyStoreEkycEmploymentDetails
+    //
+    // Store employment and income details for mobile EKYC upgrade
+    //
+    //Future<MobileOnboardingResponse> agencyStoreEkycEmploymentDetails(String id, { AgencyStoreEkycEmploymentDetailsRequest agencyStoreEkycEmploymentDetailsRequest }) async
+    test('test agencyStoreEkycEmploymentDetails', () async {
+      // TODO
+    });
+
+    // AgencyStoreEkycIdentityDetails
+    //
+    // Store proof details for agency EKYC upgrade
+    //
+    //Future<MobileOnboardingResponse> agencyStoreEkycIdentityDetails(String id, { AgencyStoreEkycIdentityDetailsRequest agencyStoreEkycIdentityDetailsRequest }) async
+    test('test agencyStoreEkycIdentityDetails', () async {
+      // TODO
+    });
+
+    // AgencyStoreEkycKinDetails
+    //
+    // Store next of kin details for agency EKYC upgrade
+    //
+    //Future<MobileOnboardingResponse> agencyStoreEkycKinDetails(String id, { AgencyStoreEkycKinDetailsRequest agencyStoreEkycKinDetailsRequest }) async
+    test('test agencyStoreEkycKinDetails', () async {
+      // TODO
+    });
+
+    // AgencyStoreEkycPersonalDetails
+    //
+    // Store personal details for agency EKYC upgrade
+    //
+    //Future<MobileOnboardingResponse> agencyStoreEkycPersonalDetails(String id, { AgencyStoreEkycPersonalDetailsRequest agencyStoreEkycPersonalDetailsRequest }) async
+    test('test agencyStoreEkycPersonalDetails', () async {
+      // TODO
+    });
+
+    // AgencyEkycFinish
+    //
+    // 
+    //
+    //Future<MobileOnboardingResponse> finishAgencyEkycUpgrade(String id) async
+    test('test finishAgencyEkycUpgrade', () async {
+      // TODO
+    });
+
     // MobileEkycFinish
     //
     // 

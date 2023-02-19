@@ -345,6 +345,34 @@ paths:
               $ref: "#/components/schemas/MobileStoreEkycPersonalDetailsRequest"
       tags:
         - Mobile
+  "/customers-agency/{id}/ekyc-personal-details":
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    patch:
+      summary: AgencyStoreEkycPersonalDetails
+      operationId: agencyStoreEkycPersonalDetails
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MobileOnboardingResponse"
+              examples: {}
+      description: Store personal details for agency EKYC upgrade
+      security:
+        - xApiKey: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AgencyStoreEkycPersonalDetailsRequest"
+      tags:
+        - Mobile
   "/customers-mobile/{id}/ekyc-employment-details":
     parameters:
       - schema:
@@ -371,6 +399,35 @@ paths:
           application/json:
             schema:
               $ref: "#/components/schemas/MobileStoreEkycEmploymentDetailsRequest"
+        description: ""
+      tags:
+        - Mobile
+  "/customers-agency/{id}/ekyc-employment-details":
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    patch:
+      summary: AgencyStoreEkycEmploymentDetails
+      operationId: agencyStoreEkycEmploymentDetails
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MobileOnboardingResponse"
+              examples: {}
+      description: Store employment and income details for mobile EKYC upgrade
+      security:
+        - xApiKey: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AgencyStoreEkycEmploymentDetailsRequest"
         description: ""
       tags:
         - Mobile
@@ -402,6 +459,34 @@ paths:
               $ref: "#/components/schemas/MobileStoreEkycKinDetailsRequest"
       tags:
         - Mobile
+  "/customers-agency/{id}/ekyc-kin-details":
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    patch:
+      summary: AgencyStoreEkycKinDetails
+      operationId: agencyStoreEkycKinDetails
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MobileOnboardingResponse"
+              examples: {}
+      description: Store next of kin details for agency EKYC upgrade
+      security:
+        - xApiKey: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AgencyStoreEkycKinDetailsRequest"
+      tags:
+        - Mobile
   "/customers-mobile/{id}/ekyc-identity-details":
     parameters:
       - schema:
@@ -428,6 +513,34 @@ paths:
           application/json:
             schema:
               $ref: "#/components/schemas/MobileStoreEkycIdentityDetailsRequest"
+      tags:
+        - Mobile
+  "/customers-agency/{id}/ekyc-identity-details":
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    patch:
+      summary: AgencyStoreEkycIdentityDetails
+      operationId: agencyStoreEkycIdentityDetails
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MobileOnboardingResponse"
+              examples: {}
+      description: Store proof details for agency EKYC upgrade
+      security:
+        - xApiKey: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AgencyStoreEkycIdentityDetailsRequest"
       tags:
         - Mobile
   "/customers-mobile/{id}/ekyc-signature-details":
@@ -468,6 +581,29 @@ paths:
     post:
       summary: MobileEkycFinish
       operationId: finishMobileEkycUpgrade
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MobileOnboardingResponse"
+              examples: {}
+      security:
+        - xApiKey: []
+      tags:
+        - Mobile
+      description: ""
+  "/customers-agency/{id}/ekyc-complete":
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    post:
+      summary: AgencyEkycFinish
+      operationId: finishAgencyEkycUpgrade
       responses:
         "200":
           description: OK
@@ -1642,6 +1778,24 @@ components:
         - maritalStatus
         - placeOfBirth
         - physicallyChallenged
+    AgencyStoreEkycPersonalDetailsRequest:
+      type: object
+      x-examples: {}
+      description: " Personal data for Agency EKYC"
+      x-stoplight:
+        id: 576539acdfe8e
+      properties:
+        maritalStatus:
+          $ref: "#/components/schemas/MaritalStatusEnum"
+        physicallyChallenged:
+          $ref: "#/components/schemas/EKYCDisabilityChoiceEnum"
+        disabilityType:
+          type: array
+          items:
+            $ref: "#/components/schemas/DisabilityTypeEnum"
+      required:
+        - maritalStatus
+        - physicallyChallenged
     MobileStoreEkycKinDetailsRequest:
       type: object
       x-examples:
@@ -1656,6 +1810,22 @@ components:
           type: string
         relationship:
           $ref: "#/components/schemas/KinRelationshipEnum"
+    AgencyStoreEkycKinDetailsRequest:
+      type: object
+      x-examples:
+        example-1:
+          name: Yesu Mo
+          phoneNumber: "+233546579046"
+          relationship: SIBLING
+      properties:
+        name:
+          type: string
+        phoneNumber:
+          type: string
+        relationship:
+          $ref: "#/components/schemas/KinRelationshipEnum"
+      x-stoplight:
+        id: 2fbb055cc0387
     MobileStoreEkycIdentityDetailsRequest:
       type: object
       x-examples: {}
@@ -1675,6 +1845,16 @@ components:
           type: string
       required:
         - signatureFileKey
+    AgencyStoreEkycIdentityDetailsRequest:
+      type: object
+      x-examples: {}
+      properties:
+        signatureFileKey:
+          type: string
+      required:
+        - signatureFileKey
+      x-stoplight:
+        id: 3cf4addf44f10
     MobileStoreEkycEmploymentDetailsRequest:
       type: object
       x-examples:
@@ -1726,6 +1906,59 @@ components:
       required:
         - status
         - numberOfTransactionsPerMonth
+    AgencyStoreEkycEmploymentDetailsRequest:
+      type: object
+      x-examples:
+        example-1:
+          status: EMPLOYED
+          sector: AGRICULTURE_FORESTRY_AND_FISHING
+          occupation: MILITARY
+          sourceOfFunds: SALES_PROCEEDS
+          otherSourceOfFunds: string
+          institutionName: string
+          incomeRange: LESS_THAN_1000
+          employerName: string
+          employerAddressHouseNumber: string
+          employerAddressStreetName: string
+          employerAddressArea: string
+          employerAddressDescription: string
+          employerGhanaPostAddress: string
+          numberOfTransactionsPerMonth: MAX4
+      description: Employment data for EKYC upgrade
+      properties:
+        status:
+          $ref: "#/components/schemas/EmploymentStatusEnum"
+        sector:
+          $ref: "#/components/schemas/EmploymentSectorEnum"
+        occupation:
+          type: string
+        sourceOfFunds:
+          $ref: "#/components/schemas/SourceOfFundsEnum"
+        otherSourceOfFunds:
+          type: string
+        institutionName:
+          type: string
+        incomeRange:
+          $ref: "#/components/schemas/IncomeRangeEnum"
+        employerName:
+          type: string
+        employerAddressHouseNumber:
+          type: string
+        employerAddressStreetName:
+          type: string
+        employerAddressArea:
+          type: string
+        employerAddressDescription:
+          type: string
+        employerGhanaPostAddress:
+          type: string
+        numberOfTransactionsPerMonth:
+          $ref: "#/components/schemas/NumberOfTransactionsEnum"
+      required:
+        - status
+        - numberOfTransactionsPerMonth
+      x-stoplight:
+        id: d289440fe554f
     AgencyStoreIdentificationDetailsRequest:
       x-stoplight:
         id: xbhqiojxso0zj
@@ -2988,6 +3221,9 @@ components:
         required:
           - key
           - name
+#    MobileStoreEkycIdentityDetailsRequest - copy:
+#      type: string
+#      nullable: true
   requestBodies: {}
   securitySchemes:
     xApiKey:
