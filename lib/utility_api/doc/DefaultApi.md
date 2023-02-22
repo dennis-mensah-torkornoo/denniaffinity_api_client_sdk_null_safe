@@ -1419,7 +1419,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **backofficeVerifyIdenity**
-> VerifyIdentityResponse backofficeVerifyIdenity(pinNumber, image)
+> VerifyIdentityResponse backofficeVerifyIdenity(ghanaCardNumber, image, fileKey)
 
 
 
@@ -1430,11 +1430,12 @@ Verify identity via Ghana Card
 import 'package:utility_api/api.dart';
 
 final api_instance = DefaultApi();
-final pinNumber = pinNumber_example; // String | 
+final ghanaCardNumber = ghanaCardNumber_example; // String | 
 final image = BINARY_DATA_HERE; // MultipartFile | 
+final fileKey = fileKey_example; // String | 
 
 try {
-    final result = api_instance.backofficeVerifyIdenity(pinNumber, image);
+    final result = api_instance.backofficeVerifyIdenity(ghanaCardNumber, image, fileKey);
     print(result);
 } catch (e) {
     print('Exception when calling DefaultApi->backofficeVerifyIdenity: $e\n');
@@ -1445,8 +1446,9 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **pinNumber** | **String**|  | 
- **image** | **MultipartFile**|  | 
+ **ghanaCardNumber** | **String**|  | 
+ **image** | **MultipartFile**|  | [optional] 
+ **fileKey** | **String**|  | [optional] 
 
 ### Return type
 
@@ -1855,7 +1857,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **clientVerifyIdenity**
-> VerifyIdentityResponse clientVerifyIdenity(pinNumber, image)
+> VerifyIdentityResponse clientVerifyIdenity(ghanaCardNumber, image, fileKey)
 
 
 
@@ -1866,11 +1868,12 @@ Verify identity via Ghana Card
 import 'package:utility_api/api.dart';
 
 final api_instance = DefaultApi();
-final pinNumber = pinNumber_example; // String | 
+final ghanaCardNumber = ghanaCardNumber_example; // String | 
 final image = BINARY_DATA_HERE; // MultipartFile | 
+final fileKey = fileKey_example; // String | 
 
 try {
-    final result = api_instance.clientVerifyIdenity(pinNumber, image);
+    final result = api_instance.clientVerifyIdenity(ghanaCardNumber, image, fileKey);
     print(result);
 } catch (e) {
     print('Exception when calling DefaultApi->clientVerifyIdenity: $e\n');
@@ -1881,8 +1884,9 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **pinNumber** | **String**|  | 
- **image** | **MultipartFile**|  | 
+ **ghanaCardNumber** | **String**|  | 
+ **image** | **MultipartFile**|  | [optional] 
+ **fileKey** | **String**|  | [optional] 
 
 ### Return type
 

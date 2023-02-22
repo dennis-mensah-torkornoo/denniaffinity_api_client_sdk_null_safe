@@ -6,6 +6,6 @@ import 'package:openapi_generator_annotations/openapi_generator_annotations.dart
   generatorName: Generator.dart,
   outputDirectory: 'lib/utility_api',
   fetchDependencies: true,
-  alwaysRun: false,
+  alwaysRun: true,
 )
 class UtilityApiConfig extends OpenapiGeneratorConfig {}

@@ -2429,14 +2429,15 @@ components:
         id: jdl070c9xr0se
       type: object
       properties:
-        pinNumber:
+        ghanaCardNumber:
           type: string
         image:
           type: string
           format: binary
+        fileKey:
+          type: string
       required:
-        - pinNumber
-        - image
+        - ghanaCardNumber
     VerifyIdentityResponse:
       type: object
       x-examples:

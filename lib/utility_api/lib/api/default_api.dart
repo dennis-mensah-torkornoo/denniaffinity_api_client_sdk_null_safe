@@ -1586,10 +1586,12 @@ class DefaultApi {
   ///
   /// Parameters:
   ///
-  /// * [String] pinNumber (required):
+  /// * [String] ghanaCardNumber (required):
   ///
-  /// * [MultipartFile] image (required):
-  Future<Response> backofficeVerifyIdenityWithHttpInfo(String pinNumber, MultipartFile image,) async {
+  /// * [MultipartFile] image:
+  ///
+  /// * [String] fileKey:
+  Future<Response> backofficeVerifyIdenityWithHttpInfo(String ghanaCardNumber, { MultipartFile? image, String? fileKey, }) async {
     // ignore: prefer_const_declarations
     final path = r'/backoffice/identity/verification';
 
@@ -1604,14 +1606,18 @@ class DefaultApi {
 
     bool hasFields = false;
     final mp = MultipartRequest('POST', Uri.parse(path));
-    if (pinNumber != null) {
+    if (ghanaCardNumber != null) {
       hasFields = true;
-      mp.fields[r'pinNumber'] = parameterToString(pinNumber);
+      mp.fields[r'ghanaCardNumber'] = parameterToString(ghanaCardNumber);
     }
     if (image != null) {
       hasFields = true;
       mp.fields[r'image'] = image.field;
       mp.files.add(image);
+    }
+    if (fileKey != null) {
+      hasFields = true;
+      mp.fields[r'fileKey'] = parameterToString(fileKey);
     }
     if (hasFields) {
       postBody = mp;
@@ -1634,11 +1640,13 @@ class DefaultApi {
   ///
   /// Parameters:
   ///
-  /// * [String] pinNumber (required):
+  /// * [String] ghanaCardNumber (required):
   ///
-  /// * [MultipartFile] image (required):
-  Future<VerifyIdentityResponse?> backofficeVerifyIdenity(String pinNumber, MultipartFile image,) async {
-    final response = await backofficeVerifyIdenityWithHttpInfo(pinNumber, image,);
+  /// * [MultipartFile] image:
+  ///
+  /// * [String] fileKey:
+  Future<VerifyIdentityResponse?> backofficeVerifyIdenity(String ghanaCardNumber, { MultipartFile? image, String? fileKey, }) async {
+    final response = await backofficeVerifyIdenityWithHttpInfo(ghanaCardNumber,  image: image, fileKey: fileKey, );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -2077,10 +2085,12 @@ class DefaultApi {
   ///
   /// Parameters:
   ///
-  /// * [String] pinNumber (required):
+  /// * [String] ghanaCardNumber (required):
   ///
-  /// * [MultipartFile] image (required):
-  Future<Response> clientVerifyIdenityWithHttpInfo(String pinNumber, MultipartFile image,) async {
+  /// * [MultipartFile] image:
+  ///
+  /// * [String] fileKey:
+  Future<Response> clientVerifyIdenityWithHttpInfo(String ghanaCardNumber, { MultipartFile? image, String? fileKey, }) async {
     // ignore: prefer_const_declarations
     final path = r'/client/identity/verification';
 
@@ -2095,14 +2105,18 @@ class DefaultApi {
 
     bool hasFields = false;
     final mp = MultipartRequest('POST', Uri.parse(path));
-    if (pinNumber != null) {
+    if (ghanaCardNumber != null) {
       hasFields = true;
-      mp.fields[r'pinNumber'] = parameterToString(pinNumber);
+      mp.fields[r'ghanaCardNumber'] = parameterToString(ghanaCardNumber);
     }
     if (image != null) {
       hasFields = true;
       mp.fields[r'image'] = image.field;
       mp.files.add(image);
+    }
+    if (fileKey != null) {
+      hasFields = true;
+      mp.fields[r'fileKey'] = parameterToString(fileKey);
     }
     if (hasFields) {
       postBody = mp;
@@ -2125,11 +2139,13 @@ class DefaultApi {
   ///
   /// Parameters:
   ///
-  /// * [String] pinNumber (required):
+  /// * [String] ghanaCardNumber (required):
   ///
-  /// * [MultipartFile] image (required):
-  Future<VerifyIdentityResponse?> clientVerifyIdenity(String pinNumber, MultipartFile image,) async {
-    final response = await clientVerifyIdenityWithHttpInfo(pinNumber, image,);
+  /// * [MultipartFile] image:
+  ///
+  /// * [String] fileKey:
+  Future<VerifyIdentityResponse?> clientVerifyIdenity(String ghanaCardNumber, { MultipartFile? image, String? fileKey, }) async {
+    final response = await clientVerifyIdenityWithHttpInfo(ghanaCardNumber,  image: image, fileKey: fileKey, );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }

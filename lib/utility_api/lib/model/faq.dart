@@ -52,35 +52,38 @@ class Faq {
   String? lastUpdated;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is Faq &&
-     other.id == id &&
-     other.question == question &&
-     other.answer == answer &&
-     other.categoryId == categoryId &&
-     other.dateCreated == dateCreated &&
-     other.lastUpdated == lastUpdated;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is Faq &&
+          other.id == id &&
+          other.question == question &&
+          other.answer == answer &&
+          other.categoryId == categoryId &&
+          other.dateCreated == dateCreated &&
+          other.lastUpdated == lastUpdated;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (id == null ? 0 : id!.hashCode) +
-    (question.hashCode) +
-    (answer.hashCode) +
-    (categoryId.hashCode) +
-    (dateCreated == null ? 0 : dateCreated!.hashCode) +
-    (lastUpdated == null ? 0 : lastUpdated!.hashCode);
+      // ignore: unnecessary_parenthesis
+      (id == null ? 0 : id!.hashCode) +
+      (question.hashCode) +
+      (answer.hashCode) +
+      (categoryId.hashCode) +
+      (dateCreated == null ? 0 : dateCreated!.hashCode) +
+      (lastUpdated == null ? 0 : lastUpdated!.hashCode);
 
   @override
-  String toString() => 'Faq[id=$id, question=$question, answer=$answer, categoryId=$categoryId, dateCreated=$dateCreated, lastUpdated=$lastUpdated]';
+  String toString() =>
+      'Faq[id=$id, question=$question, answer=$answer, categoryId=$categoryId, dateCreated=$dateCreated, lastUpdated=$lastUpdated]';
 
   Map<String, dynamic> toJson() {
     final _json = <String, dynamic>{};
     if (id != null) {
       _json[r'id'] = id;
     }
-      _json[r'question'] = question;
-      _json[r'answer'] = answer;
-      _json[r'categoryId'] = categoryId;
+    _json[r'question'] = question;
+    _json[r'answer'] = answer;
+    _json[r'categoryId'] = categoryId;
     if (dateCreated != null) {
       _json[r'dateCreated'] = dateCreated;
     }
@@ -102,16 +105,16 @@ class Faq {
       // Note 2: this code is stripped in release mode!
       assert(() {
         requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "Faq[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "Faq[$key]" has a null value in JSON.');
+          assert(json.containsKey(key),
+              'Required key "Faq[$key]" is missing from JSON.');
+          assert(json[key] != null,
+              'Required key "Faq[$key]" has a null value in JSON.');
         });
         return true;
       }());
 
       return Faq(
-        id: json[r'id'] == null
-            ? null
-            : num.parse(json[r'id'].toString()),
+        id: json[r'id'] == null ? null : num.parse(json[r'id'].toString()),
         question: mapValueOfType<String>(json, r'question')!,
         answer: mapValueOfType<String>(json, r'answer')!,
         categoryId: num.parse(json[r'categoryId'].toString()),
@@ -122,7 +125,10 @@ class Faq {
     return null;
   }
 
-  static List<Faq>? listFromJson(dynamic json, {bool growable = false,}) {
+  static List<Faq>? listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <Faq>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -150,12 +156,18 @@ class Faq {
   }
 
   // maps a json object with a list of Faq-objects as value to a dart map
-  static Map<String, List<Faq>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<Faq>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<Faq>>{};
     if (json is Map && json.isNotEmpty) {
       json = json.cast<String, dynamic>(); // ignore: parameter_assignments
       for (final entry in json.entries) {
-        final value = Faq.listFromJson(entry.value, growable: growable,);
+        final value = Faq.listFromJson(
+          entry.value,
+          growable: growable,
+        );
         if (value != null) {
           map[entry.key] = value;
         }
@@ -171,4 +183,3 @@ class Faq {
     'categoryId',
   };
 }
-
