@@ -4,7 +4,7 @@ import 'package:http_interceptor/http/intercepted_client.dart';
 import 'package:http_interceptor/http/interceptor_contract.dart';
 import 'package:http_interceptor/models/retry_policy.dart';
 import 'package:affinity_api_client_sdk/agency_api/lib/api.dart' as agency_api
-    show ApiClient;
+    show TasksApi, ApiClient;
 
 import 'package:affinity_api_client_sdk/agency_api/lib/api.dart' show AgencyApi;
 // AuthenticationApi,
@@ -105,6 +105,8 @@ class AgencyApiClientSdk {
   AgencyApiClientSdk._internal();
 
   AgencyApi get agencyApi => AgencyApi(_agencyApiClient);
+  agency_api.TasksApi get agencyTasksApi =>
+      agency_api.TasksApi(_agencyApiClient);
   customer_service.AgencyApi get customerServiceAgencyApi =>
       customer_service.AgencyApi(_customerServiceApiClient);
   customer_service.MobileApi get customerServiceMobileApi =>
