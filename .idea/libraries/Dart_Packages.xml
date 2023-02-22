@@ -31,8 +31,8 @@
           <value>
             <list>
               <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/args-2.3.2/lib" />
-              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/args-2.3.1/lib" />
               <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/args-2.4.0/lib" />
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/args-2.3.1/lib" />
             </list>
           </value>
         </entry>
@@ -649,8 +649,8 @@
         <entry key="source_maps">
           <value>
             <list>
-              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/source_maps-0.10.11/lib" />
               <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/source_maps-0.10.12/lib" />
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/source_maps-0.10.11/lib" />
             </list>
           </value>
         </entry>

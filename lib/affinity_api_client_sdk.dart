@@ -76,6 +76,8 @@ class AgencyApiClient {
       utility_api.BackofficeApi(utilityApiClient);
   utility_api.DefaultApi get backOfficeDefaultApi =>
       utility_api.DefaultApi(utilityApiClient);
+  customer_service_api.MobileApi get customerServiceMobileApi =>
+      customer_service_api.MobileApi(customerServiceApiClient);
 }
 
 class AgencyApiClientSdk {
