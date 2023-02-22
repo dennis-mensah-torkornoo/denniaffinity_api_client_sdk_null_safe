@@ -85,20 +85,23 @@ class AgencyApiClientSdk {
   late agency_api.ApiClient _agencyApiClient;
   late customer_service.ApiClient _customerServiceApiClient;
 
-  AgencyApiClientSdk.init(
-      {required String baseUrl,
-      required List<InterceptorContract> interceptors,
-      RetryPolicy? retryPolicy}) {
-    _agencyApiClient = agency_api.ApiClient(basePath: baseUrl)
+  factory AgencyApiClientSdk({
+    required String baseUrl,
+    required List<InterceptorContract> interceptors,
+    RetryPolicy? retryPolicy,
+  }) {
+    instance._agencyApiClient = agency_api.ApiClient(basePath: baseUrl)
       ..client = InterceptedClient.build(
         interceptors: interceptors,
         retryPolicy: retryPolicy,
       );
-    _customerServiceApiClient = customer_service.ApiClient(basePath: baseUrl)
-      ..client = InterceptedClient.build(
-        interceptors: interceptors,
-        retryPolicy: retryPolicy,
-      );
+    instance._customerServiceApiClient =
+        customer_service.ApiClient(basePath: baseUrl)
+          ..client = InterceptedClient.build(
+            interceptors: interceptors,
+            retryPolicy: retryPolicy,
+          );
+    return instance;
   }
 
   AgencyApiClientSdk._internal();
