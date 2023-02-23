@@ -17,7 +17,7 @@ import 'package:affinity_api_client_sdk/agency_api/lib/api.dart' show AgencyApi;
 // CustomersApi,
 // ApiClient;
 
-import 'package:affinity_api_client_sdk/customer_service_api//lib/api.dart'
+import 'package:affinity_api_client_sdk/customer_service_api/lib/api.dart'
     as customer_service_api show AgencyApi, FilesApi, MobileApi, ApiClient;
 
 // import 'package:affinity_api_client_sdk/utility_api/lib/api.dart'
