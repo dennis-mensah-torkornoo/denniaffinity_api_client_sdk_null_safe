@@ -94,26 +94,29 @@ class AgencyApiClientSdk {
     required List<InterceptorContract> interceptors,
     RetryPolicy? retryPolicy,
   }) {
-    instance._agencyApiClient = agency_api.ApiClient(basePath: baseUrl)
-      ..client = InterceptedClient.build(
-        interceptors: interceptors,
-        retryPolicy: retryPolicy,
-      );
+    instance._agencyApiClient =
+        agency_api.ApiClient(basePath: '$baseUrl/agency')
+          ..client = InterceptedClient.build(
+            interceptors: interceptors,
+            retryPolicy: retryPolicy,
+          );
     instance._customerServiceApiClient = customer_service_api.ApiClient()
       ..client = InterceptedClient.build(
         interceptors: interceptors,
         retryPolicy: retryPolicy,
       );
-    instance._accountsApiClient = accounts_api.ApiClient(basePath: baseUrl)
-      ..client = InterceptedClient.build(
-        interceptors: interceptors,
-        retryPolicy: retryPolicy,
-      );
-    instance._utilityApiClient = utility_api.ApiClient(basePath: baseUrl)
-      ..client = InterceptedClient.build(
-        interceptors: interceptors,
-        retryPolicy: retryPolicy,
-      );
+    instance._accountsApiClient =
+        accounts_api.ApiClient(basePath: '$baseUrl/account')
+          ..client = InterceptedClient.build(
+            interceptors: interceptors,
+            retryPolicy: retryPolicy,
+          );
+    instance._utilityApiClient =
+        utility_api.ApiClient(basePath: '$baseUrl/utility')
+          ..client = InterceptedClient.build(
+            interceptors: interceptors,
+            retryPolicy: retryPolicy,
+          );
     return instance;
   }
 
