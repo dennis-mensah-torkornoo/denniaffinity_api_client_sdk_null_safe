@@ -99,12 +99,11 @@ class AgencyApiClientSdk {
         interceptors: interceptors,
         retryPolicy: retryPolicy,
       );
-    instance._customerServiceApiClient =
-        customer_service_api.ApiClient(basePath: baseUrl)
-          ..client = InterceptedClient.build(
-            interceptors: interceptors,
-            retryPolicy: retryPolicy,
-          );
+    instance._customerServiceApiClient = customer_service_api.ApiClient()
+      ..client = InterceptedClient.build(
+        interceptors: interceptors,
+        retryPolicy: retryPolicy,
+      );
     instance._accountsApiClient = accounts_api.ApiClient(basePath: baseUrl)
       ..client = InterceptedClient.build(
         interceptors: interceptors,
