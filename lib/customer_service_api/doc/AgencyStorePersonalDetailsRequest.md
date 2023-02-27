@@ -23,6 +23,8 @@ Name | Type | Description | Notes
 **email** | **String** |  | [optional] 
 **channel** | [**AgencyStorePersonalDetailsRequestChannelEnum**](AgencyStorePersonalDetailsRequestChannelEnum.md) |  | 
 **customerId** | **String** |  | [optional] 
+**relationshipOfficer** | **String** |  | 
+**branch** | **String** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

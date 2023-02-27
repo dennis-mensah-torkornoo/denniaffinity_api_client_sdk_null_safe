@@ -372,7 +372,7 @@ paths:
             schema:
               $ref: "#/components/schemas/AgencyStoreEkycPersonalDetailsRequest"
       tags:
-        - Mobile
+        - Agency
   "/customers-mobile/{id}/ekyc-employment-details":
     parameters:
       - schema:
@@ -430,7 +430,7 @@ paths:
               $ref: "#/components/schemas/AgencyStoreEkycEmploymentDetailsRequest"
         description: ""
       tags:
-        - Mobile
+        - Agency
   "/customers-mobile/{id}/ekyc-kin-details":
     parameters:
       - schema:
@@ -486,7 +486,7 @@ paths:
             schema:
               $ref: "#/components/schemas/AgencyStoreEkycKinDetailsRequest"
       tags:
-        - Mobile
+        - Agency
   "/customers-mobile/{id}/ekyc-identity-details":
     parameters:
       - schema:
@@ -542,7 +542,7 @@ paths:
             schema:
               $ref: "#/components/schemas/AgencyStoreEkycIdentityDetailsRequest"
       tags:
-        - Mobile
+        - Agency
   "/customers-mobile/{id}/ekyc-signature-details":
     parameters:
       - schema:
@@ -614,9 +614,9 @@ paths:
               examples: {}
       security:
         - xApiKey: []
-      tags:
-        - Mobile
       description: ""
+      tags:
+        - Agency
   "/customers-mobile/{id}/identification-details":
     parameters:
       - schema:
@@ -660,6 +660,49 @@ paths:
       tags:
         - Mobile
       description: Store identification details
+  "/customers-mobile/{id}/id-update":
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    patch:
+      summary: MobileUpdateIdentificationDetails
+      operationId: mobileUpdateIdentificationDetails
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MobileOnboardingResponse"
+              examples:
+                example-1:
+                  value:
+                    id: 6322f8db962753de0dfbdfc5
+                    message: Updated customer identification details
+      security:
+        - xApiKey: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/MobileUpdateIdentificationDetailsRequest"
+            examples:
+              example-1:
+                value:
+                  profilePictureFileKey: PROFILE_PICTURE/nana.jpg
+                  idFrontFileKey: IDENTIFICATION/jdjdj.jpg
+                  idBackFileKey: IDENTIFICATION/jdj.jpg
+                  idNumber: GHA-937698733-5
+                  idExpiryDate: "2024-04-20"
+                  idIssueDate: "2004-04-20"
+                  idType: GHANA_CARD
+                  idIssuingCountry: Ghana
+      tags:
+        - Mobile
+      description: Update identification details
   "/customers-mobile/{id}/residency-details":
     parameters:
       - schema:
@@ -1759,6 +1802,50 @@ components:
         - idExpiryDate
         - idNumber
         - idType
+    MobileUpdateIdentificationDetailsRequest:
+      type: object
+      title: MobileUpdateIdentificationDetailsRequest
+      x-examples:
+        example-1:
+          profilePictureFileKey: PROFILE_PICTURE/12934-df34f-45dfe-sder.jpg
+          idFrontFileKey: IDENTIFICATION/front.jpg
+          idBackFileKey: IDENTIFICATION/back.jpg
+          idIssueDate: "2010-10-31"
+          idExpiryDate: "2020-10-31"
+          idIssuingCountry: Ghana
+          idNumber: GHA-000000000-0
+          idType: PASSPORT
+      x-stoplight:
+        id: 0fe3077aedcc0
+      properties:
+        idFrontFileKey:
+          type: string
+          example: IDENTIFICATION/front.jpg
+        idBackFileKey:
+          type: string
+          example: IDENTIFICATION/back.jpg
+          description: File key for back of ID(required for Ghana Card)
+        idIssueDate:
+          type: string
+          example: "2010-10-31"
+        idExpiryDate:
+          type: string
+          example: "2020-10-31"
+        idIssuingCountry:
+          type: string
+          example: Ghana
+          description: Issuing country(required for Non-Ghanaian passports)
+        idNumber:
+          type: string
+          example: GHA-000000000-0
+        idType:
+          $ref: "#/components/schemas/IdTypeEnum"
+      required:
+        - idFrontFileKey
+        - idIssueDate
+        - idExpiryDate
+        - idNumber
+        - idType
     MobileStoreEkycPersonalDetailsRequest:
       type: object
       x-examples: {}
@@ -2118,6 +2205,10 @@ components:
           $ref: "#/components/schemas/AgencyStorePersonalDetailsRequestChannelEnum"
         customerId:
           type: string
+        relationshipOfficer:
+          type: string
+        branch:
+          type: string
       required:
         - title
         - firstName
@@ -2129,6 +2220,8 @@ components:
         - countryOfResidence
         - phoneNumber
         - channel
+        - relationshipOfficer
+        - branch
     AgencyResidencyPermitRequest:
       title: AgencyResidencyPermitRequest
       x-stoplight:
@@ -3221,9 +3314,6 @@ components:
         required:
           - key
           - name
-#    MobileStoreEkycIdentityDetailsRequest - copy:
-#      type: string
-#      nullable: true
   requestBodies: {}
   securitySchemes:
     xApiKey:

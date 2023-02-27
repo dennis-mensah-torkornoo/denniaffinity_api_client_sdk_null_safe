@@ -83,6 +83,7 @@ part 'model/mobile_store_ekyc_signature_details_request.dart';
 part 'model/mobile_store_identification_details_request.dart';
 part 'model/mobile_store_personal_details_request.dart';
 part 'model/mobile_store_residency_details_request.dart';
+part 'model/mobile_update_identification_details_request.dart';
 part 'model/mobile_verify_gps_address200_response.dart';
 part 'model/number_of_transactions_enum.dart';
 part 'model/portal_ekyc_upgrade.dart';

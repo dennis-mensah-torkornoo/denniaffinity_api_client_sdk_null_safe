@@ -6,6 +6,6 @@ import 'package:openapi_generator_annotations/openapi_generator_annotations.dart
   generatorName: Generator.dart,
   outputDirectory: 'lib/customer_service_api',
   fetchDependencies: true,
-  alwaysRun: false,
+  alwaysRun: true,
 )
 class CustomerServiceApiConfig extends OpenapiGeneratorConfig {}

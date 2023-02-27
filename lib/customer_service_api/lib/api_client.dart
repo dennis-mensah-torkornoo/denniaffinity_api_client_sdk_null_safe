@@ -292,6 +292,8 @@ class ApiClient {
           return MobileStorePersonalDetailsRequest.fromJson(value);
         case 'MobileStoreResidencyDetailsRequest':
           return MobileStoreResidencyDetailsRequest.fromJson(value);
+        case 'MobileUpdateIdentificationDetailsRequest':
+          return MobileUpdateIdentificationDetailsRequest.fromJson(value);
         case 'MobileVerifyGpsAddress200Response':
           return MobileVerifyGpsAddress200Response.fromJson(value);
         case 'NumberOfTransactionsEnum':

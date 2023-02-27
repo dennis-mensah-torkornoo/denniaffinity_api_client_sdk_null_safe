@@ -91,6 +91,16 @@ void main() {
       // TODO
     });
 
+    // String relationshipOfficer
+    test('to test the property `relationshipOfficer`', () async {
+      // TODO
+    });
+
+    // String branch
+    test('to test the property `branch`', () async {
+      // TODO
+    });
+
 
   });
 

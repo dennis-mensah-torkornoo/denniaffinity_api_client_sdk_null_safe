@@ -69,13 +69,13 @@ Class | Method | HTTP request | Description
 *AgencyApi* | [**agencyStoreCustomerPersonalDetails**](doc//AgencyApi.md#agencystorecustomerpersonaldetails) | **POST** /customers-agency/personal-details | 
 *AgencyApi* | [**agencyStoreCustomerResidencyPermit**](doc//AgencyApi.md#agencystorecustomerresidencypermit) | **PATCH** /customers-agency/{id}/residency-permit | 
 *AgencyApi* | [**agencyStoreCustomerResidentialAddress**](doc//AgencyApi.md#agencystorecustomerresidentialaddress) | **PATCH** /customers-agency/{id}/residential-address | 
+*AgencyApi* | [**agencyStoreEkycEmploymentDetails**](doc//AgencyApi.md#agencystoreekycemploymentdetails) | **PATCH** /customers-agency/{id}/ekyc-employment-details | AgencyStoreEkycEmploymentDetails
+*AgencyApi* | [**agencyStoreEkycIdentityDetails**](doc//AgencyApi.md#agencystoreekycidentitydetails) | **PATCH** /customers-agency/{id}/ekyc-identity-details | AgencyStoreEkycIdentityDetails
+*AgencyApi* | [**agencyStoreEkycKinDetails**](doc//AgencyApi.md#agencystoreekyckindetails) | **PATCH** /customers-agency/{id}/ekyc-kin-details | AgencyStoreEkycKinDetails
+*AgencyApi* | [**agencyStoreEkycPersonalDetails**](doc//AgencyApi.md#agencystoreekycpersonaldetails) | **PATCH** /customers-agency/{id}/ekyc-personal-details | AgencyStoreEkycPersonalDetails
+*AgencyApi* | [**finishAgencyEkycUpgrade**](doc//AgencyApi.md#finishagencyekycupgrade) | **POST** /customers-agency/{id}/ekyc-complete | AgencyEkycFinish
 *FilesApi* | [**generateFileUrl**](doc//FilesApi.md#generatefileurl) | **POST** /files/generate-file-url | 
 *FilesApi* | [**uploadCustomerFile**](doc//FilesApi.md#uploadcustomerfile) | **POST** /files | 
-*MobileApi* | [**agencyStoreEkycEmploymentDetails**](doc//MobileApi.md#agencystoreekycemploymentdetails) | **PATCH** /customers-agency/{id}/ekyc-employment-details | AgencyStoreEkycEmploymentDetails
-*MobileApi* | [**agencyStoreEkycIdentityDetails**](doc//MobileApi.md#agencystoreekycidentitydetails) | **PATCH** /customers-agency/{id}/ekyc-identity-details | AgencyStoreEkycIdentityDetails
-*MobileApi* | [**agencyStoreEkycKinDetails**](doc//MobileApi.md#agencystoreekyckindetails) | **PATCH** /customers-agency/{id}/ekyc-kin-details | AgencyStoreEkycKinDetails
-*MobileApi* | [**agencyStoreEkycPersonalDetails**](doc//MobileApi.md#agencystoreekycpersonaldetails) | **PATCH** /customers-agency/{id}/ekyc-personal-details | AgencyStoreEkycPersonalDetails
-*MobileApi* | [**finishAgencyEkycUpgrade**](doc//MobileApi.md#finishagencyekycupgrade) | **POST** /customers-agency/{id}/ekyc-complete | AgencyEkycFinish
 *MobileApi* | [**finishMobileEkycUpgrade**](doc//MobileApi.md#finishmobileekycupgrade) | **POST** /customers-mobile/{id}/ekyc-complete | MobileEkycFinish
 *MobileApi* | [**mobileCompleteOnboarding**](doc//MobileApi.md#mobilecompleteonboarding) | **PATCH** /customers-mobile/{id}/save-customer | MobileMkycFinish
 *MobileApi* | [**mobileKlippaUpload**](doc//MobileApi.md#mobileklippaupload) | **GET** /customers-mobile/klippa-upload/sessionId/{sessionId}/fileKey/{fileKey} | 
@@ -90,6 +90,7 @@ Class | Method | HTTP request | Description
 *MobileApi* | [**mobileStorePersonalDetails**](doc//MobileApi.md#mobilestorepersonaldetails) | **POST** /customers-mobile/personal-details | 
 *MobileApi* | [**mobileStoreResidencyDetails**](doc//MobileApi.md#mobilestoreresidencydetails) | **PATCH** /customers-mobile/{id}/residency-details | MobileStoreMkycResidencyDetails
 *MobileApi* | [**mobileStoreResidencyPermitDetails**](doc//MobileApi.md#mobilestoreresidencypermitdetails) | **PATCH** /customers-mobile/{id}/residency-permit-details | MobileStoreMkycResidencyPermitDetails
+*MobileApi* | [**mobileUpdateIdentificationDetails**](doc//MobileApi.md#mobileupdateidentificationdetails) | **PATCH** /customers-mobile/{id}/id-update | MobileUpdateIdentificationDetails
 *MobileApi* | [**mobileVerifyGpsAddress**](doc//MobileApi.md#mobileverifygpsaddress) | **GET** /customers-mobile/verify-gps | Verify GPS address
 *PortalApi* | [**getBranches**](doc//PortalApi.md#getbranches) | **GET** /branches | Your GET endpoint
 *PortalApi* | [**portalApproveCustomerData**](doc//PortalApi.md#portalapprovecustomerdata) | **PATCH** /customers/{id}/approve | 
@@ -157,6 +158,7 @@ Class | Method | HTTP request | Description
  - [MobileStoreIdentificationDetailsRequest](doc//MobileStoreIdentificationDetailsRequest.md)
  - [MobileStorePersonalDetailsRequest](doc//MobileStorePersonalDetailsRequest.md)
  - [MobileStoreResidencyDetailsRequest](doc//MobileStoreResidencyDetailsRequest.md)
+ - [MobileUpdateIdentificationDetailsRequest](doc//MobileUpdateIdentificationDetailsRequest.md)
  - [MobileVerifyGpsAddress200Response](doc//MobileVerifyGpsAddress200Response.md)
  - [NumberOfTransactionsEnum](doc//NumberOfTransactionsEnum.md)
  - [PortalEkycUpgrade](doc//PortalEkycUpgrade.md)

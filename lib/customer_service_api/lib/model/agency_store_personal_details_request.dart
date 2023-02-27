@@ -28,6 +28,8 @@ class AgencyStorePersonalDetailsRequest {
     this.email,
     required this.channel,
     this.customerId,
+    required this.relationshipOfficer,
+    required this.branch,
   });
 
   ///
@@ -90,6 +92,10 @@ class AgencyStorePersonalDetailsRequest {
   ///
   String? customerId;
 
+  String relationshipOfficer;
+
+  String branch;
+
   @override
   bool operator ==(Object other) => identical(this, other) || other is AgencyStorePersonalDetailsRequest &&
      other.id == id &&
@@ -106,7 +112,9 @@ class AgencyStorePersonalDetailsRequest {
      other.secondaryPhone == secondaryPhone &&
      other.email == email &&
      other.channel == channel &&
-     other.customerId == customerId;
+     other.customerId == customerId &&
+     other.relationshipOfficer == relationshipOfficer &&
+     other.branch == branch;
 
   @override
   int get hashCode =>
@@ -125,10 +133,12 @@ class AgencyStorePersonalDetailsRequest {
     (secondaryPhone == null ? 0 : secondaryPhone!.hashCode) +
     (email == null ? 0 : email!.hashCode) +
     (channel.hashCode) +
-    (customerId == null ? 0 : customerId!.hashCode);
+    (customerId == null ? 0 : customerId!.hashCode) +
+    (relationshipOfficer.hashCode) +
+    (branch.hashCode);
 
   @override
-  String toString() => 'AgencyStorePersonalDetailsRequest[id=$id, title=$title, otherTitle=$otherTitle, firstName=$firstName, sex=$sex, lastName=$lastName, dateOfBirth=$dateOfBirth, placeOfBirth=$placeOfBirth, nationality=$nationality, countryOfResidence=$countryOfResidence, phoneNumber=$phoneNumber, secondaryPhone=$secondaryPhone, email=$email, channel=$channel, customerId=$customerId]';
+  String toString() => 'AgencyStorePersonalDetailsRequest[id=$id, title=$title, otherTitle=$otherTitle, firstName=$firstName, sex=$sex, lastName=$lastName, dateOfBirth=$dateOfBirth, placeOfBirth=$placeOfBirth, nationality=$nationality, countryOfResidence=$countryOfResidence, phoneNumber=$phoneNumber, secondaryPhone=$secondaryPhone, email=$email, channel=$channel, customerId=$customerId, relationshipOfficer=$relationshipOfficer, branch=$branch]';
 
   Map<String, dynamic> toJson() {
     final _json = <String, dynamic>{};
@@ -157,6 +167,8 @@ class AgencyStorePersonalDetailsRequest {
     if (customerId != null) {
       _json[r'customerId'] = customerId;
     }
+      _json[r'relationshipOfficer'] = relationshipOfficer;
+      _json[r'branch'] = branch;
     return _json;
   }
 
@@ -194,6 +206,8 @@ class AgencyStorePersonalDetailsRequest {
         email: mapValueOfType<String>(json, r'email'),
         channel: AgencyStorePersonalDetailsRequestChannelEnum.fromJson(json[r'channel'])!,
         customerId: mapValueOfType<String>(json, r'customerId'),
+        relationshipOfficer: mapValueOfType<String>(json, r'relationshipOfficer')!,
+        branch: mapValueOfType<String>(json, r'branch')!,
       );
     }
     return null;
@@ -253,6 +267,8 @@ class AgencyStorePersonalDetailsRequest {
     'countryOfResidence',
     'phoneNumber',
     'channel',
+    'relationshipOfficer',
+    'branch',
   };
 }
 
