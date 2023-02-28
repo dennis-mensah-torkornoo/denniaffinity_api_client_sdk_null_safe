@@ -12,6 +12,7 @@ Method | HTTP request | Description
 [**agencyCustomerCompletion**](AgencyApi.md#agencycustomercompletion) | **PATCH** /customers-agency/{id}/save-customer | 
 [**agencyGetCustomer**](AgencyApi.md#agencygetcustomer) | **GET** /customers-agency/{id} | 
 [**agencyGetCustomers**](AgencyApi.md#agencygetcustomers) | **GET** /customers-agency | 
+[**agencyOnboardingStep**](AgencyApi.md#agencyonboardingstep) | **GET** /customers-agency/{customerId}/step | AgencyOnboardingStep
 [**agencyStoreCustomerIdentificationDetails**](AgencyApi.md#agencystorecustomeridentificationdetails) | **PATCH** /customers-agency/{id}/identification-details | 
 [**agencyStoreCustomerPersonalDetails**](AgencyApi.md#agencystorecustomerpersonaldetails) | **POST** /customers-agency/personal-details | 
 [**agencyStoreCustomerResidencyPermit**](AgencyApi.md#agencystorecustomerresidencypermit) | **PATCH** /customers-agency/{id}/residency-permit | 
@@ -155,6 +156,55 @@ This endpoint does not need any parameter.
 
  - **Content-Type**: Not defined
  - **Accept**: application/json, application/xml
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **agencyOnboardingStep**
+> MobileOnboardingStepResponse agencyOnboardingStep(customerId, mambuKey)
+
+AgencyOnboardingStep
+
+Get onboarding step of profile
+
+### Example
+```dart
+import 'package:customer_service_api/api.dart';
+// TODO Configure API key authorization: xApiKey
+//defaultApiClient.getAuthentication<ApiKeyAuth>('xApiKey').apiKey = 'YOUR_API_KEY';
+// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//defaultApiClient.getAuthentication<ApiKeyAuth>('xApiKey').apiKeyPrefix = 'Bearer';
+
+final api_instance = AgencyApi();
+final customerId = customerId_example; // String | 
+final mambuKey = mambuKey_example; // String | 
+
+try {
+    final result = api_instance.agencyOnboardingStep(customerId, mambuKey);
+    print(result);
+} catch (e) {
+    print('Exception when calling AgencyApi->agencyOnboardingStep: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **customerId** | **String**|  | 
+ **mambuKey** | **String**|  | 
+
+### Return type
+
+[**MobileOnboardingStepResponse**](MobileOnboardingStepResponse.md)
+
+### Authorization
+
+[xApiKey](../README.md#xApiKey)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

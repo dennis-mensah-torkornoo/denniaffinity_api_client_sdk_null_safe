@@ -855,6 +855,54 @@ paths:
         name: id
         in: path
         required: true
+  "/customers-agency/{customerId}/step":
+    get:
+      summary: AgencyOnboardingStep
+      tags:
+        - Agency
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MobileOnboardingStepResponse"
+              examples:
+                example-1:
+                  value:
+                    id: string
+                    step: PERSONAL_DETAILS
+                    mambuAccountStatus: PENDING_MKYC_CREATION
+                    approvalStatus: PENDING_MKYC_REVIEW
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+              examples:
+                example-1:
+                  value:
+                    message: Customer not found
+      operationId: agencyOnboardingStep
+      description: Get onboarding step of profile
+      security:
+        - xApiKey: []
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: mambuKey
+          required: true
+    parameters:
+      - schema:
+          type: string
+        name: customerId
+        in: path
+        required: true
   "/customers-mobile/{customerId}/details":
     get:
       summary: Get customer details

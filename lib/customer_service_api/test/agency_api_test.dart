@@ -42,6 +42,15 @@ void main() {
       // TODO
     });
 
+    // AgencyOnboardingStep
+    //
+    // Get onboarding step of profile
+    //
+    //Future<MobileOnboardingStepResponse> agencyOnboardingStep(String customerId, String mambuKey) async
+    test('test agencyOnboardingStep', () async {
+      // TODO
+    });
+
     // 
     //
     //Future<SuccessMessageResponse> agencyStoreCustomerIdentificationDetails(String id, AgencyStoreIdentificationDetailsRequest agencyStoreIdentificationDetailsRequest) async

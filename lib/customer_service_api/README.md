@@ -65,6 +65,7 @@ Class | Method | HTTP request | Description
 *AgencyApi* | [**agencyCustomerCompletion**](doc//AgencyApi.md#agencycustomercompletion) | **PATCH** /customers-agency/{id}/save-customer | 
 *AgencyApi* | [**agencyGetCustomer**](doc//AgencyApi.md#agencygetcustomer) | **GET** /customers-agency/{id} | 
 *AgencyApi* | [**agencyGetCustomers**](doc//AgencyApi.md#agencygetcustomers) | **GET** /customers-agency | 
+*AgencyApi* | [**agencyOnboardingStep**](doc//AgencyApi.md#agencyonboardingstep) | **GET** /customers-agency/{customerId}/step | AgencyOnboardingStep
 *AgencyApi* | [**agencyStoreCustomerIdentificationDetails**](doc//AgencyApi.md#agencystorecustomeridentificationdetails) | **PATCH** /customers-agency/{id}/identification-details | 
 *AgencyApi* | [**agencyStoreCustomerPersonalDetails**](doc//AgencyApi.md#agencystorecustomerpersonaldetails) | **POST** /customers-agency/personal-details | 
 *AgencyApi* | [**agencyStoreCustomerResidencyPermit**](doc//AgencyApi.md#agencystorecustomerresidencypermit) | **PATCH** /customers-agency/{id}/residency-permit | 
