@@ -93,7 +93,9 @@ Class | Method | HTTP request | Description
 *MobileApi* | [**mobileStoreResidencyPermitDetails**](doc//MobileApi.md#mobilestoreresidencypermitdetails) | **PATCH** /customers-mobile/{id}/residency-permit-details | MobileStoreMkycResidencyPermitDetails
 *MobileApi* | [**mobileUpdateIdentificationDetails**](doc//MobileApi.md#mobileupdateidentificationdetails) | **PATCH** /customers-mobile/{id}/id-update | MobileUpdateIdentificationDetails
 *MobileApi* | [**mobileVerifyGpsAddress**](doc//MobileApi.md#mobileverifygpsaddress) | **GET** /customers-mobile/verify-gps | Verify GPS address
+*PortalApi* | [**completeOnboard**](doc//PortalApi.md#completeonboard) | **PATCH** /business-accounts/{reference}/complete-onboard | Complete business account onboard
 *PortalApi* | [**getBranches**](doc//PortalApi.md#getbranches) | **GET** /branches | Your GET endpoint
+*PortalApi* | [**getBusinessAccount**](doc//PortalApi.md#getbusinessaccount) | **GET** /business-accounts/{reference} | Get business account
 *PortalApi* | [**portalApproveCustomerData**](doc//PortalApi.md#portalapprovecustomerdata) | **PATCH** /customers/{id}/approve | 
 *PortalApi* | [**portalGetCustomer**](doc//PortalApi.md#portalgetcustomer) | **GET** /customers/{id} | Your GET endpoint
 *PortalApi* | [**portalGetCustomers**](doc//PortalApi.md#portalgetcustomers) | **GET** /customers | Your GET endpoint
@@ -104,6 +106,10 @@ Class | Method | HTTP request | Description
 *PortalApi* | [**portalUpdateEkycCustomer**](doc//PortalApi.md#portalupdateekyccustomer) | **PATCH** /customers/{id}/ekyc | 
 *PortalApi* | [**portalUpdateMkycCustomer**](doc//PortalApi.md#portalupdatemkyccustomer) | **PATCH** /customers/{id}/mkyc | 
 *PortalApi* | [**portalUpgradeMkycCustomer**](doc//PortalApi.md#portalupgrademkyccustomer) | **PATCH** /customers/{id}/mkyc/upgrade | UpgradeMKYC
+*PortalApi* | [**storeBusinessDetails**](doc//PortalApi.md#storebusinessdetails) | **POST** /business-accounts/details | Store business details
+*PortalApi* | [**storeBusinessDirectors**](doc//PortalApi.md#storebusinessdirectors) | **PATCH** /business-accounts/{reference}/directors | Add business directors
+*PortalApi* | [**storeBusinessShareholders**](doc//PortalApi.md#storebusinessshareholders) | **PATCH** /business-accounts/{reference}/business-shareholders | Add business shareholders
+*PortalApi* | [**updateBusinessStatus**](doc//PortalApi.md#updatebusinessstatus) | **PATCH** /business-accounts/{reference}/update-status | Change approval status
 
 
 ## Documentation For Models
@@ -118,6 +124,13 @@ Class | Method | HTTP request | Description
  - [AgencyStorePersonalDetailsRequestChannelEnum](doc//AgencyStorePersonalDetailsRequestChannelEnum.md)
  - [AgencyStoreResidentialAddressRequest](doc//AgencyStoreResidentialAddressRequest.md)
  - [ApprovalStatusEnum](doc//ApprovalStatusEnum.md)
+ - [BusinessAccount](doc//BusinessAccount.md)
+ - [BusinessDetailsRequest](doc//BusinessDetailsRequest.md)
+ - [BusinessDirector](doc//BusinessDirector.md)
+ - [BusinessDocuments](doc//BusinessDocuments.md)
+ - [BusinessShareholder](doc//BusinessShareholder.md)
+ - [BusinessTypeEnum](doc//BusinessTypeEnum.md)
+ - [ChangeAccountStatusRequest](doc//ChangeAccountStatusRequest.md)
  - [Customer](doc//Customer.md)
  - [CustomerAgency](doc//CustomerAgency.md)
  - [CustomerAgencyIdentification](doc//CustomerAgencyIdentification.md)
@@ -133,6 +146,7 @@ Class | Method | HTTP request | Description
  - [CustomersListResponse](doc//CustomersListResponse.md)
  - [CustomersListResponseItemsInner](doc//CustomersListResponseItemsInner.md)
  - [CustomersListResponseMeta](doc//CustomersListResponseMeta.md)
+ - [DirectorPositionEnum](doc//DirectorPositionEnum.md)
  - [DisabilityTypeEnum](doc//DisabilityTypeEnum.md)
  - [EKYCDisabilityChoiceEnum](doc//EKYCDisabilityChoiceEnum.md)
  - [EmploymentSectorEnum](doc//EmploymentSectorEnum.md)
@@ -161,13 +175,23 @@ Class | Method | HTTP request | Description
  - [MobileStoreResidencyDetailsRequest](doc//MobileStoreResidencyDetailsRequest.md)
  - [MobileUpdateIdentificationDetailsRequest](doc//MobileUpdateIdentificationDetailsRequest.md)
  - [MobileVerifyGpsAddress200Response](doc//MobileVerifyGpsAddress200Response.md)
+ - [NonProfitTypeEnum](doc//NonProfitTypeEnum.md)
  - [NumberOfTransactionsEnum](doc//NumberOfTransactionsEnum.md)
+ - [OnboardAddress](doc//OnboardAddress.md)
+ - [OnboardError](doc//OnboardError.md)
+ - [OnboardErrorErrorsInner](doc//OnboardErrorErrorsInner.md)
+ - [OnboardIdentification](doc//OnboardIdentification.md)
+ - [OnboardResponse](doc//OnboardResponse.md)
  - [PortalEkycUpgrade](doc//PortalEkycUpgrade.md)
  - [PortalRejectInquireRequest](doc//PortalRejectInquireRequest.md)
  - [PortalStoreEkyc](doc//PortalStoreEkyc.md)
  - [PortalStoreMkyc](doc//PortalStoreMkyc.md)
  - [ProofOfResidenceTypeEnum](doc//ProofOfResidenceTypeEnum.md)
+ - [RegistrationTypeEnum](doc//RegistrationTypeEnum.md)
+ - [ShareholderTypeEnum](doc//ShareholderTypeEnum.md)
  - [SourceOfFundsEnum](doc//SourceOfFundsEnum.md)
+ - [StoreBusinessDirectorsRequest](doc//StoreBusinessDirectorsRequest.md)
+ - [StoreBusinessShareholdersRequest](doc//StoreBusinessShareholdersRequest.md)
  - [SuccessMessageResponse](doc//SuccessMessageResponse.md)
  - [TitleEnum](doc//TitleEnum.md)
  - [UploadCustomerFile200Response](doc//UploadCustomerFile200Response.md)

@@ -17,12 +17,30 @@ void main() {
   // final instance = PortalApi();
 
   group('tests for PortalApi', () {
+    // Complete business account onboard
+    //
+    // Complete business onboarding
+    //
+    //Future<OnboardResponse> completeOnboard(String reference) async
+    test('test completeOnboard', () async {
+      // TODO
+    });
+
     // Your GET endpoint
     //
     // 
     //
     //Future<List<MambuBranchesResponseInner>> getBranches() async
     test('test getBranches', () async {
+      // TODO
+    });
+
+    // Get business account
+    //
+    // Get business account details
+    //
+    //Future<BusinessAccount> getBusinessAccount(String reference) async
+    test('test getBusinessAccount', () async {
       // TODO
     });
 
@@ -97,6 +115,42 @@ void main() {
     //
     //Future<SuccessMessageResponse> portalUpgradeMkycCustomer(String id, PortalEkycUpgrade portalEkycUpgrade) async
     test('test portalUpgradeMkycCustomer', () async {
+      // TODO
+    });
+
+    // Store business details
+    //
+    // Save business core details and required documents
+    //
+    //Future<OnboardResponse> storeBusinessDetails({ BusinessDetailsRequest businessDetailsRequest }) async
+    test('test storeBusinessDetails', () async {
+      // TODO
+    });
+
+    // Add business directors
+    //
+    // Store information on the people in the business (directors, shareholders, signatories)
+    //
+    //Future<OnboardResponse> storeBusinessDirectors(String reference, { StoreBusinessDirectorsRequest storeBusinessDirectorsRequest }) async
+    test('test storeBusinessDirectors', () async {
+      // TODO
+    });
+
+    // Add business shareholders
+    //
+    // Add shareholders which are businesses
+    //
+    //Future storeBusinessShareholders(String reference, { StoreBusinessShareholdersRequest storeBusinessShareholdersRequest }) async
+    test('test storeBusinessShareholders', () async {
+      // TODO
+    });
+
+    // Change approval status
+    //
+    // Update status on a business profile
+    //
+    //Future updateBusinessStatus(String reference, { ChangeAccountStatusRequest changeAccountStatusRequest }) async
+    test('test updateBusinessStatus', () async {
       // TODO
     });
 

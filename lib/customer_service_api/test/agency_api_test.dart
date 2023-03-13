@@ -28,7 +28,7 @@ void main() {
     //
     // Get customer resource
     //
-    //Future<CustomerAgency> agencyGetCustomer(String id) async
+    //Future<Customer> agencyGetCustomer(String id) async
     test('test agencyGetCustomer', () async {
       // TODO
     });

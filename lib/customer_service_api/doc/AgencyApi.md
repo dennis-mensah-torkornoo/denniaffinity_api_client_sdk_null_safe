@@ -70,7 +70,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **agencyGetCustomer**
-> CustomerAgency agencyGetCustomer(id)
+> Customer agencyGetCustomer(id)
 
 
 
@@ -103,7 +103,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**CustomerAgency**](CustomerAgency.md)
+[**Customer**](Customer.md)
 
 ### Authorization
 

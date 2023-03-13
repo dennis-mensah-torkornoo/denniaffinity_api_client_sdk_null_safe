@@ -111,7 +111,7 @@ class AgencyApi {
   /// Parameters:
   ///
   /// * [String] id (required):
-  Future<CustomerAgency?> agencyGetCustomer(String id,) async {
+  Future<Customer?> agencyGetCustomer(String id,) async {
     final response = await agencyGetCustomerWithHttpInfo(id,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
@@ -120,7 +120,7 @@ class AgencyApi {
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
     if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CustomerAgency',) as CustomerAgency;
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'Customer',) as Customer;
     
     }
     return null;

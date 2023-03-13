@@ -214,7 +214,7 @@ class Customer {
 
   String relationshipOfficerEncodedKey;
 
-  CustomerApprovalStatusEnum approvalStatus;
+  ApprovalStatusEnum approvalStatus;
 
   CustomerAccountTypeEnum accountType;
 
@@ -468,7 +468,7 @@ class Customer {
         branch: mapValueOfType<String>(json, r'branch')!,
         relationshipOfficer: mapValueOfType<String>(json, r'relationshipOfficer')!,
         relationshipOfficerEncodedKey: mapValueOfType<String>(json, r'relationshipOfficerEncodedKey')!,
-        approvalStatus: CustomerApprovalStatusEnum.fromJson(json[r'approvalStatus'])!,
+        approvalStatus: ApprovalStatusEnum.fromJson(json[r'approvalStatus'])!,
         accountType: CustomerAccountTypeEnum.fromJson(json[r'accountType'])!,
         referrer: mapValueOfType<String>(json, r'referrer')!,
         mambuAccountStatus: mapValueOfType<String>(json, r'mambuAccountStatus')!,
@@ -555,107 +555,6 @@ class Customer {
     'mambuAccountStatus',
   };
 }
-
-
-class CustomerApprovalStatusEnum {
-  /// Instantiate a new enum with the provided [value].
-  const CustomerApprovalStatusEnum._(this.value);
-
-  /// The underlying value of this enum member.
-  final String value;
-
-  @override
-  String toString() => value;
-
-  String toJson() => value;
-
-  static const PENDING_MKYC_REVIEW = CustomerApprovalStatusEnum._(r'PENDING_MKYC_REVIEW');
-  static const PENDING_EKYC_REVIEW = CustomerApprovalStatusEnum._(r'PENDING_EKYC_REVIEW');
-  static const PENDING_EKYC_UPGRADE_REVIEW = CustomerApprovalStatusEnum._(r'PENDING_EKYC_UPGRADE_REVIEW');
-  static const PENDING_MKYC_APPROVAL = CustomerApprovalStatusEnum._(r'PENDING_MKYC_APPROVAL');
-  static const PENDING_EKYC_APPROVAL = CustomerApprovalStatusEnum._(r'PENDING_EKYC_APPROVAL');
-  static const PENDING_EKYC_UPGRADE_APPROVAL = CustomerApprovalStatusEnum._(r'PENDING_EKYC_UPGRADE_APPROVAL');
-  static const MKYC_APPROVED = CustomerApprovalStatusEnum._(r'MKYC_APPROVED');
-  static const EKYC_APPROVED = CustomerApprovalStatusEnum._(r'EKYC_APPROVED');
-  static const EKYC_UPGRADE_APPROVED = CustomerApprovalStatusEnum._(r'EKYC_UPGRADE_APPROVED');
-  static const MKYC_REJECTED = CustomerApprovalStatusEnum._(r'MKYC_REJECTED');
-  static const EKYC_REJECTED = CustomerApprovalStatusEnum._(r'EKYC_REJECTED');
-
-  /// List of all possible values in this [enum][CustomerApprovalStatusEnum].
-  static const values = <CustomerApprovalStatusEnum>[
-    PENDING_MKYC_REVIEW,
-    PENDING_EKYC_REVIEW,
-    PENDING_EKYC_UPGRADE_REVIEW,
-    PENDING_MKYC_APPROVAL,
-    PENDING_EKYC_APPROVAL,
-    PENDING_EKYC_UPGRADE_APPROVAL,
-    MKYC_APPROVED,
-    EKYC_APPROVED,
-    EKYC_UPGRADE_APPROVED,
-    MKYC_REJECTED,
-    EKYC_REJECTED,
-  ];
-
-  static CustomerApprovalStatusEnum? fromJson(dynamic value) => CustomerApprovalStatusEnumTypeTransformer().decode(value);
-
-  static List<CustomerApprovalStatusEnum>? listFromJson(dynamic json, {bool growable = false,}) {
-    final result = <CustomerApprovalStatusEnum>[];
-    if (json is List && json.isNotEmpty) {
-      for (final row in json) {
-        final value = CustomerApprovalStatusEnum.fromJson(row);
-        if (value != null) {
-          result.add(value);
-        }
-      }
-    }
-    return result.toList(growable: growable);
-  }
-}
-
-/// Transformation class that can [encode] an instance of [CustomerApprovalStatusEnum] to String,
-/// and [decode] dynamic data back to [CustomerApprovalStatusEnum].
-class CustomerApprovalStatusEnumTypeTransformer {
-  factory CustomerApprovalStatusEnumTypeTransformer() => _instance ??= const CustomerApprovalStatusEnumTypeTransformer._();
-
-  const CustomerApprovalStatusEnumTypeTransformer._();
-
-  String encode(CustomerApprovalStatusEnum data) => data.value;
-
-  /// Decodes a [dynamic value][data] to a CustomerApprovalStatusEnum.
-  ///
-  /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
-  /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
-  /// cannot be decoded successfully, then an [UnimplementedError] is thrown.
-  ///
-  /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
-  /// and users are still using an old app with the old code.
-  CustomerApprovalStatusEnum? decode(dynamic data, {bool allowNull = true}) {
-    if (data != null) {
-      switch (data.toString()) {
-        case r'PENDING_MKYC_REVIEW': return CustomerApprovalStatusEnum.PENDING_MKYC_REVIEW;
-        case r'PENDING_EKYC_REVIEW': return CustomerApprovalStatusEnum.PENDING_EKYC_REVIEW;
-        case r'PENDING_EKYC_UPGRADE_REVIEW': return CustomerApprovalStatusEnum.PENDING_EKYC_UPGRADE_REVIEW;
-        case r'PENDING_MKYC_APPROVAL': return CustomerApprovalStatusEnum.PENDING_MKYC_APPROVAL;
-        case r'PENDING_EKYC_APPROVAL': return CustomerApprovalStatusEnum.PENDING_EKYC_APPROVAL;
-        case r'PENDING_EKYC_UPGRADE_APPROVAL': return CustomerApprovalStatusEnum.PENDING_EKYC_UPGRADE_APPROVAL;
-        case r'MKYC_APPROVED': return CustomerApprovalStatusEnum.MKYC_APPROVED;
-        case r'EKYC_APPROVED': return CustomerApprovalStatusEnum.EKYC_APPROVED;
-        case r'EKYC_UPGRADE_APPROVED': return CustomerApprovalStatusEnum.EKYC_UPGRADE_APPROVED;
-        case r'MKYC_REJECTED': return CustomerApprovalStatusEnum.MKYC_REJECTED;
-        case r'EKYC_REJECTED': return CustomerApprovalStatusEnum.EKYC_REJECTED;
-        default:
-          if (!allowNull) {
-            throw ArgumentError('Unknown enum value to decode: $data');
-          }
-      }
-    }
-    return null;
-  }
-
-  /// Singleton [CustomerApprovalStatusEnumTypeTransformer] instance.
-  static CustomerApprovalStatusEnumTypeTransformer? _instance;
-}
-
 
 
 class CustomerAccountTypeEnum {

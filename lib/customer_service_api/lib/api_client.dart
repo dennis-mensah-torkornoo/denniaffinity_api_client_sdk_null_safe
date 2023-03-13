@@ -210,6 +210,20 @@ class ApiClient {
           return AgencyStoreResidentialAddressRequest.fromJson(value);
         case 'ApprovalStatusEnum':
           return ApprovalStatusEnumTypeTransformer().decode(value);
+        case 'BusinessAccount':
+          return BusinessAccount.fromJson(value);
+        case 'BusinessDetailsRequest':
+          return BusinessDetailsRequest.fromJson(value);
+        case 'BusinessDirector':
+          return BusinessDirector.fromJson(value);
+        case 'BusinessDocuments':
+          return BusinessDocuments.fromJson(value);
+        case 'BusinessShareholder':
+          return BusinessShareholder.fromJson(value);
+        case 'BusinessTypeEnum':
+          return BusinessTypeEnumTypeTransformer().decode(value);
+        case 'ChangeAccountStatusRequest':
+          return ChangeAccountStatusRequest.fromJson(value);
         case 'Customer':
           return Customer.fromJson(value);
         case 'CustomerAgency':
@@ -240,6 +254,8 @@ class ApiClient {
           return CustomersListResponseItemsInner.fromJson(value);
         case 'CustomersListResponseMeta':
           return CustomersListResponseMeta.fromJson(value);
+        case 'DirectorPositionEnum':
+          return DirectorPositionEnumTypeTransformer().decode(value);
         case 'DisabilityTypeEnum':
           return DisabilityTypeEnumTypeTransformer().decode(value);
         case 'EKYCDisabilityChoiceEnum':
@@ -296,8 +312,20 @@ class ApiClient {
           return MobileUpdateIdentificationDetailsRequest.fromJson(value);
         case 'MobileVerifyGpsAddress200Response':
           return MobileVerifyGpsAddress200Response.fromJson(value);
+        case 'NonProfitTypeEnum':
+          return NonProfitTypeEnumTypeTransformer().decode(value);
         case 'NumberOfTransactionsEnum':
           return NumberOfTransactionsEnumTypeTransformer().decode(value);
+        case 'OnboardAddress':
+          return OnboardAddress.fromJson(value);
+        case 'OnboardError':
+          return OnboardError.fromJson(value);
+        case 'OnboardErrorErrorsInner':
+          return OnboardErrorErrorsInner.fromJson(value);
+        case 'OnboardIdentification':
+          return OnboardIdentification.fromJson(value);
+        case 'OnboardResponse':
+          return OnboardResponse.fromJson(value);
         case 'PortalEkycUpgrade':
           return PortalEkycUpgrade.fromJson(value);
         case 'PortalRejectInquireRequest':
@@ -308,8 +336,16 @@ class ApiClient {
           return PortalStoreMkyc.fromJson(value);
         case 'ProofOfResidenceTypeEnum':
           return ProofOfResidenceTypeEnumTypeTransformer().decode(value);
+        case 'RegistrationTypeEnum':
+          return RegistrationTypeEnumTypeTransformer().decode(value);
+        case 'ShareholderTypeEnum':
+          return ShareholderTypeEnumTypeTransformer().decode(value);
         case 'SourceOfFundsEnum':
           return SourceOfFundsEnumTypeTransformer().decode(value);
+        case 'StoreBusinessDirectorsRequest':
+          return StoreBusinessDirectorsRequest.fromJson(value);
+        case 'StoreBusinessShareholdersRequest':
+          return StoreBusinessShareholdersRequest.fromJson(value);
         case 'SuccessMessageResponse':
           return SuccessMessageResponse.fromJson(value);
         case 'TitleEnum':

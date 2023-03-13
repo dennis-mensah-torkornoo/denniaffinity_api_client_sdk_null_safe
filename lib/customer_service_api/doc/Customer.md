@@ -51,7 +51,7 @@ Name | Type | Description | Notes
 **branch** | **String** |  | 
 **relationshipOfficer** | **String** |  | 
 **relationshipOfficerEncodedKey** | **String** |  | 
-**approvalStatus** | **String** |  | 
+**approvalStatus** | [**ApprovalStatusEnum**](ApprovalStatusEnum.md) |  | 
 **accountType** | **String** |  | 
 **referrer** | **String** |  | 
 **mambuAccountStatus** | **String** |  | 

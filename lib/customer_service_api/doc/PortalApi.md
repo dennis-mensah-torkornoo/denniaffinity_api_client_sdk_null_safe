@@ -9,7 +9,9 @@ All URIs are relative to *https://staging-customer-service-api.affnty.co*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**completeOnboard**](PortalApi.md#completeonboard) | **PATCH** /business-accounts/{reference}/complete-onboard | Complete business account onboard
 [**getBranches**](PortalApi.md#getbranches) | **GET** /branches | Your GET endpoint
+[**getBusinessAccount**](PortalApi.md#getbusinessaccount) | **GET** /business-accounts/{reference} | Get business account
 [**portalApproveCustomerData**](PortalApi.md#portalapprovecustomerdata) | **PATCH** /customers/{id}/approve | 
 [**portalGetCustomer**](PortalApi.md#portalgetcustomer) | **GET** /customers/{id} | Your GET endpoint
 [**portalGetCustomers**](PortalApi.md#portalgetcustomers) | **GET** /customers | Your GET endpoint
@@ -20,7 +22,54 @@ Method | HTTP request | Description
 [**portalUpdateEkycCustomer**](PortalApi.md#portalupdateekyccustomer) | **PATCH** /customers/{id}/ekyc | 
 [**portalUpdateMkycCustomer**](PortalApi.md#portalupdatemkyccustomer) | **PATCH** /customers/{id}/mkyc | 
 [**portalUpgradeMkycCustomer**](PortalApi.md#portalupgrademkyccustomer) | **PATCH** /customers/{id}/mkyc/upgrade | UpgradeMKYC
+[**storeBusinessDetails**](PortalApi.md#storebusinessdetails) | **POST** /business-accounts/details | Store business details
+[**storeBusinessDirectors**](PortalApi.md#storebusinessdirectors) | **PATCH** /business-accounts/{reference}/directors | Add business directors
+[**storeBusinessShareholders**](PortalApi.md#storebusinessshareholders) | **PATCH** /business-accounts/{reference}/business-shareholders | Add business shareholders
+[**updateBusinessStatus**](PortalApi.md#updatebusinessstatus) | **PATCH** /business-accounts/{reference}/update-status | Change approval status
 
+
+# **completeOnboard**
+> OnboardResponse completeOnboard(reference)
+
+Complete business account onboard
+
+Complete business onboarding
+
+### Example
+```dart
+import 'package:customer_service_api/api.dart';
+
+final api_instance = PortalApi();
+final reference = reference_example; // String | 
+
+try {
+    final result = api_instance.completeOnboard(reference);
+    print(result);
+} catch (e) {
+    print('Exception when calling PortalApi->completeOnboard: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **reference** | **String**|  | 
+
+### Return type
+
+[**OnboardResponse**](OnboardResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **getBranches**
 > List<MambuBranchesResponseInner> getBranches()
@@ -57,6 +106,49 @@ This endpoint does not need any parameter.
 ### Authorization
 
 [xApiKey](../README.md#xApiKey)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **getBusinessAccount**
+> BusinessAccount getBusinessAccount(reference)
+
+Get business account
+
+Get business account details
+
+### Example
+```dart
+import 'package:customer_service_api/api.dart';
+
+final api_instance = PortalApi();
+final reference = reference_example; // String | 
+
+try {
+    final result = api_instance.getBusinessAccount(reference);
+    print(result);
+} catch (e) {
+    print('Exception when calling PortalApi->getBusinessAccount: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **reference** | **String**|  | 
+
+### Return type
+
+[**BusinessAccount**](BusinessAccount.md)
+
+### Authorization
+
+No authorization required
 
 ### HTTP request headers
 
@@ -532,6 +624,182 @@ Name | Type | Description  | Notes
 
  - **Content-Type**: application/json
  - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **storeBusinessDetails**
+> OnboardResponse storeBusinessDetails(businessDetailsRequest)
+
+Store business details
+
+Save business core details and required documents
+
+### Example
+```dart
+import 'package:customer_service_api/api.dart';
+
+final api_instance = PortalApi();
+final businessDetailsRequest = BusinessDetailsRequest(); // BusinessDetailsRequest | 
+
+try {
+    final result = api_instance.storeBusinessDetails(businessDetailsRequest);
+    print(result);
+} catch (e) {
+    print('Exception when calling PortalApi->storeBusinessDetails: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **businessDetailsRequest** | [**BusinessDetailsRequest**](BusinessDetailsRequest.md)|  | [optional] 
+
+### Return type
+
+[**OnboardResponse**](OnboardResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **storeBusinessDirectors**
+> OnboardResponse storeBusinessDirectors(reference, storeBusinessDirectorsRequest)
+
+Add business directors
+
+Store information on the people in the business (directors, shareholders, signatories)
+
+### Example
+```dart
+import 'package:customer_service_api/api.dart';
+
+final api_instance = PortalApi();
+final reference = reference_example; // String | 
+final storeBusinessDirectorsRequest = StoreBusinessDirectorsRequest(); // StoreBusinessDirectorsRequest | 
+
+try {
+    final result = api_instance.storeBusinessDirectors(reference, storeBusinessDirectorsRequest);
+    print(result);
+} catch (e) {
+    print('Exception when calling PortalApi->storeBusinessDirectors: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **reference** | **String**|  | 
+ **storeBusinessDirectorsRequest** | [**StoreBusinessDirectorsRequest**](StoreBusinessDirectorsRequest.md)|  | [optional] 
+
+### Return type
+
+[**OnboardResponse**](OnboardResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **storeBusinessShareholders**
+> storeBusinessShareholders(reference, storeBusinessShareholdersRequest)
+
+Add business shareholders
+
+Add shareholders which are businesses
+
+### Example
+```dart
+import 'package:customer_service_api/api.dart';
+
+final api_instance = PortalApi();
+final reference = reference_example; // String | 
+final storeBusinessShareholdersRequest = StoreBusinessShareholdersRequest(); // StoreBusinessShareholdersRequest | 
+
+try {
+    api_instance.storeBusinessShareholders(reference, storeBusinessShareholdersRequest);
+} catch (e) {
+    print('Exception when calling PortalApi->storeBusinessShareholders: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **reference** | **String**|  | 
+ **storeBusinessShareholdersRequest** | [**StoreBusinessShareholdersRequest**](StoreBusinessShareholdersRequest.md)|  | [optional] 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **updateBusinessStatus**
+> updateBusinessStatus(reference, changeAccountStatusRequest)
+
+Change approval status
+
+Update status on a business profile
+
+### Example
+```dart
+import 'package:customer_service_api/api.dart';
+
+final api_instance = PortalApi();
+final reference = reference_example; // String | 
+final changeAccountStatusRequest = ChangeAccountStatusRequest(); // ChangeAccountStatusRequest | 
+
+try {
+    api_instance.updateBusinessStatus(reference, changeAccountStatusRequest);
+} catch (e) {
+    print('Exception when calling PortalApi->updateBusinessStatus: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **reference** | **String**|  | 
+ **changeAccountStatusRequest** | [**ChangeAccountStatusRequest**](ChangeAccountStatusRequest.md)|  | [optional] 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

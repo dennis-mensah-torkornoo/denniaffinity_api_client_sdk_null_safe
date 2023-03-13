@@ -83,7 +83,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/CustomerAgency"
+                $ref: "#/components/schemas/Customer"
         "401":
           description: Unauthorized
         "404":
@@ -1361,8 +1361,576 @@ paths:
           application/json:
             schema:
               $ref: "#/components/schemas/PortalRejectInquireRequest"
+  /business-accounts/details:
+    post:
+      summary: Store business details
+      operationId: storeBusinessDetails
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/OnboardResponse"
+              examples: {}
+      description: Save business core details and required documents
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BusinessDetailsRequest"
+      tags:
+        - Portal
+    parameters: []
+  "/business-accounts/{reference}":
+    parameters:
+      - schema:
+          type: string
+        name: reference
+        in: path
+        required: true
+    get:
+      summary: Get business account
+      operationId: getBusinessAccount
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BusinessAccount"
+              examples: {}
+      description: Get business account details
+      tags:
+        - Portal
+  "/business-accounts/{reference}/directors":
+    parameters:
+      - schema:
+          type: string
+        name: reference
+        in: path
+        required: true
+    patch:
+      summary: Add business directors
+      operationId: storeBusinessDirectors
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/OnboardResponse"
+      description: "Store information on the people in the business (directors, shareholders, signatories)"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                businessDirectors:
+                  type: array
+                  items:
+                    $ref: "#/components/schemas/BusinessDirector"
+        description: ""
+      tags:
+        - Portal
+  "/business-accounts/{reference}/update-status":
+    parameters:
+      - schema:
+          type: string
+        name: reference
+        in: path
+        required: true
+    patch:
+      summary: Change approval status
+      operationId: updateBusinessStatus
+      description: Update status on a business profile
+      tags:
+        - Portal
+      parameters: []
+      responses:
+        "200":
+          description: OK
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ChangeAccountStatusRequest"
+  "/business-accounts/{reference}/business-shareholders":
+    parameters:
+      - schema:
+          type: string
+        name: reference
+        in: path
+        required: true
+    patch:
+      summary: Add business shareholders
+      operationId: storeBusinessShareholders
+      responses:
+        "200":
+          description: OK
+      description: Add shareholders which are businesses
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                businessShareholders:
+                  type: array
+                  items:
+                    $ref: "#/components/schemas/BusinessDetailsRequest"
+        description: ""
+      tags:
+        - Portal
+  "/business-accounts/{reference}/complete-onboard":
+    parameters:
+      - schema:
+          type: string
+        name: reference
+        in: path
+        required: true
+    patch:
+      summary: Complete business account onboard
+      operationId: completeOnboard
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/OnboardResponse"
+      description: Complete business onboarding
+      tags:
+        - Portal
 components:
   schemas:
+    OnboardError:
+      title: OnboardingError
+      type: object
+      x-stoplight:
+        id: b84a671e0681b
+      properties:
+        message:
+          type: string
+        code:
+          type: string
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              field:
+                type: string
+              errors:
+                type: string
+      required:
+        - message
+      x-examples: {}
+    OnboardAddress:
+      type: object
+      x-examples:
+        Example 1:
+          houseNumber: wdads
+          streetName: Akoli link
+          area: Osu
+          city: Accra
+      description: Address
+      x-stoplight:
+        id: f679d5a79380d
+      properties:
+        houseNumber:
+          type: string
+        streetName:
+          type: string
+        area:
+          type: string
+        city:
+          type: string
+        ghanaGPSAddress:
+          type: string
+        description:
+          type: string
+    OnboardResponse:
+      title: OnboardingResponse
+      type: object
+      x-examples: {}
+      x-stoplight:
+        id: f94bb4377293e
+      properties:
+        message:
+          type: string
+        reference:
+          type: string
+    BusinessDetailsRequest:
+      type: object
+      x-examples: {}
+      description: Payload for business details step
+      properties:
+        name:
+          type: string
+        registrationNumber:
+          type: string
+        registrationDate:
+          type: string
+        businessType:
+          $ref: "#/components/schemas/BusinessTypeEnum"
+        registrationType:
+          $ref: "#/components/schemas/RegistrationTypeEnum"
+        nonProfitType:
+          $ref: "#/components/schemas/NonProfitTypeEnum"
+        ownershipType:
+          type: string
+          enum:
+            - PUBLIC
+            - PRIVATE
+        isLicenseRequired:
+          type: boolean
+        address:
+          $ref: "#/components/schemas/OnboardAddress"
+        email:
+          type: string
+        phoneNumber:
+          type: string
+        secondaryPhoneNumber:
+          type: string
+        TIN:
+          type: string
+        sector:
+          type: string
+        industry:
+          type: string
+        annualTurnover:
+          type: string
+        sourceOfFunds:
+          $ref: "#/components/schemas/SourceOfFundsEnum"
+        website:
+          type: string
+        noRequiredSignatories:
+          type: number
+        certificateOfRegistrationFile:
+          type: string
+        ammendmentToRegistrationFile:
+          type: string
+        annualRenewalReceiptFile:
+          type: string
+        businessRegulationFile:
+          type: string
+        partnershipAgreementFile:
+          type: string
+        certificateOfIncorporationFile:
+          type: string
+        endorsedConstitutionFile:
+          type: string
+        publicVerificationProofFile:
+          type: string
+      required:
+        - name
+        - registrationNumber
+        - registrationDate
+        - businessType
+        - ownershipType
+        - isLicenseRequired
+        - address
+        - phoneNumber
+        - TIN
+        - sector
+        - industry
+        - annualTurnover
+        - sourceOfFunds
+      x-stoplight:
+        id: 0a423605512db
+    BusinessAccount:
+      type: object
+      x-examples: {}
+      description: Business account information
+      x-stoplight:
+        id: d0a5a9338fc35
+      properties:
+        reference:
+          type: string
+        name:
+          type: string
+        registrationNumber:
+          type: string
+        registrationDate:
+          type: string
+        businessType:
+          $ref: "#/components/schemas/BusinessTypeEnum"
+        registrationType:
+          $ref: "#/components/schemas/RegistrationTypeEnum"
+        nonProfitType:
+          $ref: "#/components/schemas/NonProfitTypeEnum"
+        ownershipType:
+          type: string
+          enum:
+            - PUBLIC
+            - PRIVATE
+        isLicenseRequired:
+          type: boolean
+        address:
+          $ref: "#/components/schemas/OnboardAddress"
+        email:
+          type: string
+        phoneNumber:
+          type: string
+        secondaryPhoneNumber:
+          type: string
+        TIN:
+          type: string
+        sector:
+          type: string
+        industry:
+          type: string
+        annualTurnover:
+          type: string
+        sourceOfFunds:
+          $ref: "#/components/schemas/SourceOfFundsEnum"
+        website:
+          type: string
+        noRequiredSignatories:
+          type: number
+        documents:
+          $ref: "#/components/schemas/BusinessDocuments"
+        directors:
+          type: array
+          items:
+            $ref: "#/components/schemas/BusinessDirector"
+        businessShareholders:
+          type: array
+          items:
+            $ref: "#/components/schemas/BusinessShareholder"
+      required:
+        - name
+        - registrationNumber
+        - registrationDate
+        - businessType
+        - ownershipType
+        - isLicenseRequired
+        - address
+        - phoneNumber
+        - TIN
+        - sector
+        - industry
+        - annualTurnover
+        - sourceOfFunds
+        - documents
+        - directors
+        - businessShareholders
+    BusinessDocuments:
+      title: BusinessDocuments
+      type: object
+      properties:
+        certificateOfRegistrationFile:
+          type: string
+        ammendmentToRegistrationFile:
+          type: string
+        annualRenewalReceiptFile:
+          type: string
+        businessRegulationFile:
+          type: string
+        partnershipAgreementFile:
+          type: string
+        certificateOfIncorporationFile:
+          type: string
+        endorsedConstitutionFile:
+          type: string
+        publicVerificationProofFile:
+          type: string
+        boardResolutionFile:
+          type: string
+      description: Business documents
+    BusinessShareholder:
+      type: object
+      x-examples: {}
+      description: Business shareholder information
+      x-stoplight:
+        id: a3264db41c2d5
+      properties:
+        name:
+          type: string
+        registrationNumber:
+          type: string
+        registrationDate:
+          type: string
+        businessType:
+          $ref: "#/components/schemas/BusinessTypeEnum"
+        registrationType:
+          $ref: "#/components/schemas/RegistrationTypeEnum"
+        ownershipType:
+          type: string
+          enum:
+            - PUBLIC
+            - PRIVATE
+        isLicenseRequired:
+          type: boolean
+        address:
+          $ref: "#/components/schemas/OnboardAddress"
+        email:
+          type: string
+        phoneNumber:
+          type: string
+        secondaryPhoneNumber:
+          type: string
+        TIN:
+          type: string
+        sector:
+          type: string
+        industry:
+          type: string
+        website:
+          type: string
+        documents:
+          $ref: "#/components/schemas/BusinessDocuments"
+      required:
+        - name
+        - registrationNumber
+        - registrationDate
+        - businessType
+        - ownershipType
+        - isLicenseRequired
+        - address
+        - phoneNumber
+        - TIN
+        - sector
+        - industry
+    OnboardIdentification:
+      title: OnboardIdentification
+      type: object
+      x-stoplight:
+        id: 20e3ae63b84f7
+      properties:
+        idType:
+          type: string
+          enum:
+            - GHANA_CARD
+        number:
+          type: string
+        issueDate:
+          type: string
+        expiryDate:
+          type: string
+        fileKey:
+          type: string
+        backFileKey:
+          type: string
+      required:
+        - idType
+        - number
+        - issueDate
+        - expiryDate
+        - fileKey
+        - backFileKey
+      description: Identification details
+    BusinessDirector:
+      type: object
+      x-examples: {}
+      description: Business Director model
+      x-stoplight:
+        id: 337c828623937
+      properties:
+        title:
+          $ref: "#/components/schemas/TitleEnum"
+        firstName:
+          type: string
+        lastName:
+          type: string
+        otherNames:
+          type: string
+        address:
+          $ref: "#/components/schemas/OnboardAddress"
+        email:
+          type: string
+        nationality:
+          type: string
+        phoneNumber:
+          type: string
+        secondaryPhoneNumber:
+          type: string
+        position:
+          $ref: "#/components/schemas/DirectorPositionEnum"
+        shareholderType:
+          $ref: "#/components/schemas/ShareholderTypeEnum"
+        photoKey:
+          type: string
+        sourceOfFunds:
+          $ref: "#/components/schemas/SourceOfFundsEnum"
+        isDirector:
+          type: boolean
+        isShareholder:
+          type: boolean
+        isSignatory:
+          type: boolean
+        signatureKey:
+          type: string
+        identification:
+          $ref: "#/components/schemas/OnboardIdentification"
+      required:
+        - title
+        - firstName
+        - lastName
+        - address
+        - phoneNumber
+        - position
+        - shareholderType
+        - photoKey
+        - sourceOfFunds
+        - isDirector
+        - isShareholder
+        - isSignatory
+    BusinessTypeEnum:
+      title: BusinessTypeEnum
+      x-stoplight:
+        id: i3dyyw8wqa8nw
+      type: string
+      enum:
+        - SOLE_PROPRIETOR
+        - PARTNERSHIP
+        - NON_PROFIT
+        - LIMITED_LIABILITY
+        - GOVERNMENT_ORGANISATION
+      description: Business type options
+    RegistrationTypeEnum:
+      title: RegistrationTypeEnum
+      type: string
+      description: Registration type options for Non profit businesses
+      x-stoplight:
+        id: 13abe5ad8ecb2
+      enum:
+        - UNREGISTERED
+        - LIMITED_BY_GUARANTEE
+        - REGISTERED
+    DirectorPositionEnum:
+      title: DirectorPositionEnum
+      type: string
+      description: Position options for a director
+      x-stoplight:
+        id: 799e52a3978b8
+      enum:
+        - DIRECTOR
+        - CEO_MANAGING_DIRECTOR
+        - CFO_FINANCE_DIRECTOR
+        - COO_OPERATIONS_DIRECTOR
+        - OTHER_MANAGEMENT
+    ShareholderTypeEnum:
+      title: ShareholderTypeEnum
+      type: string
+      description: Shareholder type options
+      enum:
+        - INDEPENDENT_SHAREHOLDER
+        - FOUNDER
+        - RELATED_TO_FOUNDER
+        - MEMBER_OF_MANAGEMENT
+      x-stoplight:
+        id: df3221fbb8ca2
+    NonProfitTypeEnum:
+      type: string
+      enum:
+        - NGO
+        - CHARITY
+        - ASSOCIATION
+        - EMBASSY
+        - CLUB
     SuccessMessageResponse:
       type: object
       x-examples:
@@ -1435,11 +2003,19 @@ components:
       x-examples: {}
       enum:
         - PROOF_OF_RESIDENCE
-        - PROFILE_PICTURE
         - IDENTIFICATION
         - RESIDENCY_PERMIT
         - SIGNATURE
+        - PROFILE_PICTURE
         - CHEQUE
+        - AMMENDMENT_REGISTRATION
+        - ANNUAL_RENEWAL_RECEIPT
+        - BUSINESS_REGULATION
+        - PARTNERSHIP_AGREEMENT
+        - INCORPORATION_CERTIFICATE
+        - ENDORSED_CONSTITUTION
+        - PUBLIC_VERIFICATION
+        - REGISTRATION_CERTIFICATE
     MobileOnboardingStepEnum:
       type: string
       description: Mobile onboarding steps
@@ -1483,17 +2059,22 @@ components:
         example-1: PENDING_MKYC_REVIEW
       enum:
         - MKYC_INCOMPLETE
-        - PENDING_MKYC_APPROVAL
-        - PENDING_MKYC_REVIEW
-        - MKYC_REJECTED
-        - MKYC_APPROVED
         - EKYC_INCOMPLETE
+        - ACCOUNT_INCOMPLETE
+        - PENDING_MKYC_APPROVAL
         - PENDING_EKYC_APPROVAL
-        - PENDING_EKYC_REVIEW
-        - EKYC_REJECTED
-        - EKYC_APPROVED
         - PENDING_EKYC_UPGRADE_APPROVAL
+        - PENDING_ACCOUNT_APPROVAL
+        - PENDING_MKYC_REVIEW
+        - PENDING_EKYC_REVIEW
         - PENDING_EKYC_UPGRADE_REVIEW
+        - PENDING_ACCOUNT_REVIEW
+        - MKYC_REJECTED
+        - EKYC_REJECTED
+        - ACCOUNT_REJECTED
+        - MKYC_APPROVED
+        - EKYC_APPROVED
+        - ACCOUNT_APPROVED
         - EKYC_UPGRADE_APPROVED
     MambuStatusEnum:
       type: string
@@ -2474,7 +3055,6 @@ components:
       x-stoplight:
         id: gbr5n1a9dsq3b
       type: object
-      description: ""
       x-examples: {}
       properties:
         id:
@@ -2663,19 +3243,7 @@ components:
         relationshipOfficerEncodedKey:
           type: string
         approvalStatus:
-          type: string
-          enum:
-            - PENDING_MKYC_REVIEW
-            - PENDING_EKYC_REVIEW
-            - PENDING_EKYC_UPGRADE_REVIEW
-            - PENDING_MKYC_APPROVAL
-            - PENDING_EKYC_APPROVAL
-            - PENDING_EKYC_UPGRADE_APPROVAL
-            - MKYC_APPROVED
-            - EKYC_APPROVED
-            - EKYC_UPGRADE_APPROVED
-            - MKYC_REJECTED
-            - EKYC_REJECTED
+          $ref: "#/components/schemas/ApprovalStatusEnum"
         accountType:
           type: string
           enum:
@@ -3362,6 +3930,22 @@ components:
         required:
           - key
           - name
+    ChangeAccountStatusRequest:
+      title: ChangeAccountStatusRequest
+      x-stoplight:
+        id: imvr7cm47fxf7
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+            - APPROVE
+            - REJECT
+            - INQUIRE
+        errors:
+          type: array
+          items:
+            type: string
   requestBodies: {}
   securitySchemes:
     xApiKey:

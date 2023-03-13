@@ -61,6 +61,12 @@ String parameterToString(dynamic value) {
   if (value is ApprovalStatusEnum) {
     return ApprovalStatusEnumTypeTransformer().encode(value).toString();
   }
+  if (value is BusinessTypeEnum) {
+    return BusinessTypeEnumTypeTransformer().encode(value).toString();
+  }
+  if (value is DirectorPositionEnum) {
+    return DirectorPositionEnumTypeTransformer().encode(value).toString();
+  }
   if (value is DisabilityTypeEnum) {
     return DisabilityTypeEnumTypeTransformer().encode(value).toString();
   }
@@ -91,11 +97,20 @@ String parameterToString(dynamic value) {
   if (value is MobileOnboardingStepEnum) {
     return MobileOnboardingStepEnumTypeTransformer().encode(value).toString();
   }
+  if (value is NonProfitTypeEnum) {
+    return NonProfitTypeEnumTypeTransformer().encode(value).toString();
+  }
   if (value is NumberOfTransactionsEnum) {
     return NumberOfTransactionsEnumTypeTransformer().encode(value).toString();
   }
   if (value is ProofOfResidenceTypeEnum) {
     return ProofOfResidenceTypeEnumTypeTransformer().encode(value).toString();
+  }
+  if (value is RegistrationTypeEnum) {
+    return RegistrationTypeEnumTypeTransformer().encode(value).toString();
+  }
+  if (value is ShareholderTypeEnum) {
+    return ShareholderTypeEnumTypeTransformer().encode(value).toString();
   }
   if (value is SourceOfFundsEnum) {
     return SourceOfFundsEnumTypeTransformer().encode(value).toString();

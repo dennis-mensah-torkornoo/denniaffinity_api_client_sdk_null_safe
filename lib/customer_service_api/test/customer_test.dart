@@ -231,7 +231,7 @@ void main() {
       // TODO
     });
 
-    // String approvalStatus
+    // ApprovalStatusEnum approvalStatus
     test('to test the property `approvalStatus`', () async {
       // TODO
     });

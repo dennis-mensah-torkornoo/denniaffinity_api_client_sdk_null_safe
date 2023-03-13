@@ -16,6 +16,63 @@ class PortalApi {
 
   final ApiClient apiClient;
 
+  /// Complete business account onboard
+  ///
+  /// Complete business onboarding
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] reference (required):
+  Future<Response> completeOnboardWithHttpInfo(String reference,) async {
+    // ignore: prefer_const_declarations
+    final path = r'/business-accounts/{reference}/complete-onboard'
+      .replaceAll('{reference}', reference);
+
+    // ignore: prefer_final_locals
+    Object? postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'PATCH',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes.first,
+    );
+  }
+
+  /// Complete business account onboard
+  ///
+  /// Complete business onboarding
+  ///
+  /// Parameters:
+  ///
+  /// * [String] reference (required):
+  Future<OnboardResponse?> completeOnboard(String reference,) async {
+    final response = await completeOnboardWithHttpInfo(reference,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'OnboardResponse',) as OnboardResponse;
+    
+    }
+    return null;
+  }
+
   /// Your GET endpoint
   ///
   /// 
@@ -63,6 +120,63 @@ class PortalApi {
         .cast<MambuBranchesResponseInner>()
         .toList();
 
+    }
+    return null;
+  }
+
+  /// Get business account
+  ///
+  /// Get business account details
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] reference (required):
+  Future<Response> getBusinessAccountWithHttpInfo(String reference,) async {
+    // ignore: prefer_const_declarations
+    final path = r'/business-accounts/{reference}'
+      .replaceAll('{reference}', reference);
+
+    // ignore: prefer_final_locals
+    Object? postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes.first,
+    );
+  }
+
+  /// Get business account
+  ///
+  /// Get business account details
+  ///
+  /// Parameters:
+  ///
+  /// * [String] reference (required):
+  Future<BusinessAccount?> getBusinessAccount(String reference,) async {
+    final response = await getBusinessAccountWithHttpInfo(reference,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'BusinessAccount',) as BusinessAccount;
+    
     }
     return null;
   }
@@ -647,5 +761,232 @@ class PortalApi {
     
     }
     return null;
+  }
+
+  /// Store business details
+  ///
+  /// Save business core details and required documents
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [BusinessDetailsRequest] businessDetailsRequest:
+  Future<Response> storeBusinessDetailsWithHttpInfo({ BusinessDetailsRequest? businessDetailsRequest, }) async {
+    // ignore: prefer_const_declarations
+    final path = r'/business-accounts/details';
+
+    // ignore: prefer_final_locals
+    Object? postBody = businessDetailsRequest;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const contentTypes = <String>['application/json'];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes.first,
+    );
+  }
+
+  /// Store business details
+  ///
+  /// Save business core details and required documents
+  ///
+  /// Parameters:
+  ///
+  /// * [BusinessDetailsRequest] businessDetailsRequest:
+  Future<OnboardResponse?> storeBusinessDetails({ BusinessDetailsRequest? businessDetailsRequest, }) async {
+    final response = await storeBusinessDetailsWithHttpInfo( businessDetailsRequest: businessDetailsRequest, );
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'OnboardResponse',) as OnboardResponse;
+    
+    }
+    return null;
+  }
+
+  /// Add business directors
+  ///
+  /// Store information on the people in the business (directors, shareholders, signatories)
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] reference (required):
+  ///
+  /// * [StoreBusinessDirectorsRequest] storeBusinessDirectorsRequest:
+  ///   
+  Future<Response> storeBusinessDirectorsWithHttpInfo(String reference, { StoreBusinessDirectorsRequest? storeBusinessDirectorsRequest, }) async {
+    // ignore: prefer_const_declarations
+    final path = r'/business-accounts/{reference}/directors'
+      .replaceAll('{reference}', reference);
+
+    // ignore: prefer_final_locals
+    Object? postBody = storeBusinessDirectorsRequest;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const contentTypes = <String>['application/json'];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'PATCH',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes.first,
+    );
+  }
+
+  /// Add business directors
+  ///
+  /// Store information on the people in the business (directors, shareholders, signatories)
+  ///
+  /// Parameters:
+  ///
+  /// * [String] reference (required):
+  ///
+  /// * [StoreBusinessDirectorsRequest] storeBusinessDirectorsRequest:
+  ///   
+  Future<OnboardResponse?> storeBusinessDirectors(String reference, { StoreBusinessDirectorsRequest? storeBusinessDirectorsRequest, }) async {
+    final response = await storeBusinessDirectorsWithHttpInfo(reference,  storeBusinessDirectorsRequest: storeBusinessDirectorsRequest, );
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'OnboardResponse',) as OnboardResponse;
+    
+    }
+    return null;
+  }
+
+  /// Add business shareholders
+  ///
+  /// Add shareholders which are businesses
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] reference (required):
+  ///
+  /// * [StoreBusinessShareholdersRequest] storeBusinessShareholdersRequest:
+  ///   
+  Future<Response> storeBusinessShareholdersWithHttpInfo(String reference, { StoreBusinessShareholdersRequest? storeBusinessShareholdersRequest, }) async {
+    // ignore: prefer_const_declarations
+    final path = r'/business-accounts/{reference}/business-shareholders'
+      .replaceAll('{reference}', reference);
+
+    // ignore: prefer_final_locals
+    Object? postBody = storeBusinessShareholdersRequest;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const contentTypes = <String>['application/json'];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'PATCH',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes.first,
+    );
+  }
+
+  /// Add business shareholders
+  ///
+  /// Add shareholders which are businesses
+  ///
+  /// Parameters:
+  ///
+  /// * [String] reference (required):
+  ///
+  /// * [StoreBusinessShareholdersRequest] storeBusinessShareholdersRequest:
+  ///   
+  Future<void> storeBusinessShareholders(String reference, { StoreBusinessShareholdersRequest? storeBusinessShareholdersRequest, }) async {
+    final response = await storeBusinessShareholdersWithHttpInfo(reference,  storeBusinessShareholdersRequest: storeBusinessShareholdersRequest, );
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+  }
+
+  /// Change approval status
+  ///
+  /// Update status on a business profile
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] reference (required):
+  ///
+  /// * [ChangeAccountStatusRequest] changeAccountStatusRequest:
+  Future<Response> updateBusinessStatusWithHttpInfo(String reference, { ChangeAccountStatusRequest? changeAccountStatusRequest, }) async {
+    // ignore: prefer_const_declarations
+    final path = r'/business-accounts/{reference}/update-status'
+      .replaceAll('{reference}', reference);
+
+    // ignore: prefer_final_locals
+    Object? postBody = changeAccountStatusRequest;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const contentTypes = <String>['application/json'];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'PATCH',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes.first,
+    );
+  }
+
+  /// Change approval status
+  ///
+  /// Update status on a business profile
+  ///
+  /// Parameters:
+  ///
+  /// * [String] reference (required):
+  ///
+  /// * [ChangeAccountStatusRequest] changeAccountStatusRequest:
+  Future<void> updateBusinessStatus(String reference, { ChangeAccountStatusRequest? changeAccountStatusRequest, }) async {
+    final response = await updateBusinessStatusWithHttpInfo(reference,  changeAccountStatusRequest: changeAccountStatusRequest, );
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
   }
 }
